@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.12 — Historical Rule Evidence
+
+- Selected 2012 FIA driving clauses 20.2–20.5 reviewed from original 9 March 2012 document; explicit declared-event signals and unknowns, no automatic penalties. 16 fixtures / 64 clause checks, seven tests. Not full regulation or steward equivalence.
+
+
 ## 0.8.11 — Track Evidence
 
 - Read-only audit of pinned actual Core 2 season/track physics/tyre data and geometry license notice, exact blob checks, 20 normalized centerline records; distinguish licensed reference from schematic placeholders and historical calibration blocked. Five new tests and exact-head hosted source audit. No geometry copied or sporting changes.
