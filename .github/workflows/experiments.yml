@@ -1,0 +1,26 @@
+name: Experimental Engineering
+on:
+  pull_request:
+    branches: [main]
+    paths: ['engineering_lab/experimental*.py','engineering_lab/exp_*.py','engineering_lab/__main__.py','.github/workflows/experiments.yml']
+permissions:
+  contents: read
+jobs:
+  exact-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Fixed bounded experiment
+        run: python3 -m engineering_lab experiment-run ordered_commands --id EXP-ORDER-001 --registry "$RUNNER_TEMP/ordered"
+      - name: Verify bytes
+        run: python3 -m engineering_lab verify --id EXP-ORDER-001 --registry "$RUNNER_TEMP/ordered"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: experimental-evidence
+          path: ${{ runner.temp }}/ordered/
+          retention-days: 7

@@ -2,7 +2,7 @@
 
 Autonomous scientific research, experimental engineering, algorithm development and computational intelligence infrastructure for the APEX Motorsport ecosystem.
 
-**v0.5.4 — Engineering Memory / Autonomous Debugging**
+**v0.6.0 — Experimental Engineering Core**
 
 Laboratório de P&D independente do motor oficial e do Development Lab. Pesquisa científica, modelos isolados, comparação de algoritmos e evidência reproduzível. Não é outro motor nem outro sistema de homologação.
 
@@ -23,6 +23,7 @@ O demo executa uma hipótese aritmética sintética, não uma corrida. Cria plan
 - [AGENTS.md](AGENTS.md): autoridade e regras permanentes.
 - [Roadmap](ROADMAP.md): sequência de capacidades, sem substituir os roadmaps Core 2/Hyper.
 - [Departamentos](departments/README.md): 12 áreas e critérios.
+- [Experimental Engineering](docs/EXPERIMENTAL_ENGINEERING.md): bounded executable prototypes.
 - [Autonomous Debugging](docs/AUTONOMOUS_DEBUGGING.md): investigations and evidence lifecycle.
 - [Code Intelligence](docs/CODE_INTELLIGENCE.md): existing diagnostic outputs, dependency impact and static review.
 - [Research Intelligence](docs/RESEARCH_INTELLIGENCE.md): carteira, licenças, Foundation pin e propostas.
