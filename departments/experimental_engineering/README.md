@@ -1,6 +1,6 @@
 # Experimental Engineering
 
-**Estado:** IMPLEMENTAÇÃO INICIAL 0.6.0; protocolo executável isolado.
+**Estado:** IMPLEMENTAÇÃO INICIAL 0.6.0–0.6.5; cinco experimentos isolados, comparação e relatórios. Resultados não representam integração esportiva.
 
 ## Mandato
 
