@@ -11,8 +11,11 @@ DT=0.01
 FRONT_M=1.728
 REAR_M=1.472
 INERTIA=900.0
-CF=60000.0
-CR=65000.0
+## Synthetic stable-understeer reference: rear cornering stiffness has
+## reserve relative to its CG lever arm (CR*REAR_M > CF*FRONT_M).
+## Not estimates of a 2012 tyre or car.
+CF=45000.0
+CR=90000.0
 STEER_MAX=0.3
 STEER_RATE=0.8
 
