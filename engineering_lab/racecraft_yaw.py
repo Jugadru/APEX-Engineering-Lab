@@ -4,7 +4,7 @@ Synthetic parameters, fixed 10 ms substeps. Body lateral velocity and yaw
 moment are propagated; not a full planar work-energy or steering calibration.
 """
 import math
-from . import registry as reg, physics_vehicle as vehicle
+from . import registry as reg, physics_vehicle as vehicle, physics_tyre as tyre
 from .physics_core import scalar
 
 DT=0.01
@@ -39,6 +39,9 @@ def step(state,command,steer_target,substeps=20):
     reg.require(command["ay_mps2"]==0,"steering replaces prescribed lateral demand")
     def failure(reason):
         return dict(status=reason,state=None,trace=[])
+    # Synthetic small-slip slope scales with available friction, not only peak.
+    # Reuse the same temperature/wear law used by the combined force budget.
+    stiffness_factor=command["grip_factor"]*tyre.effective_mu(1,command["tyre_temp_k"],360,45,command["wear"])
     trace=[]
     for _ in range(substeps):
         v=forward["speed_mps"]
@@ -49,7 +52,7 @@ def step(state,command,steer_target,substeps=20):
         ar=-(w-REAR_M*r)/v
         if max(abs(af),abs(ar))>0.35:
             return failure("SLIP_DOMAIN")
-        fyf,fyr=CF*af,CR*ar
+        fyf,fyr=stiffness_factor*CF*af,stiffness_factor*CR*ar
         mass=vehicle.DRY_MASS_KG+forward["fuel_kg"]
         ay=max(-30,min(30,(fyf+fyr)/mass))
         f=vehicle.step(forward,dict(command,ay_mps2=ay),DT,(fyf,fyr))
