@@ -28,3 +28,7 @@ Roadmap: 0.7.1 tyre, 0.7.2 aero, 0.7.3 powertrain, 0.7.4 braking, 0.7.5 load tra
 ## 0.7.5
 
 `physics_load`: longitudinal transfer m*ax*h/wheelbase, lateral m*ay*h/track, separate static and aero front fractions, positive ay transfers right. Clip infeasible axle/side load redistribution explicitly and report requested/realized values; proportionally distribute lateral transfer by axle load. 36 load cases. Separate unforced linear sprung-mass perturbation about static equilibrium, exact underdamped solution and energy/partition checks (12 cases). Not a dynamic four-wheel suspension, roll stiffness, unsprung mass, real track surface, or wheel-lift solver. REF-107/IDEA-006–009 concept only.
+
+## 0.7.6
+
+`physics_energy`: synthetic LHV 43 MJ/kg, fixed efficiencies; cap shaft offer by fuel and power*time, KERS source offer by request, 60 kW and remaining 400 kJ lap budget (from audited APEX era reference), stored energy. Convert offers to wheel energy. Allocate KERS-first, then combustion, debit only accepted work and record source losses, unmet demand and remaining fuel/store/lap. 162 cases. KERS limits here explicitly at source side; do not replace existing authority or assume regulatory equivalence. No idle burn, regeneration, refuel, automatic lap reset, pit state or 2012 measured data. REF-107/IDEA-001/002/005 conceptual.
