@@ -15,6 +15,13 @@ class Car:
     speed_mm_s: int
     active: bool=True
 
+    def __post_init__(self):
+        integer(self.id,0,255,"id")
+        integer(self.progress_mm,0,2000000000,"progress")
+        integer(self.lateral_mm,-15000,15000,"lateral")
+        integer(self.speed_mm_s,0,200000,"speed")
+        reg.require(type(self.active) is bool,"active")
+
 @dataclass(frozen=True)
 class Snapshot:
     tick: int
@@ -22,22 +29,22 @@ class Snapshot:
     half_width_mm: int
     cars: tuple
 
+    def __post_init__(self):
+        integer(self.tick,0,1000000,"tick")
+        integer(self.length_mm,100000,20000000,"track length")
+        integer(self.half_width_mm,1000,15000,"half width")
+        reg.require(type(self.cars) is tuple and 1<=len(self.cars)<=24 and all(type(c) is Car for c in self.cars),"immutable roster")
+        ids=tuple(c.id for c in self.cars)
+        reg.require(ids==tuple(sorted(set(ids))),"unique canonical car IDs")
+        reg.require(all(abs(c.lateral_mm)<=self.half_width_mm for c in self.cars),"lateral outside track")
+
     @classmethod
     def from_rows(cls,tick,length_mm,half_width_mm,rows):
-        integer(tick,0,1000000,"tick")
-        integer(length_mm,100000,20000000,"track length")
-        integer(half_width_mm,1000,15000,"half width")
         reg.require(isinstance(rows,(list,tuple)) and 1<=len(rows)<=24,"roster size")
         cars=[]
         for row in rows:
             reg.exact(row,"id progress_mm lateral_mm speed_mm_s active")
-            integer(row["id"],0,255,"id")
-            integer(row["progress_mm"],0,2000000000,"progress")
-            integer(row["lateral_mm"],-half_width_mm,half_width_mm,"lateral")
-            integer(row["speed_mm_s"],0,200000,"speed")
-            reg.require(type(row["active"]) is bool,"active")
             cars.append(Car(**row))
-        reg.require(len({c.id for c in cars})==len(cars),"duplicate car ID")
         return cls(tick,length_mm,half_width_mm,tuple(sorted(cars,key=lambda c:c.id)))
 
     def payload(self):

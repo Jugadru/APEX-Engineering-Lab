@@ -19,6 +19,14 @@ class StabilityTests(unittest.TestCase):
         s0=c.Snapshot.from_rows(0,100000,5000,[c.row(1,100000,0,50000),c.row(2,112000),c.row(3,150000,-3000,100000)])
         r=a.opportunity(s0,1)
         self.assertEqual((r["action"],r["lateral_mm"]),("ATTACK_CANDIDATE",3000))
+    def test_exact_horizon_contact(self):
+        s0=a.snap([c.row(1,100000,0,40000),c.row(2,85000,-3000,50000)])
+        self.assertFalse(a.destination_conflict(s0,s0.car(1),s0.car(2),-3000,969))
+        self.assertTrue(a.destination_conflict(s0,s0.car(1),s0.car(2),-3000,970))
+    def test_snapshot_canonical_contract(self):
+        with self.assertRaises(ValueError): c.Snapshot(0,5000000,5000,[c.Car(1,0,0,40000)])
+        with self.assertRaises(ValueError): c.Snapshot(0,5000000,5000,(c.Car(2,0,0,40000),c.Car(1,1,0,40000)))
+        with self.assertRaises(ValueError): c.Snapshot(0,5000000,5000,(c.Car(1,0,5001,40000),))
     def test_direct_invalid_car(self):
         with self.assertRaises(ValueError): c.Car(1,-1,0,40000,True)
     def test_direct_invalid_snapshot(self):

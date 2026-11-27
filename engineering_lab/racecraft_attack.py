@@ -5,6 +5,17 @@ CLEAR=space.BODY_MM+space.BUFFER_MM
 SIDE=space.WIDTH_MM+space.BUFFER_MM
 RANGE=38000
 
+def destination_conflict(snapshot,own,other,offset,eta_ms):
+    """Inclusive longitudinal contact at fixed destination lane over ETA.
+    Integer scaled positions avoid floating point and cover all periodic images.
+    """
+    if own.id==other.id or not other.active or abs(other.lateral_mm-offset)>SIDE: return False
+    x0=(other.progress_mm-own.progress_mm)*1000
+    x1=x0+(other.speed_mm_s-own.speed_mm_s)*eta_ms
+    period=snapshot.length_mm*1000
+    lo=min(x0,x1)-CLEAR*1000; hi=max(x0,x1)+CLEAR*1000
+    return -((-lo)//period)<=hi//period
+
 def opportunity(snapshot,ident):
     awareness=space.Awareness(snapshot); a=awareness.own(ident)
     def hold(reason,target=None):
@@ -22,15 +33,10 @@ def opportunity(snapshot,ident):
     for offset in (-3000,3000):
         if abs(offset-b.lateral_mm)<=SIDE or abs(offset)>snapshot.half_width_mm: continue
         if not awareness.clearance(ident,offset)["clear"]: continue
-        # Frozen destination corridor; veto close and closing traffic, not a time-sweep guarantee.
-        conflict=False
-        for o in awareness.nearby(ident,RANGE):
-            other=awareness.cars[o["id"]]
-            if abs(other.lateral_mm-offset)>SIDE: continue
-            g=o["gap_mm"]; rel=o["closing_mm_s"]
-            if abs(g)<=CLEAR or (g>0 and rel>0 and (g-CLEAR)*1000<=rel*eta) or (g<0 and rel<0 and (-g-CLEAR)*1000<=-rel*eta):
-                conflict=True; break
-        if not conflict: candidates.append(offset)
+        # All active cars, not only the immediate observation radius.
+        # Fixed destination lane and constant observed speed across full ETA.
+        if not any(destination_conflict(snapshot,a,other,offset,eta) for other in awareness.cars.values()):
+            candidates.append(offset)
     if not candidates: return hold("NO_CLEAR_CORRIDOR",b.id)
     target=min(candidates,key=lambda x:(abs(x-a.lateral_mm),x))
     return dict(action="ATTACK_CANDIDATE",reason="FROZEN_FEASIBILITY",target_id=b.id,lateral_mm=target,eta_ms=eta)

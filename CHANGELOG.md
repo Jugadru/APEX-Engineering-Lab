@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.8.9 — Racecraft Stability & Validation (candidate)
+## 0.8.9 — Racecraft Stability & Validation
 
-- 60 scripted observation ticks, repeated in reversed roster order and with diagnostic memory checkpoint; 4320 decisions including replays. Six new tests, including predeclared boundary audit counterexamples. No sporting motion or game save/replay claim.
+- 60 scripted observation ticks, repeated in reversed roster order and with diagnostic memory checkpoint; 4320 decisions including replays. Eight new tests, including four reproduced boundary failures and additional exact horizon/constructor checks. Correct all-active periodic ETA veto and frozen constructor validation; preserve QA 46051839453. No sporting motion or game save/replay claim.
 
 
 ## 0.8.8 — Racecraft Integration
