@@ -1,6 +1,6 @@
 # Autonomous Debugging
 
-**Estado:** PLANEJADO; reutilizar capacidades existentes antes de implementar.
+**Estado:** IMPLEMENTAÇÃO INICIAL 0.5.0; intake de investigação, próximas fases no roadmap.
 
 ## Mandato
 
@@ -13,3 +13,5 @@ Até 2 candidatos por investigação; sem execução automática de código arbi
 ## Entrega e aceitação
 
 Relatório, teste e PR revisável. Toda entrega exige hipótese, critérios prévios, revisão exata, evidência e limitações. Consulte [protocolo](../../docs/RESEARCH_PROTOCOL.md). Não assumir integração automática.
+
+[Operação](../../docs/AUTONOMOUS_DEBUGGING.md).

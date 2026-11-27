@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.0 — Autonomous Debugging
+
+- Immutable investigation intake, exact target SHA, local evidence validation, explicit budgets and conservative status. Eight new tests. No executor, cause inference or game edits.
+
+
 ## 0.4.1 — Evidence Integration
 
 - Durable actual static/analyzer aggregate evidence at exact game SHA; imports existing analyzer summary, headless profile and correlation outputs with explicit limitations.

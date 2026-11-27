@@ -8,7 +8,11 @@ Não altera Core 2, Hyper, Foundation ou Development Lab. Uma capacidade princip
 | 0.2.0 | Scientific Evidence Registry | autenticidade/proveniência, maturidade, adapters de evidência |
 | 0.3.0 | Research Intelligence | ficha, licença, vínculo Foundation e revalidação |
 | 0.4.0 | Code Intelligence | análise de dependências e riscos reaproveitando ferramentas existentes |
-| 0.5.0 | Autonomous Debugging | hipótese, reprodução, limites, PR sem integração automática |
+| 0.5.0 | Autonomous Debugging | intake and budgets |
+| 0.5.1 | Bug Intelligence | imported classification and history |
+| 0.5.2 | Automatic Reproduction | bounded controlled reproduction |
+| 0.5.3 | Solution Intelligence | hypotheses and reviewable proposals |
+| 0.5.4 | Engineering Memory | searchable prior investigations |
 | 0.6.0 | Experimental Engineering | protocolo executável de protótipos e comparação |
 | 0.7.0 | Physics Research Lab | modelos SI, validação de limites e sensibilidade |
 | 0.8.0 | Racecraft Research Lab | cenários espaciais e agentes reproduzíveis |
