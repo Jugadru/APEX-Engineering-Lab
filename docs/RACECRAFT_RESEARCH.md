@@ -23,3 +23,9 @@ Run from clean checkout: python -m engineering_lab experiment-racecraft-suite --
 ## 0.8.5
 
 `racecraft_collision`: exact Fraction time intervals intersect longitudinal and lateral expanded footprints over t∈[0,1], enumerate relevant periodic images. Inclusive touch and initial overlap distinguished, first contact rational. Compare to independent boundary-event enumeration (72 cases), symmetry and interior contacts. Inputs are bounded linear endpoint proposals, not predicted trajectories; no yaw, acceleration, real collision physics or actual gameplay clearance. No response/teleport. REF-105/IDEA-033/034/040 conceptual.
+
+## 0.8.6
+
+`racecraft_multi_agent`: exact complete active proposal set; independently validated endpoints. Initial contacts or edge violations remain explicit and are held in place, never teleported. Veto out-of-envelope endpoints and both members of new swept conflicts; repeat on frozen snapshot until no new contact, at most N+1 scans since each productive iteration removes at least one moving proposal. Compare independent boundary oracle and reversed roster/proposal order. 21 scenarios including 16 seeded 24-car rosters. Can deadlock or reject feasible alternatives; stationary fallback is intentionally not physical braking and must never drive runtime motion. REF-105/IDEA-030/033/034/040 conceptual.
+
+Audit note: original candidate acf3df054491aecc5a61fef7f92a9621030d1d38 QA run 46051214139 failed test_chain (reported [1,2] instead of [1,2,3]); stationary conflict participant was missing from veto diagnostics. Record both participants, explicitly assert productive veto removes at least one moving proposal. Original tests and criteria unchanged. Vetoed IDs includes protected stationary participants, not only changed endpoints.

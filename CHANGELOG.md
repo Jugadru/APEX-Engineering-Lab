@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.6 — Multi-Agent Racing
+
+- Complete frozen proposal batch, symmetric bounded veto and iterative chain recheck, retain initial invalid geometry without teleport. 21 scenarios including 16 seeded 24-car rosters, seven tests. Stationary fallback is geometric reference, not physically executable braking.
+
+
 ## 0.8.5 — Collision Avoidance
 
 - Exact rational swept contact for linearly moving rectangular centers with periodic longitudinal images; boundary-event oracle, 72 cases, eight tests. Detect between-endpoint conflicts, no physical response or real geometry claim.
