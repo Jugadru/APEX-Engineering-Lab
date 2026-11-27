@@ -41,6 +41,7 @@ Não altera Core 2, Hyper, Foundation ou Development Lab. Uma capacidade princip
 | 0.8.8 | Racecraft Integration | composed tactical scenarios |
 | 0.8.9 | Racecraft Stability | multi-tick invariants and closure audit |
 | 0.8.10 | Bounded Motion Research | closed-loop bounded kinematics, explicit infeasibility |
+| 0.8.11 | Track Evidence | pinned 2012 data provenance and coverage, explicit calibration gaps |
 | 0.9.0 | Strategy Research Lab | heurística versus Monte Carlo/VSE |
 | 0.10.0 | Simulation Laboratory | cenário parametrizado e comparação determinística |
 | 0.11.0 | Performance Intelligence | benchmarks equivalentes e evidência para native core |
