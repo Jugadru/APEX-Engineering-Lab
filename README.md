@@ -2,7 +2,7 @@
 
 Autonomous scientific research, experimental engineering, algorithm development and computational intelligence infrastructure for the APEX Motorsport ecosystem.
 
-**v0.7.10 — Stage Closure Gate**
+**v0.8.0 — Racecraft Foundation**
 
 Laboratório de P&D independente do motor oficial e do Development Lab. Pesquisa científica, modelos isolados, comparação de algoritmos e evidência reproduzível. Não é outro motor nem outro sistema de homologação.
 
@@ -24,6 +24,7 @@ O demo executa uma hipótese aritmética sintética, não uma corrida. Cria plan
 - [Roadmap](ROADMAP.md): sequência de capacidades, sem substituir os roadmaps Core 2/Hyper.
 - [Departamentos](departments/README.md): 12 áreas e critérios.
 - [Encerramento de série](docs/STAGE_CLOSURE.md): auditoria obrigatória e gate de transição.
+- [Racecraft Research Lab](docs/RACECRAFT_RESEARCH.md): frozen observations and independent tactical research.
 - [Physics Research Lab](docs/PHYSICS_RESEARCH.md): independent SI models and verification.
 - [Experimental Engineering](docs/EXPERIMENTAL_ENGINEERING.md): bounded executable prototypes.
 - [Autonomous Debugging](docs/AUTONOMOUS_DEBUGGING.md): investigations and evidence lifecycle.

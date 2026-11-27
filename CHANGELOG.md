@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.0 — Racecraft Foundation
+
+- Original immutable active-car observations in integer SI subunits; classified progress separate from circular physical gap, stable tie order, no future intent. Four 24-car layouts and 128 permutations. Ten foundation tests plus two closure tests. Dedicated exact-SHA hosted racecraft suite required from 0.8 closure onward; prior physics closure preserved. No game or Hyper edits.
+
+
 ## 0.7.10 — Stage Closure Gate
 
 - Permanent stage exit checklist, live same-repository workflow metadata validation (exact SHA, workflow, attempt, main push, identical merge tree), retained adverse runs and open-finding block. Transition gate checks ancestry and rejects stale reviewed code; 19 new tests. Cumulative light regression workflows run on PR and main. No branch-protection changes or game promotion.

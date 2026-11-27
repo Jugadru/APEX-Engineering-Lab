@@ -28,16 +28,17 @@ def validate(m):
     reg.exact(m,"schema series next_series candidate_sha reviewed_main_sha candidate_runs main_runs adverse_runs review findings limitations rollback")
     reg.require(type(m["schema"]) is int and m["schema"]==1 and m["next_series"]==successor(m["series"]),"closure schema/sequence")
     reg.require(reg.sha40(m["candidate_sha"]) and reg.sha40(m["reviewed_main_sha"]) and m["candidate_sha"]!=m["reviewed_main_sha"],"distinct exact revisions")
+    required=REQUIRED | ({".github/workflows/racecraft.yml"} if ORDER.index(m["series"])>=ORDER.index("0.8") else set())
     used=set()
     for key in ("candidate_runs","main_runs"):
         rows=m[key]
-        reg.require(isinstance(rows,list) and len(REQUIRED)<=len(rows)<=12,"required workflow set")
+        reg.require(isinstance(rows,list) and len(required)<=len(rows)<=12,"required workflow set")
         paths=set()
         for r in rows:
             run_ref(r)
             reg.require(r["path"] not in paths and r["id"] not in used,"duplicate workflow/run")
             paths.add(r["path"]); used.add(r["id"])
-        reg.require(REQUIRED<=paths,"missing mandatory regression workflow")
+        reg.require(required<=paths,"missing mandatory regression workflow")
         if key=="candidate_runs": candidate_paths=paths
         else: reg.require(paths==candidate_paths,"candidate/main workflow coverage differs")
     reg.require(isinstance(m["adverse_runs"],list) and len(m["adverse_runs"])<=12,"adverse runs")
