@@ -1,6 +1,6 @@
 # Strategy Research Lab
 
-**Estado:** 0.9.1 homologada; 0.9.2 previsão climática em candidata até aprovação CI.
+**Estado:** 0.9.2 homologada; 0.9.3 múltiplos stints em candidata até aprovação CI.
 
 ## Mandato
 
@@ -29,3 +29,11 @@ Modelo de decisão causal: estado (voltas restantes, pneu, idade, clima atual, p
 ## Weather Prediction Intelligence 0.9.2
 
 O clima atual é observado, mas a taxa de mudança é desconhecida. Dois regimes sintéticos de 100 e 600 por mil têm prior igual; posterior exato por contagem de mudanças e permanências. A decisão de pit usa apenas prefixo observado. Comparar heurística, Bellman com taxa fixa 350 por mil, Bellman Bayesiano e limite inferior com regime conhecido. Enumerar 256 sequências de oito voltas, medir custo esperado e Brier das previsões de mudança (menor é melhor). A amostra independente usa seed 20261128, 32 casos por taxa 100/600/900, incluindo regime fora do prior; ranking amostral exploratório. Dominância e Brier exatos somente sob distribuição assumida. Sem radar real, intensidade de chuva, previsão meteorológica operacional ou integração esportiva.
+
+## Multi-Stint Strategy Intelligence 0.9.3
+
+Estado: voltas restantes, pneu, idade, clima observado, contagem de mudanças/permanências e número de pits realizados. Ações aguardar, trocar para seco ou molhado; entre um e três pits antes de voltas distintas. Empates favorecem aguardar, depois seco e molhado. Reutiliza custos artificiais de 0.9.0 e posterior 0.9.2 sem alterar os experimentos anteriores. Comparar valor esperado de um pit com referência anterior (empates podem mudar a trajetória) e de até três pits em 256 sequências ponderadas. Oráculo retrospectivo independente enumera planos completos somente para avaliação. Amostra seed 20261129, 24 casos por regime 100/600/900. Oito critérios zero, ranking amostral exploratório. Não há inventário, limite regulamentar real, compostos slick distintos, tráfego, desgaste calibrado ou integração.
+
+### Resultado e cobertura adicional
+
+A candidata inicial (e6c34284747b54032cdd6ab24189387017b98575, run 46079717651) retornou PASS em todos os oito critérios; custo esperado idêntico 768841,0201 ms e uma parada em todas as 72 amostras. O fixture original não demonstra benefício de múltiplas paradas. Preservado sem alterações. Testes adicionais de cobertura verificam replays com duas/três paradas obrigatórias em todas as sequências de quatro voltas e a decisão opcional de parada adicional em estado condicional sintético de pneu gasto e clima persistente. Esses estados não são novas amostras de desempenho, não representam a trajetória original e não alteram o gate experimental.
