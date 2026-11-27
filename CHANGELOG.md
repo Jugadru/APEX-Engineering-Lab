@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.9 — Racecraft Stability & Validation (candidate)
+
+- 60 scripted observation ticks, repeated in reversed roster order and with diagnostic memory checkpoint; 4320 decisions including replays. Six new tests, including predeclared boundary audit counterexamples. No sporting motion or game save/replay claim.
+
+
 ## 0.8.8 — Racecraft Integration
 
 - Compose frozen observation, behavioral acceptance, defensive precedence, fixed attack latch/cooldown and batch geometry feasibility. 12 scripted ticks, 288 decisions, seven tests. Diagnostic proposals only; never apply stationary fallback or constant-speed endpoints to game state.

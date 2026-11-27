@@ -1,6 +1,6 @@
 # Racecraft Research Lab
 
-**Estado:** IMPLEMENTAÇÃO INICIAL 0.8.0; observações congeladas, sem integração esportiva.
+**Estado:** IMPLEMENTAÇÃO INICIAL 0.8.0–0.8.9; dez experimentos de observação, trajetórias, decisão, contato, agentes, integração diagnóstica e estabilidade. Sem integração esportiva.
 
 ## Mandato
 

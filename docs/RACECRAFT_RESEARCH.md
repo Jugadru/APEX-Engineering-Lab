@@ -37,3 +37,7 @@ Audit note: original candidate acf3df054491aecc5a61fef7f92a9621030d1d38 QA run 4
 ## 0.8.8
 
 `racecraft_integration`: independent per-agent frozen decisions, defense precedence, six-tick attack latch and five-tick cooldown; safety veto holds current line and never changes locked side. Artificial 500 mm lateral step and constant observed-speed advance at 0.2 s only to exercise batch geometry; endpoints and memory are diagnostic, never applied to sporting state. 12 scripted ticks, 288 decisions, reversal of input order and no memory mutation; not a real race, controller, physical braking or fully integrated dynamics. REF-105/IDEA-024/029/030/033/035 concept only.
+
+## 0.8.9
+
+`racecraft_stability`: three 20-tick externally scripted 24-car observation sequences (changing threat, wrap pack, seeded pack), repeat with reversed roster and with JSON diagnostic memory roundtrip at midpoint, 4320 decisions across three executions. Independent boundary oracle checks resolved geometry in the first execution, no application of endpoints. Same-process deterministic digest, not game save/replay or cross-platform bitwise guarantee. Predeclared audit tests for two hypotheses: far approaching traffic can enter a proposed corridor within ETA outside immediate observation radius, including periodic wrap; direct dataclass constructors can bypass intended snapshot validation. First commit deliberately leaves original implementation unchanged for these tests. No changes to original criteria. REF-105/IDEA-029/030/033/034/040 concept only.
