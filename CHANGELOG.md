@@ -2,7 +2,7 @@
 
 ## 0.9.3 — Multi-Stint Strategy Intelligence
 
-- Extend posterior-aware Bellman decisions to one through three stops, with explicit stop budget and deterministic tie-breaking favoring no stop. Verify one-stop value against v0.9.2, exhaustive weighted 256-path replay and independent complete-plan hindsight cost, plus 72 held-out scenarios including out-of-prior regime. Eight frozen zero-violation criteria and nine tests. Preserve existing synthetic tyre costs and earlier experiments; no inventory, sporting compound rules, traffic, or game promotion.
+- Extend posterior-aware Bellman decisions to one through three stops, with explicit stop budget and deterministic tie-breaking favoring no stop. Verify one-stop value against v0.9.2, exhaustive weighted 256-path replay and independent complete-plan hindsight cost, plus 72 held-out scenarios including out-of-prior regime. Eight frozen zero-violation criteria and eleven tests. Initial fixture passed but chose exactly one stop in all 72 sampled cases; expected costs tied. Add targeted coverage for required two/three stops and optional additional service in a conditional worn-tyre state, not a new performance sample. Preserve existing synthetic tyre costs and earlier experiments; no inventory, sporting compound rules, traffic, or game promotion.
 
 ## 0.9.2 — Weather Prediction Intelligence
 

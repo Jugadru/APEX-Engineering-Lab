@@ -43,4 +43,27 @@ class MultiStintTests(unittest.TestCase):
         self.assertTrue(all(v==0 for v in r["metrics"].values()))
         self.assertEqual(r,s.evaluate(cfg))
 
+    def test_required_two_and_three_stop_replay(self):
+        for cap in (2,3):
+            choose=s.controller((100,600),cap,cap)
+            for path in product((False,True),repeat=4):
+                r=s.replay(path,choose,cap,cap)
+                self.assertEqual(len(r["stops"]),cap)
+                self.assertEqual(r["total_ms"],s.plan_cost(path,r["stops"],cap,cap))
+                self.assertGreaterEqual(r["total_ms"],s.hindsight(path,cap,cap))
+    def test_optional_extra_stop_from_worn_tyre_state(self):
+        # Conditional boundary state, not a new heldout distribution:
+        # a worn dry tyre on wet track with persistent weather and 5 laps
+        # remaining. One or two earlier stops have already occurred.
+        choose=s.controller((2,4),1,3)
+        prefix=(True,True,True,True)
+        for used in (1,2):
+            cost,action=choose(5,"dry",20,prefix,used)
+            self.assertEqual(action,"wet")
+            capped=s.controller((2,4),1,used)
+            stay_cost,stay=capped(5,"dry",20,prefix,used)
+            self.assertIsNone(stay)
+            self.assertLess(cost,stay_cost)
+        self.assertIsNone(choose(5,"dry",20,prefix,3)[1])
+
 if __name__=="__main__":unittest.main()
