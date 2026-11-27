@@ -15,3 +15,7 @@ Run from clean checkout: python -m engineering_lab experiment-racecraft-suite --
 ## 0.8.3
 
 `racecraft_overtaking`: observe front same-corridor car, require unwrapped classified gap equal to physical gap, >5300 mm, closing >=2000 mm/s and estimated draw-clear <=6000 ms. Try fixed offsets ±3000 mm, static sweep and constant-speed destination traffic veto. Candidate is not a command or safety guarantee. Separate observed_crossing on 2–32 consecutive snapshots, active pair, same geometry, monotonic bounded progress, lateral separation at sampled sign crossing and clear final classified lead. No actual sporting award or continuous collision claim; synthetic max 100000 mm per tick is only a jump guard. 48 decisions + four crossing cases. REF-105/IDEA-024/025/026/033/040 concept only.
+
+## 0.8.4
+
+`racecraft_defensive`: owner-bound consecutive tick memory, one own-side commitment while nearby target or threat persists. Safety veto holds observed own position (not switch side); five consecutive clear ticks release memory, no forced return. Synthetic 40-tick sequence with alternating rival observed line, temporary blockage and renewed threat. Does not claim FIA compliance, motion, collision freedom or 2012 calibration. REF-105/IDEA-028/029/033/034 conceptual.
