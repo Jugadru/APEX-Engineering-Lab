@@ -19,3 +19,7 @@ Run from clean checkout: python -m engineering_lab experiment-racecraft-suite --
 ## 0.8.4
 
 `racecraft_defensive`: owner-bound consecutive tick memory, one own-side commitment while nearby target or threat persists. Safety veto holds observed own position (not switch side); five consecutive clear ticks release memory, no forced return. Synthetic 40-tick sequence with alternating rival observed line, temporary blockage and renewed threat. Does not claim FIA compliance, motion, collision freedom or 2012 calibration. REF-105/IDEA-028/029/033/034 conceptual.
+
+## 0.8.5
+
+`racecraft_collision`: exact Fraction time intervals intersect longitudinal and lateral expanded footprints over t∈[0,1], enumerate relevant periodic images. Inclusive touch and initial overlap distinguished, first contact rational. Compare to independent boundary-event enumeration (72 cases), symmetry and interior contacts. Inputs are bounded linear endpoint proposals, not predicted trajectories; no yaw, acceleration, real collision physics or actual gameplay clearance. No response/teleport. REF-105/IDEA-033/034/040 conceptual.

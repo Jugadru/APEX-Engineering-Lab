@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.5 — Collision Avoidance
+
+- Exact rational swept contact for linearly moving rectangular centers with periodic longitudinal images; boundary-event oracle, 72 cases, eight tests. Detect between-endpoint conflicts, no physical response or real geometry claim.
+
+
 ## 0.8.4 — Defensive Intelligence
 
 - Fixed own-side defensive commitment, frozen safety veto, five-clear-tick hysteresis and no reactive opponent-line chase. 40-tick fixture, seven tests. No actual steering or sporting regulation adjudication.
