@@ -1,4 +1,6 @@
 """Straight-line friction-limited brake work and adiabatic heat ledger."""
+import math
+from . import registry as reg
 from .physics_core import scalar,step_force
 
 def brake_step(mass_kg,speed_mps,request_n,normal_n,mu,dt_s,front_fraction):
@@ -18,7 +20,10 @@ def stopping_distance(mass_kg,speed_mps,brake_n):
     v=scalar(speed_mps,0,200,"speed_mps")
     f=scalar(brake_n,0,1000000,"brake_n")
     if not v: return 0.0
-    return m*v*v/(2*f) if f else None
+    if not f: return None
+    distance=m*v*v/(2*f)
+    reg.require(math.isfinite(distance),"stopping distance not representable in binary64")
+    return distance
 
 def heat_rise(heat_j,capacity_j_per_k):
     return scalar(heat_j,0,1e10,"heat_j")/scalar(capacity_j_per_k,1,1e7,"heat capacity")

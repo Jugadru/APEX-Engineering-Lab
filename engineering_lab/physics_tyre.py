@@ -21,7 +21,10 @@ def thermal_step(temp_k,ambient_k,heat_w,capacity_j_per_k,cooling_w_per_k,dt_s):
     # Exact solution of C*dT/dt=Q-h*(T-Ta); stable near zero h.
     z=h*dt/c
     phi=-math.expm1(-z)/z if z else 1.0
-    return t+(q-h*(t-ambient))*dt/c*phi
+    end=t+(q-h*(t-ambient))*dt/c*phi
+    # A reference outside the declared temperature domain cannot be chained.
+    # Reject instead of clipping temperature and concealing energy imbalance.
+    return scalar(end,1,2000,"result temperature outside model domain (K)")
 
 def wear_step(wear,slip_work_j,wear_energy_j):
     w=scalar(wear,0,1,"wear")

@@ -1,3 +1,11 @@
 # Physics audit — 0.7.8 baseline
 
 Baseline a006f4f75701a82ac7f2325fb293f04ab1c42b06. Main QA 46044297843 and Physics Research Lab 46044297956 passed. Audit first commit adds tests only, preserving original physics. Hypotheses: (1) boundary conditions may return unusable or nonrepresentable states; (2) explicit stop identity may be lost to roundoff. Predeclare exact stop, stationary interval, explicit failure on thermal/spring exit from declared state domain, explicit failure for nonrepresentable stopping distance, valid thermal boundary and 240 independently seeded single-step vehicle contracts (same tolerances as existing fixture). No change to previous criteria. Investigate QA checkout separately: PR run 46044211055 logged refs/remotes/pull/25/merge, not head SHA. Physics run was exact head; main QA passed. Future QA should explicitly check out and assert the candidate revision. No game changes. No physical calibration or guarantee of all input combinations.
+
+## Reproduction
+
+Test-only commit 780ecfb7b2b5923b0018b3fadd11ee642a9afac9, QA run [46045062037](https://github.com/Jugadru/APEX-Engineering-Lab/actions/runs/46045062037) failed. Python 3.13 log: 257 tests, five failures, 240 seeded vehicle subcases passed. Exact stop returned 1.1102230246251565e-16 m/s; stationary moving interval returned 0.2 s. Thermal/spring domain exits and nonrepresentable stopping distance did not raise the predeclared ValueError. Nine original physics experiments still passed in run 46045062153. No change to baseline criteria. Original PR QA used temporary merge revision; main QA separately passed at main SHA.
+
+## Corrective scope
+
+Two related hypotheses: exact-stop identity and invalid continuation/domain handling. Explicit exact stop/idle semantics, reject out-of-domain thermal/spring result and nonfinite stopping distance, no arbitrary clamping. Fix QA checkout to exact head/main SHA plus explicit assertion. Retain negative run. Remaining limitations: forward-only, frozen force, no actual launch, no physical calibration, no full suspension/thermal/lateral coupling. KERS source-side limits not independently revalidated FIA rules. Tiny fuel residue within tolerance is not proof of energy creation; no arbitrary fuel-zero epsilon added. Bounded seeded test is not exhaustive.

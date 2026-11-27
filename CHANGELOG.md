@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.9 — Physics Boundary Audit
+
+- Five reproduced boundary failures on unchanged 0.7.8 (QA 46045062037): exact stop residue, stationary interval, out-of-domain thermal/spring output, unrepresentable stopping distance. Reject invalid continuation without clipping; enforce exact candidate checkout in QA. Seven new tests including 240 seeded vehicle cases. Original physics criteria unchanged. No game or calibration change.
+
+
 ## 0.7.8 — Numerical Stability & Validation
 
 - Analytical nonlinear coast oracle, four timestep resolutions, 12 coast comparisons and three fixed 120-tick sequences repeated. Cumulative work, kinetic energy carried by consumed fuel, mass/store/lap balance and deterministic repeat checks. Ten new tests; preserve original experiment regression on physics changes. No actual sporting or calibration claim.
