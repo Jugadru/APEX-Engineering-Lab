@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.8.15.1 — Swept contact refinement
+## 0.8.15 REV1 — Swept contact refinement
 
 - Preserve the conservative broad phase, refine ambiguous pairs with rational piecewise-quadratic ranges, split at stopping times, reject unresolved intervals at fixed depth. Six targeted tests including a reproducible false veto from equal lateral acceleration. Still axis-aligned synthetic geometry; no exact oriented-body collision or contact response claim.
 
