@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.1 — Adaptive Strategy Reference
+
+- Add original finite-horizon integer Bellman reference under the existing synthetic binary Markov weather and one mandatory stop model. Preserve 0.9.0 comparison and results. Compare expected costs by exhaustive weighted path replay for four fixed transition regimes (256 paths each), then separate 64-case held-out sample. Frozen acceptance: zero weight/Bellman mismatches, expected dominance violations, illegal actions, prefix causality violations, negative hindsight regret and replay mismatches. Eight targeted tests. No claim of real race optimality or production promotion.
+
 ## 0.9.0 — Strategy Research Lab
 
 - Owner-authorized bounded engineering scope transition from audited 0.8.18; twenty exact workflow approvals in active closure; original 0.8.9 closure retained in git history. Full scientific and production validation remain out of scope, not resolved.
