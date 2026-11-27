@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.4 — Defensive Intelligence
+
+- Fixed own-side defensive commitment, frozen safety veto, five-clear-tick hysteresis and no reactive opponent-line chase. 40-tick fixture, seven tests. No actual steering or sporting regulation adjudication.
+
+
 ## 0.8.3 — Overtaking Intelligence
 
 - Frozen observed attack opportunity, classified-rival check, lateral clearance and destination closing veto, no future intent. Observed classified crossing on consecutive samples with separation and bounded progress; no sporting award. 48 decision and four crossing cases, eight tests.
