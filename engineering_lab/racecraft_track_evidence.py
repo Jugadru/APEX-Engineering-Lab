@@ -5,7 +5,7 @@ import math
 from pathlib import Path
 import subprocess
 from decimal import Decimal
-from . import registry as reg
+from . import registry as reg, racecraft_historical_reference as historical
 
 GAME_SHA="2171247db6824331b714dc2588cda15b4b60a496"
 FILES={"data/season_2012.json":"23f40c722b691048f512580fd784543c34b5f7ff",
@@ -63,7 +63,9 @@ def run(root):
     for path,blob in FILES.items():
         reg.require(git(root,"rev-parse","HEAD:"+path)==blob,"pinned tree blob")
         reg.require(git(root,"hash-object","--no-filters","--",path)==blob,"working file blob")
-    result=audit(*(reg.read_json(root/p) for p in list(FILES)[:3]))
+    season,physics,tyres=(reg.read_json(root/p) for p in list(FILES)[:3])
+    result=audit(season,physics,tyres)
+    result["historical_reference"]=historical.compare(season["tracks"])
     result.update(game_sha=GAME_SHA,source_blobs=FILES,license_notice="MIT attribution present in game source; no geometry points copied into Lab")
     return result
 
@@ -73,4 +75,5 @@ def main():
     a=p.parse_args();r=run(a.game)
     reg.publish_once(a.output,r)
     print(json.dumps({k:v for k,v in r.items() if k!="tracks"},sort_keys=True))
+    if r["historical_reference"]["status"]!="PASS":raise SystemExit(1)
 if __name__=="__main__":main()

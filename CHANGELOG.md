@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.13 — Historical Reference Crosscheck
+
+- Compare all 20 pinned game lap lengths, official 2012 fastest race laps and declared +500 ms game buffers; preserve early Austin discrepancy and later source. Document three missing outline references from pinned F1DB CC-BY-4.0 repository; no SVG copy or measured geometry claim. Five new tests. Historical reference verification is not calibration.
+
+
 ## 0.8.12 — Historical Rule Evidence
 
 - Selected 2012 FIA driving clauses 20.2–20.5 reviewed from original 9 March 2012 document; explicit declared-event signals and unknowns, no automatic penalties. 16 fixtures / 64 clause checks, seven tests. Not full regulation or steward equivalence.

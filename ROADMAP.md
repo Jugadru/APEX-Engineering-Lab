@@ -43,6 +43,7 @@ Não altera Core 2, Hyper, Foundation ou Development Lab. Uma capacidade princip
 | 0.8.10 | Bounded Motion Research | closed-loop bounded kinematics, explicit infeasibility |
 | 0.8.11 | Track Evidence | pinned 2012 data provenance and coverage, explicit calibration gaps |
 | 0.8.12 | Historical Rule Evidence | selected 2012 driving clauses, unknown evidence explicit |
+| 0.8.13 | Historical Reference Crosscheck | all 20 reference lap times and lengths; documented missing outline sources |
 | 0.9.0 | Strategy Research Lab | heurística versus Monte Carlo/VSE |
 | 0.10.0 | Simulation Laboratory | cenário parametrizado e comparação determinística |
 | 0.11.0 | Performance Intelligence | benchmarks equivalentes e evidência para native core |
