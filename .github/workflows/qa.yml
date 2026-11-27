@@ -27,3 +27,6 @@ jobs:
       - run: python -m engineering_lab debug-repro-check --id BUG-REPRO-DEMO --registry "$RUNNER_TEMP/apex-repro-demo"
       - run: python -m engineering_lab debug-solution-demo --registry "$RUNNER_TEMP/apex-solution-demo"
       - run: python -m engineering_lab debug-solution-review --id BUG-REPRO-DEMO --registry "$RUNNER_TEMP/apex-solution-demo"
+      - run: python -m engineering_lab debug-memory-demo --registry "$RUNNER_TEMP/apex-memory-demo"
+      - run: python -m engineering_lab debug-memory-search "arithmetic" --registry "$RUNNER_TEMP/apex-memory-demo"
+      - run: python -m engineering_lab debug-memory-search "GDScript" --registry "$RUNNER_TEMP/apex-memory-demo" --history research/debug-history.json

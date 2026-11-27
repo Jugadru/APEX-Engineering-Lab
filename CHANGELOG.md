@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.4 — Engineering Memory
+
+- Immutable snapshots of investigation stages, search by tags and normalized text, preserve adverse/unrun results, detect newer evidence without erasing history. Documentary example of actual Development Lab failure and correction. Ten new tests and end-to-end synthetic memory smoke.
+
+
 ## 0.5.3 — Solution Intelligence
 
 - Up to two predeclared hypotheses and candidate plan hashes; require matching baseline failure and identical workload, criteria, Lab and scope kind. Review dossier with evidence, files and rollback, no auto patch/merge. Actual synthetic correction; nine new tests.

@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "entries": [
+    {
+      "id": "HIST-ANALYZER-MULTILINE-001",
+      "domain": "infrastructure",
+      "title": "Analisador GDScript: string multilinha e cobertura incompleta",
+      "lesson": "Preservar estado lexical até o fechamento da string e testar strings multiline, aspas e chamadas posteriores. Não rejeitar GDScript válido por heurística. Corrigir o analisador, não o jogo; repetir o mesmo SHA alvo.",
+      "tags": [
+        "GDScript",
+        "lexer",
+        "multilinha",
+        "analyzer",
+        "regressão"
+      ],
+      "limitations": "Causa descrita no documento PRIVATE_ANALYZER_BRIDGE.md; logs verificados mostram cobertura 160/161 BLOCKED e depois 161/161 PASS no mesmo SHA alvo. Não prova ausência de bugs no jogo, nem autenticação de artefato ZIP.",
+      "repository": "Jugadru/apex-godot-simulation-architect",
+      "baseline_sha": "5eacbe8a75c11d409875a6425a7d259096b885a5",
+      "target_sha": "65b6a3ea026ccd78c23ab3ff8986d89544e979f4",
+      "observations": [
+        {
+          "run_id": 45861757730,
+          "producer_sha": "5eacbe8a75c11d409875a6425a7d259096b885a5",
+          "status": "BLOCKED",
+          "scripts": 160,
+          "expected": 161,
+          "errors": 1
+        },
+        {
+          "run_id": 45864200406,
+          "producer_sha": "e3494473d7fc642a0209980802367f4f72dc4a1e",
+          "status": "PASS",
+          "scripts": 161,
+          "expected": 161,
+          "errors": 0
+        }
+      ]
+    }
+  ]
+}
