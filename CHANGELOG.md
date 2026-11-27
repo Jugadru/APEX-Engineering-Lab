@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.7 — Integrated Vehicle Dynamics
+
+- Compose independent aero, powertrain, load, tyre and energy references into a bounded forward step, brake precedence and feasible energy work limit. 180 cases, ten tests. No sporting integration or dynamic steering.
+
+
 ## 0.7.6 — Fuel & Energy Management
 
 - SI fuel chemical/shaft/wheel energy and bounded KERS source offers; debit accepted work once, record conversion losses and unmet demand. 162 cases, nine tests. No real fuel/KERS calibration or idle/recharge model.

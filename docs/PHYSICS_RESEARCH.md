@@ -32,3 +32,7 @@ Roadmap: 0.7.1 tyre, 0.7.2 aero, 0.7.3 powertrain, 0.7.4 braking, 0.7.5 load tra
 ## 0.7.6
 
 `physics_energy`: synthetic LHV 43 MJ/kg, fixed efficiencies; cap shaft offer by fuel and power*time, KERS source offer by request, 60 kW and remaining 400 kJ lap budget (from audited APEX era reference), stored energy. Convert offers to wheel energy. Allocate KERS-first, then combustion, debit only accepted work and record source losses, unmet demand and remaining fuel/store/lap. 162 cases. KERS limits here explicitly at source side; do not replace existing authority or assume regulatory equivalence. No idle burn, regeneration, refuel, automatic lap reset, pit state or 2012 measured data. REF-107/IDEA-001/002/005 conceptual.
+
+## 0.7.7
+
+`physics_vehicle`: pure forward step, frozen initial mass and force inputs, aero/load and thermal/wear grip factor, rear drive and load-proportional brake/lateral request, rigid gear and KERS offer with cut and brake precedence. Work constraint uses 48 fixed bisection iterations when necessary, retaining feasible lower endpoint; debit only accepted positive drive work once. Work-energy and source balance, zero dt, coast, empty store and brake precedence tested over 180 scenarios. Lateral demand is diagnostic only; no lateral motion, actual suspension integration, thermal state update, clutch, strategy, pit/traffic solver or race. KERS-first allocation and frozen power assumptions belong to toy reference, not Core 2/Hyper contract. No measured parameters. REF-107/IDEA-001/005/008/010/011/015 concept only.
