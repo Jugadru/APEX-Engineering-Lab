@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.2 — Trajectory Optimization
+
+- Bounded offline discrete path DP with preference, first/second difference costs and stable lexicographic ties; exhaustive comparison across 29 scenarios. Seven tests. Explicit infeasibility, no continuous path or lap-time claim.
+
+
 ## 0.8.1 — Spatial Awareness
 
 - Reuse periodic Ring index with frozen active cars; signed front/rear/coincident observations, constant-speed TTC estimate and static lateral sweep/edge clearance. Five layouts, 456 queries, 570 clearance checks, nine new tests. No moving collision solver or production equivalence.

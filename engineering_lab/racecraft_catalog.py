@@ -1,5 +1,5 @@
 """Fixed isolated Racecraft research experiments."""
-from . import racecraft_core, racecraft_space
+from . import racecraft_core, racecraft_space, racecraft_trajectory
 
 def specs(criterion):
-    return {"racecraft_foundation":racecraft_core.spec(criterion),"racecraft_spatial_awareness":racecraft_space.spec(criterion)}
+    return {"racecraft_foundation":racecraft_core.spec(criterion),"racecraft_spatial_awareness":racecraft_space.spec(criterion),"racecraft_trajectory":racecraft_trajectory.spec(criterion)}

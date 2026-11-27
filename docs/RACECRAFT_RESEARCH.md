@@ -7,3 +7,7 @@ Run from clean checkout: python -m engineering_lab experiment-racecraft-suite --
 ## 0.8.1
 
 `racecraft_spatial_awareness`: reuse exp_spatial.Ring with integer millimetres; separate active physical neighbors, same corridor front/rear and coincident IDs. TTC is floor of constant-speed positive closing estimate to buffered front contact, not braking prediction. Static lateral sweep at frozen longitudinal position: identical synthetic rectangles 5000×1800 mm with 300 mm buffer, conservative inclusive contact; track edge checks footprint plus buffer. Existing overlap is reported blocked, no teleport or collision resolution. Five layouts including wrap, dense, inactive/lapped and coincident; compare against exhaustive reference and permutation. Counts are cases, not CPU timing. No continuous swept motion yet. REF-105/IDEA-024/033/034/040 concept only.
+
+## 0.8.2
+
+`racecraft_trajectory`: original finite station DP (2–7 stations, up to four candidate offsets each). Artificial cost in mm²: offset preference plus squared first difference plus twice squared second difference; hard bound on offset change per station. Exact exhaustive oracle, lexicographic ties, explicit infeasible outcome, 29 fixtures. Station candidates already represent admissible sampled offsets; no between-station collision/curvature validation, real road surface or minimum-lap-time claim. REF-109/IDEA-021/023/024/034 concept only, no copied source.
