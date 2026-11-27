@@ -100,7 +100,7 @@ def exact_comparison(horizon,flip,seed,samples):
 
 def evaluate(config):
     seed=config["seed"];h=config["horizon"];n=config["heldout"];samples=config["samples"]
-    flips=config["flip_grid"];holdout_seed=config["holdout_seed"];flip=config["heldout_flip"]
+    flips=config["flip_grid"];holdout_seed=config["heldout_seed"];flip=config["heldout_flip"]
     reg.require(type(seed) is int and 0<=seed<=2**32 and type(holdout_seed) is int and 0<=holdout_seed<=2**32 and seed!=holdout_seed,"independent seeds")
     reg.require(type(h) is int and 2<=h<=8 and type(n) is int and 1<=n<=128 and type(samples) is int and 1<=samples<=128,"experiment budget")
     reg.require(isinstance(flips,list) and 1<=len(flips)<=5 and all(type(f) is int and 0<=f<=1000 for f in flips) and flips==sorted(set(flips)) and type(flip) is int and flip in flips,"weather grid")
