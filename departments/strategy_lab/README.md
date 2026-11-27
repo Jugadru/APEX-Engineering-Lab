@@ -1,6 +1,6 @@
 # Strategy Research Lab
 
-**Estado:** 0.9.2 homologada; 0.9.3 múltiplos stints em candidata até aprovação CI.
+**Estado:** 0.9.3 homologada; 0.9.4 degradação de pneus em candidata até aprovação CI.
 
 ## Mandato
 
@@ -37,3 +37,7 @@ Estado: voltas restantes, pneu, idade, clima observado, contagem de mudanças/pe
 ### Resultado e cobertura adicional
 
 A candidata inicial (e6c34284747b54032cdd6ab24189387017b98575, run 46079717651) retornou PASS em todos os oito critérios; custo esperado idêntico 768841,0201 ms e uma parada em todas as 72 amostras. O fixture original não demonstra benefício de múltiplas paradas. Preservado sem alterações. Testes adicionais de cobertura verificam replays com duas/três paradas obrigatórias em todas as sequências de quatro voltas e a decisão opcional de parada adicional em estado condicional sintético de pneu gasto e clima persistente. Esses estados não são novas amostras de desempenho, não representam a trajetória original e não alteram o gate experimental.
+
+## Tyre Degradation Intelligence 0.9.4
+
+Novo modelo isolado: custo por volta em ms = 90000 + offset + slope*idade + curva*max(0,idade-cliff)^2 + penalidade de incompatibilidade climática de 8000. Perfis artificiais (offset, slope, cliff, curva): soft (0,220,5,750), medium (350,150,8,450), hard (850,90,12,250), wet (500,130,8,350). Idade em voltas completadas, não desgaste físico medido. Pneu inicial medium idade 4, pit 24000 ms. Comparar um vs até três pits sob custos idênticos; posterior 0.9.2, 256 sequências de oito voltas ponderadas e 72 episódios separados de doze voltas (24 por taxa 100/600/900, seed 20261130). Critérios congelados: zero erros de curva, causalidade, peso, Bellman, dominância esperada, legalidade/contabilidade, replay e regret negativo. Oráculo de segmentos retrospectivo independente, testado por enumeração curta. Nenhum ajuste após observar resultados; ranking amostral exploratório. Não é modelo térmico de physics_tyre, não representa compostos históricos reais nem substitui o motor oficial.
