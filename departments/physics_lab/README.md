@@ -1,6 +1,6 @@
 # Physics Research Lab
 
-**Estado:** PLANEJADO; reutilizar capacidades existentes antes de implementar.
+**Estado:** IMPLEMENTAÇÃO INICIAL 0.7.0; referência SI independente, verificação trabalho-energia.
 
 ## Mandato
 
@@ -13,3 +13,5 @@ SI; separar estimativas, calibração e dados medidos; validar limites e converg
 ## Entrega e aceitação
 
 Modelo isolado, equações, fixtures e sensibilidade. Toda entrega exige hipótese, critérios prévios, revisão exata, evidência e limitações. Consulte [protocolo](../../docs/RESEARCH_PROTOCOL.md). Não assumir integração automática.
+
+[Protocolo](../../docs/PHYSICS_RESEARCH.md).

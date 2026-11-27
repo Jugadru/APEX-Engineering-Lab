@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.0 — Vehicle Physics Foundation
+
+- Bounded SI constant-force step, exact stop, work-energy residual and 54 combinations; seven tests. Same-SHA physics suite, environment metadata, original models only.
+
+
 ## 0.6.5 — Scientific Experiment Reports
 
 - Verified individual and same-revision suite reports with frozen config and observation binding, explicit incomplete/fail states, JSON and Markdown output. Ten tests, complete five-experiment hosted suite. No runtime/game claims.
