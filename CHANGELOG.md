@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.15 REV2 — Control search refinement
+
+- Retain the primary search and add a deterministic second tier of bounded intermediate braking and lateral-control requests only when the primary options are exhausted. Share the same search node budget; preserve environmental inputs and atomic rejection. Five tests include an edge recovery not available in the original control set. Finite search, not continuous feasibility or optimality.
+
 ## 0.8.15 REV1 — Swept contact refinement
 
 - Preserve the conservative broad phase, refine ambiguous pairs with rational piecewise-quadratic ranges, split at stopping times, reject unresolved intervals at fixed depth. Six targeted tests including a reproducible false veto from equal lateral acceleration. Still axis-aligned synthetic geometry; no exact oriented-body collision or contact response claim.
