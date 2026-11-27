@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.10 — Bounded Motion Research
+
+- Reopen Racecraft for closed-loop constant-acceleration reference, bounded discrete alternatives with exact conservative chord envelope, explicit infeasible/budget states rather than teleport or instant stop. Three 16-tick episodes, independent SI reference and sampled quadratic trajectory, seven tests. No real calibration or runtime promotion.
+
+
 ## 0.8.9 — Racecraft Stability & Validation
 
 - 60 scripted observation ticks, repeated in reversed roster order and with diagnostic memory checkpoint; 4320 decisions including replays. Eight new tests, including four reproduced boundary failures and additional exact horizon/constructor checks. Correct all-active periodic ETA veto and frozen constructor validation; preserve QA 46051839453. No sporting motion or game save/replay claim.
