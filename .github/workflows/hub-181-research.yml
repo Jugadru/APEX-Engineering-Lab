@@ -1,0 +1,56 @@
+name: One-time Hub 1.8.1 consumer verification (do not merge)
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  consumer:
+    if: github.head_ref == 'verify/hub-181-research' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      PROVIDER_SHA: b1028f38b9274ee589b5aab00f0d8996ae9471f5
+      HUB_SHA: ca4ec32c227ca4e4ce043916dfeb28ec8f7227b3
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: harness
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: b1028f38b9274ee589b5aab00f0d8996ae9471f5
+          path: provider
+          persist-credentials: false
+      - name: Verify exact Hub blobs and all previously authorized fixtures
+        working-directory: harness/qa/hub-181-research
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess
+          from hub.research import engineering_catalog,execute_fixture,comparison,check_spec,BUILTINS
+          src=json.loads(pathlib.Path("source.json").read_text())
+          assert src["hub"]==os.environ["HUB_SHA"] and src["provider"]==os.environ["PROVIDER_SHA"]
+          for path,sha in src["files"].items():
+              assert subprocess.check_output(["git","hash-object","--",path],text=True).strip()==sha
+          root=pathlib.Path(os.environ["RUNNER_TEMP"])/"research-evidence"
+          root.mkdir()
+          provider=pathlib.Path(os.environ["GITHUB_WORKSPACE"])/"provider"
+          specs,ranking=engineering_catalog(provider,root/"catalog")
+          reports=[]
+          for i,n in enumerate(sorted(BUILTINS)):
+              reports.append(execute_fixture(provider,root/("case-"+n),n,check_spec(specs[n]),"EXP-HUB-QA-"+str(i+1)))
+          result=comparison(reports)
+          (root/"summary.json").write_text(json.dumps(result,indent=2))
+          print("REAL_ENGINEERING_181_STATUS",src["hub"],src["provider"],len(specs),len(reports),result["status"])
+          assert result["status"]=="PASS" and len(reports)==14
+          PY
+      - name: Retain private evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: hub-181-research-evidence
+          path: ${{ runner.temp }}/research-evidence/
+          retention-days: 7
+          if-no-files-found: warn
