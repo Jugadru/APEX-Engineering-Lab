@@ -10,7 +10,7 @@ BRAKE=1600
 LAT_STEP=500
 MAX_NODES=4096
 
-def options(car,aim,width):
+def options(car,aim,width,brake_first=False):
     """Fixed constant-acceleration options; speed lattice ensures exact endpoints."""
     reg.require(car.speed_mm_s%10==0,"motion speed lattice 10 mm/s")
     limit=width-space.WIDTH_MM//2-space.BUFFER_MM
@@ -18,7 +18,9 @@ def options(car,aim,width):
     y=car.lateral_mm+max(-LAT_STEP,min(LAT_STEP,aim-car.lateral_mm))
     offsets=list(dict.fromkeys([y,car.lateral_mm]))
     out=[]
-    for v in dict.fromkeys([min(200000,car.speed_mm_s+ACCEL),car.speed_mm_s,max(0,car.speed_mm_s-BRAKE)]):
+    speeds=[min(200000,car.speed_mm_s+ACCEL),car.speed_mm_s,max(0,car.speed_mm_s-BRAKE)]
+    if brake_first: speeds.reverse()
+    for v in dict.fromkeys(speeds):
         x=car.progress_mm+(car.speed_mm_s+v)//10
         if x>2000000000: continue
         for offset in offsets:
@@ -46,6 +48,20 @@ def swept_conflict(s,a,b,ea,eb):
         if lx is not None and max(lx[0],ly[0])<=min(lx[1],ly[1]):return True
     return False
 
+def preventive_brake(s,a,aim):
+    # A ranking heuristic only: assume observed front speed remains fixed.
+    # Allow two seconds of closing plus a relative-speed braking distance.
+    # The exact per-tick envelope remains the hard acceptance criterion.
+    for b in s.cars:
+        if not b.active or a.id==b.id:continue
+        gap=(b.progress_mm-a.progress_mm)%s.length_mm
+        closing=a.speed_mm_s-b.speed_mm_s
+        lo,hi=sorted((a.lateral_mm,aim))
+        if closing>0 and lo-col.LAT<=b.lateral_mm<=hi+col.LAT:
+            guard=col.LONG+2*closing+(closing*closing+15999)//16000
+            if 0<gap<=guard:return True
+    return False
+
 def resolve(s,aims,node_limit=MAX_NODES):
     core.integer(node_limit,1,MAX_NODES,"search budget")
     cars=tuple(c for c in s.cars if c.active)
@@ -57,7 +73,7 @@ def resolve(s,aims,node_limit=MAX_NODES):
         if col.contact(s,a.id,b.id,col.endpoint(a.progress_mm,a.lateral_mm),col.endpoint(b.progress_mm,b.lateral_mm))["contact"]:
             return dict(status="INITIAL_STATE_INVALID",snapshot=None,nodes=0)
     order=sorted(cars,key=lambda c:(-c.progress_mm,c.id))
-    choices={c.id:options(c,aims[c.id],s.half_width_mm) for c in order}
+    choices={c.id:options(c,aims[c.id],s.half_width_mm,preventive_brake(s,c,aims[c.id])) for c in order}
     selected={}; nodes=0; exhausted=False
     def search(k):
         nonlocal nodes,exhausted
