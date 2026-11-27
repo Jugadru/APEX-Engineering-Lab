@@ -25,3 +25,5 @@ jobs:
       - run: python -m engineering_lab verify --registry "$RUNNER_TEMP/apex-demo" --id EXP-DEMO-001
       - run: python -m engineering_lab debug-repro-demo --registry "$RUNNER_TEMP/apex-repro-demo"
       - run: python -m engineering_lab debug-repro-check --id BUG-REPRO-DEMO --registry "$RUNNER_TEMP/apex-repro-demo"
+      - run: python -m engineering_lab debug-solution-demo --registry "$RUNNER_TEMP/apex-solution-demo"
+      - run: python -m engineering_lab debug-solution-review --id BUG-REPRO-DEMO --registry "$RUNNER_TEMP/apex-solution-demo"

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.3 — Solution Intelligence
+
+- Up to two predeclared hypotheses and candidate plan hashes; require matching baseline failure and identical workload, criteria, Lab and scope kind. Review dossier with evidence, files and rollback, no auto patch/merge. Actual synthetic correction; nine new tests.
+
+
 ## 0.5.2 — Automatic Reproduction
 
 - Bind predeclared reproduction criteria to existing registry plan/results, fixed SHA, seed, command digest and <=15 minute budget; distinguish matching failure, different failure, not reproduced and unrun. Actual bounded synthetic demo; nine new tests. No arbitrary executor.
