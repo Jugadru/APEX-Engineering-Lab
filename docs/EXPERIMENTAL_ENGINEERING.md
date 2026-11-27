@@ -9,3 +9,7 @@ Original isolated Python standard-library prototypes, no external source copied,
 ## 0.6.1
 
 `experiment-run spatial_neighbors`: original integer-metre circular index, inclusive radius 0/38/100/2500 m, 24 cars, six layouts (uniform, grid, clustered, wrap, coincident, spread). Exact output against exhaustive scan, stable IDs, no extra rows relative to scan. Row counts exclude build/sort, binary search, allocation and elapsed time; dense queries may visit all rows. No production floating gap epsilon, lap priority, eligibility, wake ordering, lane geometry or live physical resolution equivalence. Research link REF-105/IDEA-033 concept only. Do not replace race_space solver.
+
+## 0.6.2
+
+`experiment-run longitudinal_math`: F/m, v=v0+a*t and x=v0*t+a*t²/2; compare trapezoid integration against analytical reference and report Euler error (not a gate). 3 masses, 3 forces, 3 step counts; tolerance 1e-10 m and m/s, finite observations and mass monotonicity. Artificial constants, no vehicle validation. Core 2 already has constant-rate ramp with target; do not duplicate in runtime. REF-107/IDEA-005 concept only.
