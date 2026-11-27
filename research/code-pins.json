@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "game": {
+    "repository": "Jugadru/APEX-Simulation",
+    "commit": "50e0b475399b0e94a8229996df2ee8043d89f9b6",
+    "scripts": 168,
+    "architecture_blob": "7928c310a30ef601debad8342544b2d61944c043"
+  },
+  "development": {
+    "repository": "Jugadru/apex-godot-simulation-architect",
+    "commit": "e3494473d7fc642a0209980802367f4f72dc4a1e",
+    "analyzer_blob": "29a9c39e061b89f9e15126b265d880a40f3155a9",
+    "historical_run": 45864200406
+  },
+  "foundation": {
+    "repository": "Jugadru/APEX-Foundation",
+    "commit": "a1e9661a63bec34b138b7fbde88679a34ba71e8a"
+  },
+  "hub": {
+    "repository": "Jugadru/Jugadru-APEX-Lab-Hub",
+    "commit": "62fabb6dfb66a7b5f9f5d6ff172336abe53bd317"
+  }
+}

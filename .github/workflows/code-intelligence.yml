@@ -1,0 +1,35 @@
+name: Code Intelligence static integration
+on:
+  pull_request:
+    branches: [main]
+    paths: ['engineering_lab/code_*.py','research/code-pins.json','.github/workflows/code-intelligence.yml','engineering_lab/__main__.py']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pinned-game:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Jugadru/APEX-Simulation
+          ref: 50e0b475399b0e94a8229996df2ee8043d89f9b6
+          path: game-source
+          persist-credentials: false
+      - name: Reuse reviewed static architecture producer
+        run: python3 -m engineering_lab code-collect --game game-source --output "$RUNNER_TEMP/code-bundle.json"
+      - name: Derive diagnostic report (not runtime validation)
+        run: |
+          python3 -m engineering_lab code-review "$RUNNER_TEMP/code-bundle.json" --output "$RUNNER_TEMP/code-review.json" > "$RUNNER_TEMP/code-review-stdout.json"
+          python3 -c 'import json,os; r=json.load(open(os.environ["RUNNER_TEMP"]+"/code-review.json")); print("APEX_CODE_INTELLIGENCE",json.dumps({k:r[k] for k in ("game_sha","scripts","literal_edges","cycles","function_inventory_counts","analyzer_status","runtime_profile","gameplay_validation","native_promotion","status")},sort_keys=True)); print("TOP_RISKS",json.dumps(r["ranked_risks"][:8],sort_keys=True))'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: code-intelligence-report
+          path: |
+            ${{ runner.temp }}/code-bundle.json
+            ${{ runner.temp }}/code-review.json
+          retention-days: 7
