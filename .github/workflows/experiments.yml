@@ -49,6 +49,10 @@ jobs:
         run: python3 -m engineering_lab experiment-run strategy_multi_stint --id EXP-STINT-001 --registry "$RUNNER_TEMP/stint"
       - name: Verify stint bytes
         run: python3 -m engineering_lab verify --id EXP-STINT-001 --registry "$RUNNER_TEMP/stint"
+      - name: Tyre degradation intelligence
+        run: python3 -m engineering_lab experiment-run strategy_tyre_degradation --id EXP-TYRE-STRATEGY-001 --registry "$RUNNER_TEMP/tyre-strategy"
+      - name: Verify tyre strategy bytes
+        run: python3 -m engineering_lab verify --id EXP-TYRE-STRATEGY-001 --registry "$RUNNER_TEMP/tyre-strategy"
       - name: Verify bytes
         run: python3 -m engineering_lab verify --id EXP-ORDER-001 --registry "$RUNNER_TEMP/ordered"
       - name: Scientific report
@@ -63,6 +67,7 @@ jobs:
             --entry "$RUNNER_TEMP/adaptive" EXP-ADAPTIVE-001 \
             --entry "$RUNNER_TEMP/weather" EXP-WEATHER-001 \
             --entry "$RUNNER_TEMP/stint" EXP-STINT-001 \
+            --entry "$RUNNER_TEMP/tyre-strategy" EXP-TYRE-STRATEGY-001 \
             --output "$RUNNER_TEMP/scientific-report.json" \
             --markdown "$RUNNER_TEMP/scientific-report.md"
       - uses: actions/upload-artifact@v4
@@ -79,6 +84,7 @@ jobs:
             ${{ runner.temp }}/adaptive/
             ${{ runner.temp }}/weather/
             ${{ runner.temp }}/stint/
+            ${{ runner.temp }}/tyre-strategy/
             ${{ runner.temp }}/scientific-report.json
             ${{ runner.temp }}/scientific-report.md
           retention-days: 7

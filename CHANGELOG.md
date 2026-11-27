@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.4 — Tyre Degradation Intelligence
+
+- Separate synthetic lap-age cost model with soft/medium/hard/wet profiles and quadratic post-cliff penalty. Original costs and experiments unchanged; not coupled to physics_tyre. Posterior-aware one-to-three-stop reference, 256 weighted eight-lap paths, 72 sampled twelve-lap paths, independent segment-DP hindsight oracle checked against short brute enumeration. Eight frozen zero-violation criteria, nine tests. No historical tyre calibration, thermal integration, inventory or sporting promotion.
+
 ## 0.9.3 — Multi-Stint Strategy Intelligence
 
 - Extend posterior-aware Bellman decisions to one through three stops, with explicit stop budget and deterministic tie-breaking favoring no stop. Verify one-stop value against v0.9.2, exhaustive weighted 256-path replay and independent complete-plan hindsight cost, plus 72 held-out scenarios including out-of-prior regime. Eight frozen zero-violation criteria and eleven tests. Initial fixture passed but chose exactly one stop in all 72 sampled cases; expected costs tied. Add targeted coverage for required two/three stops and optional additional service in a conditional worn-tyre state, not a new performance sample. Preserve existing synthetic tyre costs and earlier experiments; no inventory, sporting compound rules, traffic, or game promotion.
