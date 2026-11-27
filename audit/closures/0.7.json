@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "series": "0.7",
+  "next_series": "0.8",
+  "candidate_sha": "1757ebd836afa5138b173ec3971a142ba7fbb1b5",
+  "reviewed_main_sha": "c2a21085134bdc4dfae8aab047a56e6748024b11",
+  "candidate_runs": [
+    {
+      "id": 46046951478,
+      "attempt": 1,
+      "path": ".github/workflows/qa.yml"
+    },
+    {
+      "id": 46046951457,
+      "attempt": 1,
+      "path": ".github/workflows/physics.yml"
+    },
+    {
+      "id": 46046951494,
+      "attempt": 1,
+      "path": ".github/workflows/experiments.yml"
+    },
+    {
+      "id": 46046951562,
+      "attempt": 1,
+      "path": ".github/workflows/stage-closure.yml"
+    }
+  ],
+  "main_runs": [
+    {
+      "id": 46047051215,
+      "attempt": 1,
+      "path": ".github/workflows/qa.yml"
+    },
+    {
+      "id": 46047051452,
+      "attempt": 1,
+      "path": ".github/workflows/physics.yml"
+    },
+    {
+      "id": 46047051263,
+      "attempt": 1,
+      "path": ".github/workflows/experiments.yml"
+    },
+    {
+      "id": 46047051261,
+      "attempt": 1,
+      "path": ".github/workflows/stage-closure.yml"
+    }
+  ],
+  "adverse_runs": [
+    {
+      "id": 46045062037,
+      "attempt": 1,
+      "path": ".github/workflows/qa.yml",
+      "sha": "780ecfb7b2b5923b0018b3fadd11ee642a9afac9"
+    }
+  ],
+  "review": {
+    "scope": "Independent synthetic forward physics references only; audited Core 2 and Hyper authority and no changes to either.",
+    "boundary_cases": "Five reproducible failures in test-only audit, then fixed in PR 27; 240 seeded vehicle subcases and seven new regression tests; no prior tolerance relaxed.",
+    "regression": "276 tests each Python 3.10 and 3.13 at candidate and main; nine physics and five prior experimental fixtures pass both. Gate adds 19 contract tests.",
+    "evidence": "Verified run metadata and QA logs, actual main tree identical to candidate. Retained negative run. Optional static integration passed on temporary merge, not claimed exact-head evidence. No ZIP reinspection.",
+    "documentation": "Reviewed AGENTS, roadmap, PHYSICS_RESEARCH, PHYSICS_AUDIT_079 and STAGE_CLOSURE; explicit SI model limits and synthetic interpretation.",
+    "rollback": "PR 27 and PR 28 isolated; revert corresponding merge after review, retain negative run and invalidate closure if code changes."
+  },
+  "findings": [
+    {
+      "id": "AUD-STOP",
+      "severity": "LOW",
+      "status": "RESOLVED",
+      "summary": "Exact stop residual",
+      "evidence": "PR 27, original negative run 46045062037 for five model failures; exact-head QA 46045158830 and current QA 46047051215."
+    },
+    {
+      "id": "AUD-IDLE",
+      "severity": "MEDIUM",
+      "status": "RESOLVED",
+      "summary": "Stationary interval counted as motion",
+      "evidence": "PR 27, original negative run 46045062037 for five model failures; exact-head QA 46045158830 and current QA 46047051215."
+    },
+    {
+      "id": "AUD-THERMAL",
+      "severity": "MEDIUM",
+      "status": "RESOLVED",
+      "summary": "Thermal result outside declared continuation domain",
+      "evidence": "PR 27, original negative run 46045062037 for five model failures; exact-head QA 46045158830 and current QA 46047051215."
+    },
+    {
+      "id": "AUD-SPRING",
+      "severity": "MEDIUM",
+      "status": "RESOLVED",
+      "summary": "Spring result outside declared continuation domain",
+      "evidence": "PR 27, original negative run 46045062037 for five model failures; exact-head QA 46045158830 and current QA 46047051215."
+    },
+    {
+      "id": "AUD-BRAKE",
+      "severity": "MEDIUM",
+      "status": "RESOLVED",
+      "summary": "Nonrepresentable stopping distance",
+      "evidence": "PR 27, original negative run 46045062037 for five model failures; exact-head QA 46045158830 and current QA 46047051215."
+    },
+    {
+      "id": "AUD-QA",
+      "severity": "HIGH",
+      "status": "RESOLVED",
+      "summary": "General QA used temporary PR merge instead of exact head",
+      "evidence": "PR 27, original negative run 46045062037 for five model failures; exact-head QA 46045158830 and current QA 46047051215."
+    },
+    {
+      "id": "AUD-CALIBRATION",
+      "severity": "MEDIUM",
+      "status": "LIMITATION",
+      "summary": "Synthetic coefficients and simplified forward dynamics; no 2012 calibration or coupled lateral/thermal/suspension/launch validation.",
+      "evidence": "docs/PHYSICS_RESEARCH.md; not a production candidate."
+    }
+  ],
+  "limitations": [
+    "KERS source-side era limits not independently revalidated; no actual regulatory equivalence.",
+    "Same-process deterministic tests are not cross-platform bitwise proof.",
+    "No real telemetry, native FPS, FULL, game validation or independent scientific review. Stage gate checks metadata and declared review, not authenticity of all bytes.",
+    "No GitHub branch-protection change; owner must enforce required checks; closure is for Engineering Lab only."
+  ],
+  "rollback": "Revert PR 28 or PR 27 as appropriate under review; refresh stage closure after any non-manifest changes. No automatic game promotion."
+}
