@@ -16,3 +16,7 @@ Roadmap: 0.7.1 tyre, 0.7.2 aero, 0.7.3 powertrain, 0.7.4 braking, 0.7.5 load tra
 ## 0.7.2
 
 `physics_aero`: q=rho*v²/2, drag=q*CdA*(1-loss), positive downforce=q*ClA*(1-loss), power=drag*v. 48 cases, zero air density/speed, independent modifiers, quadratic forces and cubic power verified. Loss fractions are prescribed synthetic inputs, not computed slipstream, DRS permission or dirty-air geometry. Core 2 retains single wake source and aerodynamic authority. No CFD, ride-height model or measured 2012 coefficients. REF-107/IDEA-010/011 concept only.
+
+## 0.7.3
+
+`physics_powertrain`: original artificial torque interpolation, seven total ratios, 18000 RPM limiter used as era reference from the audited APEX powertrain documentation, not independently revalidated regulation. omega=v/r*ratio, P=T*omega, wheel force=T*ratio*eta/r; apply prescribed cut duty to average output. 210 cases (7 gears, 5 speeds, 2 throttles, 3 cuts). Zero at rest intentionally: rigid gear without clutch cannot model launch. No autonomous shift controller, KERS or proprietary engine curve. REF-107/IDEA-001–004 concept only. Core 2 and Hyper powertrain remain separate.
