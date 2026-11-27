@@ -24,6 +24,10 @@ jobs:
         run: python3 -m engineering_lab experiment-run longitudinal_math --id EXP-MATH-001 --registry "$RUNNER_TEMP/math"
       - name: Verify mathematical bytes
         run: python3 -m engineering_lab verify --id EXP-MATH-001 --registry "$RUNNER_TEMP/math"
+      - name: Sensitivity grid
+        run: python3 -m engineering_lab experiment-run mass_grip_sensitivity --id EXP-SENS-001 --registry "$RUNNER_TEMP/sensitivity"
+      - name: Verify sensitivity bytes
+        run: python3 -m engineering_lab verify --id EXP-SENS-001 --registry "$RUNNER_TEMP/sensitivity"
       - name: Verify bytes
         run: python3 -m engineering_lab verify --id EXP-ORDER-001 --registry "$RUNNER_TEMP/ordered"
       - uses: actions/upload-artifact@v4
@@ -34,4 +38,5 @@ jobs:
             ${{ runner.temp }}/ordered/
             ${{ runner.temp }}/spatial/
             ${{ runner.temp }}/math/
+            ${{ runner.temp }}/sensitivity/
           retention-days: 7
