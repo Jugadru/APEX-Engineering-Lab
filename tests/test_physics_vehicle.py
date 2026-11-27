@@ -35,6 +35,12 @@ class VehicleTests(unittest.TestCase):
         state=p.initial(); command=p.control(throttle=1); a=state.copy(); b=command.copy()
         self.assertEqual(p.step(state,command,0.2),p.step(state,command,0.2))
         self.assertEqual(state,a); self.assertEqual(command,b)
+    def test_near_rest(self):
+        r=p.step(p.initial(speed=1e-12),p.control(throttle=1,kers_w=60000),0.2)
+        self.assertLessEqual(r["drive_work_j"],r["available_wheel_j"]+1e-8)
+        self.assertGreaterEqual(r["state"]["speed_mps"],0)
+    def test_tiny_dt_rejected(self):
+        with self.assertRaises(ValueError): p.step(p.initial(),p.control(),1e-300)
     def test_invalid(self):
         with self.assertRaises(ValueError): p.step(p.initial(),p.control(),0.6)
         with self.assertRaises(ValueError): p.step(p.initial(),p.control(gear=8),0.2)

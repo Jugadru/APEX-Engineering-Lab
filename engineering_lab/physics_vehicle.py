@@ -16,6 +16,7 @@ def step(state,command,dt_s):
     lap=scalar(state["lap_j"],0,energy.KERS_LAP_J,"lap")
     prior_ax=scalar(state["prior_ax_mps2"],-100,100,"prior_ax")
     dt=scalar(dt_s,0,0.5,"vehicle dt")
+    reg.require(dt==0 or dt>=1e-6,"nonzero vehicle dt must be at least 1 microsecond")
     throttle=scalar(command["throttle"],0,1,"throttle")
     brake=scalar(command["brake"],0,1,"brake")
     ay=scalar(command["ay_mps2"],-30,30,"lateral demand")
@@ -33,8 +34,11 @@ def step(state,command,dt_s):
     offers=energy.offers(*args)
     available=offers["engine_wheel_offer_j"]+offers["kers_wheel_offer_j"]
     # No clutch/launch model. Force offers bounded by frozen initial-speed power.
-    drive_offer=(min(pt["wheel_force_n"],offers["engine_wheel_offer_j"]/(v*dt))+
-                 offers["kers_wheel_offer_j"]/(v*dt)) if v and dt and not brake else 0.0
+    # Reference conversion floor prevents a singular power/velocity relation.
+    # Not a clutch model: still no drive at exactly zero speed.
+    conversion_speed=max(v,1.0)
+    drive_offer=(min(pt["wheel_force_n"],offers["engine_wheel_offer_j"]/dt/conversion_speed)+
+                 offers["kers_wheel_offer_j"]/dt/conversion_speed) if v and dt and not brake else 0.0
     lat=m*ay
     if brake:
         f=tyre.combined(front,mu,mu,-12000*brake*front_share,lat*front_share)

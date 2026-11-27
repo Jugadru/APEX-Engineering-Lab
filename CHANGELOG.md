@@ -2,7 +2,7 @@
 
 ## 0.7.7 — Integrated Vehicle Dynamics
 
-- Compose independent aero, powertrain, load, tyre and energy references into a bounded forward step, brake precedence and feasible energy work limit. 180 cases, ten tests. No sporting integration or dynamic steering.
+- Compose independent aero, powertrain, load, tyre and energy references into a bounded forward step, brake precedence and feasible energy work limit. 180 cases, twelve tests including low-speed regularization and tiny-dt rejection. No sporting integration or dynamic steering.
 
 
 ## 0.7.6 — Fuel & Energy Management
