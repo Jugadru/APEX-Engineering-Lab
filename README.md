@@ -2,7 +2,7 @@
 
 Autonomous scientific research, experimental engineering, algorithm development and computational intelligence infrastructure for the APEX Motorsport ecosystem.
 
-**v0.6.3 — Parameter Sensitivity Analysis**
+**v0.6.4 — Experimental Optimization**
 
 Laboratório de P&D independente do motor oficial e do Development Lab. Pesquisa científica, modelos isolados, comparação de algoritmos e evidência reproduzível. Não é outro motor nem outro sistema de homologação.
 

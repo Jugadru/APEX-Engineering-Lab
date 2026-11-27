@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.4 — Experimental Optimization
+
+- Exact integer-millisecond direct versus prefix pit cost comparison; 32 training and 64 independent heldout scenarios plus nominal case, six possible entries. Explore regret of nominal versus sampled policy, no improvement assumed. Eight new tests; no runtime timing or game change.
+
+
 ## 0.6.3 — Parameter Sensitivity
 
 - 40-case full-factorial artificial mass, grip and force grid; engine/traction regimes, bounds and monotonic effects, six tests. No calibrated tyre model.
