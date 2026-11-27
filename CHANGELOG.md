@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.3 — Engine & Powertrain
+
+- Artificial V8-shaped torque curve, rigid seven-ratio gearing, RPM, crank/wheel power and prescribed shift cut. 210 cases, eight new tests, no launch controller or calibrated engine.
+
+
 ## 0.7.2 — Aerodynamic Research
 
 - SI still-air drag/downforce, independent prescribed losses, drag power, 48 cases and six new tests. No CFD or aerodynamic calibration.
