@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.1 — Bug Intelligence
+
+- Reuse existing correlation output bound to case evidence and exact SHA; local classification, stable recurrence fingerprint and history. Eight new tests. Similarity is not causation.
+
+
 ## 0.5.0 — Autonomous Debugging
 
 - Immutable investigation intake, exact target SHA, local evidence validation, explicit budgets and conservative status. Eight new tests. No executor, cause inference or game edits.
