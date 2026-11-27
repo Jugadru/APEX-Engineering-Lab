@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.6 — Fuel & Energy Management
+
+- SI fuel chemical/shaft/wheel energy and bounded KERS source offers; debit accepted work once, record conversion losses and unmet demand. 162 cases, nine tests. No real fuel/KERS calibration or idle/recharge model.
+
+
 ## 0.7.5 — Suspension & Weight Transfer
 
 - Quasi-static four-corner load redistribution with explicit saturation, independent analytical underdamped spring reference. 36 load and 12 spring cases, eight tests; no calibrated suspension.
