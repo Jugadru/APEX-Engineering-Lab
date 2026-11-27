@@ -1,10 +1,11 @@
 import argparse
 import json
 import sys
+import subprocess
 from pathlib import Path
 from . import registry as reg
 from . import provenance as prov
-from . import research_cli, code_cli, private_metadata, debug_cli, experimental_cli
+from . import research_cli, code_cli, private_metadata, debug_cli, experimental_cli, stage_closure
 
 def demo(root):
     root.mkdir(mode=0o700)
@@ -46,9 +47,12 @@ def main():
     code_cli.add_commands(sub)
     debug_cli.add_commands(sub)
     experimental_cli.add_commands(sub)
+    stage_closure.add_commands(sub)
     args = parser.parse_args()
     try:
-        if args.action.startswith("experiment-"):
+        if args.action.startswith("closure-"):
+            result=stage_closure.cli(args)
+        elif args.action.startswith("experiment-"):
             result=experimental_cli.run(args)
         elif args.action.startswith("debug-"):
             result=debug_cli.run(args)
@@ -76,7 +80,7 @@ def main():
             result = action(args.registry, reg.read_json(args.input))
         print(json.dumps(result, sort_keys=True))
         return 0 if result.get("reported_status", "PASS") == "PASS" else 1
-    except (OSError, ValueError, TypeError, KeyError, AttributeError, OverflowError) as error:
+    except (OSError, ValueError, TypeError, KeyError, AttributeError, OverflowError, subprocess.SubprocessError) as error:
         print("BLOCKED:", error, file=sys.stderr)
         return 2
 

@@ -2,10 +2,8 @@ name: Physics Research Lab
 on:
   pull_request:
     branches: [main]
-    paths: ['engineering_lab/physics*.py','engineering_lab/experimental*.py','engineering_lab/exp_reports.py','tests/test_physics*.py','.github/workflows/physics.yml']
   push:
     branches: [main]
-    paths: ['engineering_lab/physics*.py','engineering_lab/experimental*.py','engineering_lab/exp_reports.py','tests/test_physics*.py','.github/workflows/physics.yml']
 permissions:
   contents: read
 jobs:

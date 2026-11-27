@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.10 — Stage Closure Gate
+
+- Permanent stage exit checklist, live same-repository workflow metadata validation (exact SHA, workflow, attempt, main push, identical merge tree), retained adverse runs and open-finding block. Transition gate checks ancestry and rejects stale reviewed code; 19 new tests. Cumulative light regression workflows run on PR and main. No branch-protection changes or game promotion.
+
+
 ## 0.7.9 — Physics Boundary Audit
 
 - Five reproduced boundary failures on unchanged 0.7.8 (QA 46045062037): exact stop residue, stationary interval, out-of-domain thermal/spring output, unrepresentable stopping distance. Reject invalid continuation without clipping; enforce exact candidate checkout in QA. Seven new tests including 240 seeded vehicle cases. Original physics criteria unchanged. No game or calibration change.
