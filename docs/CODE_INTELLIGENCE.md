@@ -1,0 +1,17 @@
+# Code Intelligence v0.4.0 — orchestration, not a competing analyzer
+
+## Authority and reuse
+
+Read-only consumer of APEX-Simulation tools/apex_lab_architecture.py (exact reviewed blob), and private analyzer 0.2.1 report from Development Lab. The Foundation Architecture Intelligence and Knowledge Center own shared metadata, historical catalog and cross-repository policy. Their current revision is pinned in research/code-pins.json; their inventory is not a source-code graph. Lab Hub remains orchestration authority; no dispatch is installed. FAST + Test Lab remain the only game release policy. No game change, FULL, Godot, local runner or native benchmark in this increment.
+
+## Commands
+- python -m engineering_lab code-collect --game PATH --output bundle.json : clean checkout at pinned exact game SHA; imports only the reviewed existing graph producer, validates Git blob, tracks scripts. Supplemental lexical inventory reuses upstream tokenizer, top-level function boundaries; exact dedented body fingerprint for bodies >=5 non-comment lines. Single lexical mention excludes underscore callbacks; no semantic reachability. Limits: 200 groups/candidates in export with totals and truncation flag.
+- python -m engineering_lab code-review bundle.json --output review.json : validate graph and inventory; reverse dependencies, SCCs from producer, inbound/outbound, zero-inbound candidates, repeated body and single mention candidates, large functions, fixture inventory. Optional --analyzer analysis.json uses actual private bridge report format; mismatched SHA/blob, incomplete scans and out-of-scope diagnostic rejected. Optional --changed paths.json (array) for reverse closure; unknown paths explicitly unmapped. No proof of dead code, bug, performance or coverage.
+- python -m engineering_lab code-compare baseline.json candidate.json : same graph producer blob, literal edge/file differences, cycles; no regression verdict. Baseline/candidate must be separately collected at exact pinned revisions, and pins reviewed.
+- Report is JSON, optional exclusive file publication. Ranking = inbound*2+outbound+cycle*3+bounded counts of spans/duplicates/structural and hot diagnostics. Weights are heuristic, not measured. Native candidates require actual function-level profiling and paired sporting equivalence; no recommendation to migrate automatically.
+
+## Evidence and limitations
+
+Hosted static integration job checks out the public game SHA 50e0b475399b0e94a8229996df2ee8043d89f9b6, verifies graph tool blob and executes that existing tool, not the game. CI tests the consumer on synthetic fixtures. The private report at historical run 45864200406 is NOT evidence for current game; new owner-authorized private analyzer run/export required for current exact SHA. Private report imported with binding checks, not authentication. Profiler aggregate report cannot identify a function hotspot; no fabricated function measurements. Regression triage maps literal dependencies and fixture inventory, does not replace correlation or CI router. No automatic deletion or fix. Paths, strings, dynamic references, scenes, signals and runtime reflection require manual review. Snapshot of Foundation's current architecture metadata still has historical ownership labels; not changed here.
+
+Prior research: latest Foundation catalog blobs unchanged (198 REF, 120 IDEA); previous portfolio pin retained as historical evidence. No mass license approval. Authenticated private access remains explicit and separate; no tokens requested.

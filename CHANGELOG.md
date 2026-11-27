@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0 — Code Intelligence
+
+- Reuse existing pinned game graph producer; supplemental lexical duplicate-body and single-mention candidates.
+- Import private analyzer 0.2.1 matching revision, rank coupling/complexity/hot-operation hypotheses, reverse-impact and comparable graph diff.
+- Hosted pinned-game static integration and 15 new contract tests. No runtime performance or sporting claims, no private analyzer dispatch.
+
+
 ## 0.3.0 — Research Intelligence
 
 - Pin da Foundation separada, 198 REF e 120 IDEA sem duplicar catálogo.

@@ -1,2 +1,2 @@
-"""APEX Engineering Lab — research and evidence infrastructure."""
-__version__ = "0.3.0"
+"""APEX Engineering Lab — research, evidence and code intelligence."""
+__version__ = "0.4.0"
