@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.1 — Algorithm Comparison
+
+- Periodic sorted spatial index vs exhaustive scan; 24 cars, six layouts, four radii, 576 queries. Count other rows, not elapsed time. Eight new tests.
+
+
 ## 0.6.0 — Experimental Engineering Core
 
 - Fixed bounded built-in experiment execution with actual checkout SHA, frozen registry plan/config, immutable evidence, exact-candidate CI. 24-agent stable-order synthetic fixture, seven new tests. No game changes.

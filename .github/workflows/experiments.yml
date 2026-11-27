@@ -16,11 +16,17 @@ jobs:
           persist-credentials: false
       - name: Fixed bounded experiment
         run: python3 -m engineering_lab experiment-run ordered_commands --id EXP-ORDER-001 --registry "$RUNNER_TEMP/ordered"
+      - name: Spatial comparison
+        run: python3 -m engineering_lab experiment-run spatial_neighbors --id EXP-SPATIAL-001 --registry "$RUNNER_TEMP/spatial"
+      - name: Verify spatial bytes
+        run: python3 -m engineering_lab verify --id EXP-SPATIAL-001 --registry "$RUNNER_TEMP/spatial"
       - name: Verify bytes
         run: python3 -m engineering_lab verify --id EXP-ORDER-001 --registry "$RUNNER_TEMP/ordered"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: experimental-evidence
-          path: ${{ runner.temp }}/ordered/
+          path: |
+            ${{ runner.temp }}/ordered/
+            ${{ runner.temp }}/spatial/
           retention-days: 7

@@ -2,7 +2,7 @@
 import random
 import subprocess
 from pathlib import Path
-from . import registry as reg
+from . import registry as reg, exp_spatial
 
 REPO="Jugadru/APEX-Engineering-Lab"
 FOUNDATION="1c226891f24796d0a14535693d32f626a5b476f5"
@@ -23,7 +23,7 @@ def ordered_commands(config):
             "observations":{"agents":len(commands),"permutations":config["permutations"],"state_sha256":reg.digest(expected)}}
 
 def specs():
-    return {"ordered_commands":dict(hypothesis="Stable priority ordering is permutation invariant on frozen synthetic commands.",
+    return {"spatial_neighbors":dict(hypothesis="Sorted periodic index returns identical inclusive neighbors and visits no more other rows.",sources=["REF-105","IDEA-033"],config={"seed":42,"cars":24,"length_m":5000,"radii_m":[0,38,100,2500]},criteria={"neighbor_mismatches":criterion("eq",0),"extra_rows":criterion("le",0)},evaluate=exp_spatial.evaluate), "ordered_commands":dict(hypothesis="Stable priority ordering is permutation invariant on frozen synthetic commands.",
         sources=["REF-105","IDEA-033","IDEA-034"],config={"seed":42,"agents":24,"permutations":32},
         criteria={"state_mismatches":criterion("eq",0),"invalid_commands":criterion("eq",0)},evaluate=ordered_commands)}
 
