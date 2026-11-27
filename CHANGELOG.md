@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.2 — Weather Prediction Intelligence
+
+- Original exact Bayesian posterior and adaptive Bellman decisions over two unknown fixed synthetic flip rates with equal prior probability. Compare fixed mean forecast, heuristic and regime-known lower bound. Frozen eight-lap 256-path mixture evaluation, Brier score and 96 independent sampled cases across two in-prior regimes and one out-of-prior regime. Nine zero-violation criteria and eight tests. No real weather calibration or game promotion. Preserve previous experiments unchanged.
+
 ## 0.9.1 — Adaptive Strategy Reference
 
 - Add original finite-horizon integer Bellman reference under the existing synthetic binary Markov weather and one mandatory stop model. Preserve 0.9.0 comparison and results. Compare expected costs by exhaustive weighted path replay for four fixed transition regimes (256 paths each), then separate 64-case held-out sample. Frozen acceptance: zero weight/Bellman mismatches, expected dominance violations, illegal actions, prefix causality violations, negative hindsight regret and replay mismatches. Eight targeted tests. No claim of real race optimality or production promotion.

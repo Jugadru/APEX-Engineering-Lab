@@ -3,7 +3,7 @@ import random
 import platform
 import subprocess
 from pathlib import Path
-from . import registry as reg, exp_spatial, exp_math, exp_sensitivity, exp_strategy, physics_catalog, racecraft_catalog, strategy_research, strategy_adaptive
+from . import registry as reg, exp_spatial, exp_math, exp_sensitivity, exp_strategy, physics_catalog, racecraft_catalog, strategy_research, strategy_adaptive, strategy_weather
 
 REPO="Jugadru/APEX-Engineering-Lab"
 FOUNDATION="1c226891f24796d0a14535693d32f626a5b476f5"
@@ -26,7 +26,7 @@ def ordered_commands(config):
 def specs():
     return {"pit_cost_comparison":dict(hypothesis="Prefix costs exactly match direct costs and use no more modelled additions; independent heldout regret is exploratory.",sources=["REF-106","IDEA-041","IDEA-045","IDEA-048"],config={"seed":42,"horizon":8,"entries":[1,2,3,4,5,6],"training":32,"heldout":64},criteria={"cost_mismatches":criterion("eq",0),"invalid_actions":criterion("eq",0),"extra_additions":criterion("le",0)},evaluate=exp_strategy.evaluate), "mass_grip_sensitivity":dict(hypothesis="Acceleration respects engine and friction bounds, decreases or stays constant with mass, increases or stays constant with grip.",sources=["REF-107","IDEA-005","IDEA-015"],config={"seed":42,"masses_kg":[600,700,800,900],"grip":[0.4,0.6,0.8,1.0,1.2],"forces_n":[3000,6000],"gravity_mps2":9.81},criteria={"bound_violations":criterion("eq",0),"mass_monotonic_violations":criterion("eq",0),"grip_monotonic_violations":criterion("eq",0),"missing_regimes":criterion("eq",0)},evaluate=exp_sensitivity.evaluate), "longitudinal_math":dict(hypothesis="Trapezoid integration agrees with constant-force analytical solution and acceleration is nonincreasing with mass.",sources=["REF-107","IDEA-005"],config={"seed":42,"masses_kg":[600,700,800],"forces_n":[0,3000,6000],"steps":[4,10,20],"duration_s":2,"initial_mps":20},criteria={"velocity_error_mps":criterion("le",1e-10,"m/s"),"position_error_m":criterion("le",1e-10,"m"),"monotonic_violations":criterion("eq",0),"invalid_values":criterion("eq",0)},evaluate=exp_math.evaluate), "spatial_neighbors":dict(hypothesis="Sorted periodic index returns identical inclusive neighbors and visits no more other rows.",sources=["REF-105","IDEA-033"],config={"seed":42,"cars":24,"length_m":5000,"radii_m":[0,38,100,2500]},criteria={"neighbor_mismatches":criterion("eq",0),"extra_rows":criterion("le",0)},evaluate=exp_spatial.evaluate), "ordered_commands":dict(hypothesis="Stable priority ordering is permutation invariant on frozen synthetic commands.",
         sources=["REF-105","IDEA-033","IDEA-034"],config={"seed":42,"agents":24,"permutations":32},
-        criteria={"state_mismatches":criterion("eq",0),"invalid_commands":criterion("eq",0)},evaluate=ordered_commands)} | physics_catalog.specs(criterion) | racecraft_catalog.specs(criterion) | {"strategy_weather_decision":strategy_research.spec(criterion),"strategy_adaptive_decision":strategy_adaptive.spec(criterion)}
+        criteria={"state_mismatches":criterion("eq",0),"invalid_commands":criterion("eq",0)},evaluate=ordered_commands)} | physics_catalog.specs(criterion) | racecraft_catalog.specs(criterion) | {"strategy_weather_decision":strategy_research.spec(criterion),"strategy_adaptive_decision":strategy_adaptive.spec(criterion),"strategy_weather_prediction":strategy_weather.spec(criterion)}
 
 def revision():
     checkout=Path(__file__).resolve().parent.parent
