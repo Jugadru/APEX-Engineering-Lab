@@ -1,6 +1,6 @@
 # Physics Research Lab
 
-**Estado:** IMPLEMENTAÇÃO INICIAL 0.7.0; referência SI independente, verificação trabalho-energia.
+**Estado:** IMPLEMENTAÇÃO INICIAL 0.7.0–0.7.8; nove referências/experimentos SI, integração longitudinal isolada e estabilidade numérica. Sem homologação esportiva ou calibração.
 
 ## Mandato
 
