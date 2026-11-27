@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "id": "EXP-EXAMPLE-001",
+  "result_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "origin": "local",
+  "run": null,
+  "archives": [],
+  "limitations": "Example only; replace hash with actual registered result hash"
+}
