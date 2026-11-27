@@ -1,6 +1,6 @@
 # Strategy Research Lab
 
-**Estado:** 0.9.3 homologada; 0.9.4 degradação de pneus em candidata até aprovação CI.
+**Estado:** 0.9.4 homologada; 0.9.5 duelo estratégico em candidata até aprovação CI.
 
 ## Mandato
 
@@ -41,3 +41,7 @@ A candidata inicial (e6c34284747b54032cdd6ab24189387017b98575, run 46079717651) 
 ## Tyre Degradation Intelligence 0.9.4
 
 Novo modelo isolado: custo por volta em ms = 90000 + offset + slope*idade + curva*max(0,idade-cliff)^2 + penalidade de incompatibilidade climática de 8000. Perfis artificiais (offset, slope, cliff, curva): soft (0,220,5,750), medium (350,150,8,450), hard (850,90,12,250), wet (500,130,8,350). Idade em voltas completadas, não desgaste físico medido. Pneu inicial medium idade 4, pit 24000 ms. Comparar um vs até três pits sob custos idênticos; posterior 0.9.2, 256 sequências de oito voltas ponderadas e 72 episódios separados de doze voltas (24 por taxa 100/600/900, seed 20261130). Critérios congelados: zero erros de curva, causalidade, peso, Bellman, dominância esperada, legalidade/contabilidade, replay e regret negativo. Oráculo de segmentos retrospectivo independente, testado por enumeração curta. Nenhum ajuste após observar resultados; ranking amostral exploratório. Não é modelo térmico de physics_tyre, não representa compostos históricos reais nem substitui o motor oficial.
+
+## Undercut & Overcut Intelligence 0.9.5
+
+Janela seca de quatro voltas, um pit antes de uma volta, três slicks artificiais da 0.9.4. Rival exógeno para na volta de índice 1 ou 2 (zero-based), soft, ritmo ±500 ms/volta, quatro hipóteses equiprováveis fixas. Classificação de undercut/overcut relativa ao pit realizado do rival, não garantia de ultrapassagem. Rank de saída e chegada por ordem temporal na mesma fronteira de distância; não é posição instantânea. Tráfego exógeno: carro que cruzou até 2000 ms antes da saída implica perda fixa de 1500 ms na volta de saída; empate desfavorável. Comparação solo (menor tempo sem tráfego) vs duelo (minimiza contagem de derrotas, soma de gaps, tempo próprio, desempate por índice). Escolha antes de sortear rival realizado. Grid 24 estados × 12 planos × 4 hipóteses, 96 casos amostrais seed 20261201. Seis critérios de contrato, não superioridade amostral. Sem física de ultrapassagem, reação adversária, pit queue ou integração esportiva. REF-106 e ideias do portfólio, nenhum código externo copiado.
