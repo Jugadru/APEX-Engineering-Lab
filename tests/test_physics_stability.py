@@ -3,6 +3,8 @@ from engineering_lab import physics_stability as p, physics_vehicle as v, experi
 class StabilityTests(unittest.TestCase):
     def test_zero_time(self):
         self.assertEqual(p.exact_coast(60,647,0),{"speed_mps":60,"distance_m":0})
+    def test_rest_identity(self):
+        self.assertEqual(p.exact_coast(0,647,4),{"speed_mps":0,"distance_m":0})
     def test_stop(self):
         r=p.exact_coast(0.5,647,4)
         self.assertEqual(r["speed_mps"],0)

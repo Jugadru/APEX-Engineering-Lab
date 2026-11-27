@@ -8,6 +8,8 @@ def exact_coast(speed_mps,mass_kg,duration_s):
     v=scalar(speed_mps,0,200,"speed")
     m=scalar(mass_kg,1,100000,"mass")
     t=scalar(duration_s,0,10,"duration")
+    if t==0 or v==0:
+        return {"speed_mps":v,"distance_m":0.0}
     a,b=150/m,0.48/m
     angle=math.atan(v*math.sqrt(b/a))
     remaining=max(0.0,angle-math.sqrt(a*b)*t)
