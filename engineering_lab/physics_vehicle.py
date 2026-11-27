@@ -7,7 +7,7 @@ THERMAL_ETA=0.3
 DRIVE_ETA=0.93
 KERS_ETA=0.9
 
-def step(state,command,dt_s):
+def step(state,command,dt_s,axle_lateral_requests=None):
     reg.exact(state,"speed_mps fuel_kg store_j lap_j prior_ax_mps2")
     reg.exact(command,"throttle brake gear cut_s kers_w ay_mps2 grip_factor tyre_temp_k wear drag_loss load_loss")
     v=scalar(state["speed_mps"],0,200,"speed")
@@ -40,13 +40,18 @@ def step(state,command,dt_s):
     drive_offer=(min(pt["wheel_force_n"],offers["engine_wheel_offer_j"]/dt/conversion_speed)+
                  offers["kers_wheel_offer_j"]/dt/conversion_speed) if v and dt and not brake else 0.0
     lat=m*ay
+    if axle_lateral_requests is None:
+        front_lat,rear_lat=lat*front_share,lat*rear_share
+    else:
+        reg.require(isinstance(axle_lateral_requests,(tuple,list)) and len(axle_lateral_requests)==2,"axle lateral requests")
+        front_lat,rear_lat=(scalar(x,-1000000,1000000,"axle lateral request") for x in axle_lateral_requests)
     if brake:
-        f=tyre.combined(front,mu,mu,-12000*brake*front_share,lat*front_share)
-        r=tyre.combined(rear,mu,mu,-12000*brake*rear_share,lat*rear_share)
+        f=tyre.combined(front,mu,mu,-12000*brake*front_share,front_lat)
+        r=tyre.combined(rear,mu,mu,-12000*brake*rear_share,rear_lat)
         braking=-(f["fx_n"]+r["fx_n"]); drive=0.0
     else:
-        f=tyre.combined(front,mu,mu,0,lat*front_share)
-        r=tyre.combined(rear,mu,mu,drive_offer,lat*rear_share)
+        f=tyre.combined(front,mu,mu,0,front_lat)
+        r=tyre.combined(rear,mu,mu,drive_offer,rear_lat)
         braking=0.0; drive=r["fx_n"]
     drag=air["drag_n"]; rolling=150.0
     def motion(force):
@@ -70,7 +75,7 @@ def step(state,command,dt_s):
     next_state={"speed_mps":trial["speed_mps"],"fuel_kg":ledger["fuel_remaining_kg"],
                 "store_j":ledger["store_remaining_j"],"lap_j":ledger["lap_remaining_j"],
                 "prior_ax_mps2":(trial["speed_mps"]-v)/dt if dt else prior_ax}
-    return {"state":next_state,"distance_m":distance,"mass_kg":m,"drive_n":drive,"brake_n":braking,"drag_n":drag,"rolling_n":rolling,
+    result={"state":next_state,"distance_m":distance,"mass_kg":m,"drive_n":drive,"brake_n":braking,"drag_n":drag,"rolling_n":rolling,
             "drive_work_j":drive_work,"brake_work_j":braking*distance,"drag_work_j":drag*distance,"rolling_work_j":rolling*distance,
             "delta_kinetic_j":trial["delta_kinetic_j"],"accepted_wheel_j":ledger["accepted_wheel_j"],"available_wheel_j":available,
             "energy_residual_j":abs(ledger["accepted_wheel_j"]-drive_work),
@@ -78,6 +83,10 @@ def step(state,command,dt_s):
             "fuel_burn_kg":ledger["fuel_burn_kg"],"kers_used_j":ledger["kers_used_j"],"energy_constrained":constrained,
             "max_grip_utilization":max(f["utilization"],r["utilization"]),"lateral_force_n":f["fy_n"]+r["fy_n"],
             "lateral_unmet_n":abs(lat-f["fy_n"]-r["fy_n"]),"load_saturated":loads["saturated"]}
+    if axle_lateral_requests is not None:
+        result.update(front_lateral_n=f["fy_n"],rear_lateral_n=r["fy_n"],
+                      lateral_unmet_n=abs(front_lat-f["fy_n"])+abs(rear_lat-r["fy_n"]))
+    return result
 
 def initial(speed=30,fuel=5,store=400000,lap=400000):
     return {"speed_mps":speed,"fuel_kg":fuel,"store_j":store,"lap_j":lap,"prior_ax_mps2":0}
