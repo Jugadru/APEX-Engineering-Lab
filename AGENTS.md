@@ -21,3 +21,7 @@ Por investigação: até 2 hipóteses de correção materializadas, 1 ciclo dire
 ## Invariantes do jogo
 
 Preservar Core 2, saves/replays, determinismo, comandos manuais, separação simulação/apresentação, 2012 (V8, KERS, DRS, pneus e regulamentos da era). Migração C++/GDExtension somente após equivalência esportiva e ganho medido. Experimentos devem poder ser descartados sem tocar o jogo.
+
+## Encerramento obrigatório de série (0.7 em diante)
+
+Antes de iniciar outra série principal: auditar limites, invariantes, regressões, evidências, documentação e rollback; reproduzir falhas antes da correção, preservar resultados negativos, distinguir limitações de defeitos e bloquear todos os achados OPEN. Registrar revisão técnica em `audit/closures/<serie>.json` após QA, experimentos e física no candidato exato e no merge da main de árvore idêntica; incluir workflows específicos da etapa. `closure-check --managed` confere metadados ao vivo; `closure-transition` exige fechamento válido e revisão ainda aplicável à base. Não é autorização esportiva, assinatura ou proteção de branch. Nunca contornar um gate falho; não iniciar nova série até PASS. Não instalar runner pessoal ou disparar FULL. Consulte docs/STAGE_CLOSURE.md.
