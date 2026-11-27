@@ -51,6 +51,7 @@ Não altera Core 2, Hyper, Foundation ou Development Lab. Uma capacidade princip
 | 0.8.18 | Adaptive Control Refinement & Audit | exact 454-test baseline, ten candidate/main workflows |
 | 0.9.0 | Strategy Research Lab | bounded causal heuristic versus Monte Carlo under synthetic weather; VSE later |
 | 0.9.1 | Adaptive Strategy Reference | exact causal Bellman reference, exhaustive weighted weather paths and independent holdout |
+| 0.9.2 | Weather Prediction Intelligence | unknown synthetic weather regime, causal Bayesian forecast and decision reference |
 | 0.10.0 | Simulation Laboratory | cenário parametrizado e comparação determinística |
 | 0.11.0 | Performance Intelligence | benchmarks equivalentes e evidência para native core |
 | 0.12.0 | Quality & Regression Intelligence | invariantes e diferenças legitimadas |
