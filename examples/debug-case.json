@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "id": "BUG-DEMO-001",
+  "repository": "example/synthetic",
+  "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "domain": "quality",
+  "kind": "synthetic",
+  "title": "Controlled fixture",
+  "symptom": "Unexpected output",
+  "expected": "55",
+  "observed": "54",
+  "evidence": [],
+  "limitations": "Synthetic only, fictitious SHA"
+}

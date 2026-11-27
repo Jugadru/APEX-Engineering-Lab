@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 from . import registry as reg
 from . import provenance as prov
-from . import research_cli, code_cli, private_metadata
+from . import research_cli, code_cli, private_metadata, debug_cli
 
 def demo(root):
     root.mkdir(mode=0o700)
@@ -44,9 +44,12 @@ def main():
     meta.add_argument("--run",type=int)
     research_cli.add_commands(sub)
     code_cli.add_commands(sub)
+    debug_cli.add_commands(sub)
     args = parser.parse_args()
     try:
-        if args.action=="metadata-check":
+        if args.action.startswith("debug-"):
+            result=debug_cli.run(args)
+        elif args.action=="metadata-check":
             result=private_metadata.check(args.repository,args.sha,args.run)
         elif args.action.startswith("code-"):
             result = code_cli.run(args)
