@@ -13,3 +13,7 @@ Original isolated Python standard-library prototypes, no external source copied,
 ## 0.6.2
 
 `experiment-run longitudinal_math`: F/m, v=v0+a*t and x=v0*t+a*t²/2; compare trapezoid integration against analytical reference and report Euler error (not a gate). 3 masses, 3 forces, 3 step counts; tolerance 1e-10 m and m/s, finite observations and mass monotonicity. Artificial constants, no vehicle validation. Core 2 already has constant-rate ramp with target; do not duplicate in runtime. REF-107/IDEA-005 concept only.
+
+## 0.6.3
+
+`experiment-run mass_grip_sensitivity`: a=min(F/m,mu*g) in SI, 4 masses × 5 coefficients × 2 forces. All 40 cases checked for limits and monotonicity, both regimes must occur. Report endpoint effects at fixed other factors and regime counts; no causal/statistical inference about F1. No combined longitudinal/lateral grip, aero, thermal, weight transfer or 2012 calibration. REF-107/IDEA-005/015 concept only.

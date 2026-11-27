@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.3 — Parameter Sensitivity
+
+- 40-case full-factorial artificial mass, grip and force grid; engine/traction regimes, bounds and monotonic effects, six tests. No calibrated tyre model.
+
+
 ## 0.6.2 — Mathematical Models
 
 - Constant-force SI analytical reference versus trapezoid and Euler integration; 27 synthetic cases and six tests. No physical calibration.
