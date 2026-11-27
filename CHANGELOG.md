@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.15.1 — Swept contact refinement
+
+- Preserve the conservative broad phase, refine ambiguous pairs with rational piecewise-quadratic ranges, split at stopping times, reject unresolved intervals at fixed depth. Six targeted tests including a reproducible false veto from equal lateral acceleration. Still axis-aligned synthetic geometry; no exact oriented-body collision or contact response claim.
+
 ## 0.8.15 — Unified Motion Solver (candidate)
 
 - Joint bounded search over existing coupled vehicle steps with persistent SI lateral velocity, shared grip and energy limits, conservative swept periodic envelopes, deterministic ordering and atomic infeasible/budget outcomes. Three proposed 100-tick synthetic episodes and ten targeted tests; no physical calibration, full race or runtime promotion. Validation status must be read from exact-head CI.
