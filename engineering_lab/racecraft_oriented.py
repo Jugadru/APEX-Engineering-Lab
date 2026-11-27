@@ -87,8 +87,9 @@ def inside(a,b,width):
 def path(state,cmd,target,width):
     s=state
     poses=[pose(s)]
-    for _ in range(SUBSTEPS):
-        r=yaw.step(s,cmd,target,1)
+    for index in range(SUBSTEPS):
+        # The outer 200 ms interval owns the shift duration.
+        r=yaw.step(s,yaw.substep_command(cmd,index),target,1)
         if r["state"] is None:
             return None
         s=r["state"]

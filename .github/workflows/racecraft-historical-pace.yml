@@ -1,0 +1,38 @@
+name: Historical Pace Holdout
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  pace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: f1db/f1db
+          ref: 9dbbb9f67dc5fa3d499061efb56d24aa4f1e261d
+          path: f1db-source
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Evaluate fixed held-out races
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          python -m unittest discover -s tests -p 'test_racecraft_historical_pace.py' -v
+          python -m engineering_lab.racecraft_historical_pace --source f1db-source --output "$RUNNER_TEMP/pace.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: historical-pace-holdout
+          path: ${{ runner.temp }}/pace.json
+          retention-days: 14

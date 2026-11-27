@@ -23,6 +23,11 @@ def initial(speed=40):
     return dict(x_m=0.0,y_m=0.0,heading_rad=0.0,yaw_rad_s=0.0,
                 body_vy_mps=0.0,steer_rad=0.0,vehicle=vehicle.initial(speed))
 
+def substep_command(command,index):
+    # cut_s is a duration from the start of the caller's interval, not a
+    # new shift event at every numerical substep. Never mutate the request.
+    return dict(command,cut_s=max(0.0,min(DT,command["cut_s"]-index*DT)))
+
 def step(state,command,steer_target,substeps=20):
     reg.exact(state,"x_m y_m heading_rad yaw_rad_s body_vy_mps steer_rad vehicle")
     reg.require(type(substeps) is int and 1<=substeps<=50,"substeps")
@@ -43,7 +48,7 @@ def step(state,command,steer_target,substeps=20):
     # Reuse the same temperature/wear law used by the combined force budget.
     stiffness_factor=command["grip_factor"]*tyre.effective_mu(1,command["tyre_temp_k"],360,45,command["wear"])
     trace=[]
-    for _ in range(substeps):
+    for index in range(substeps):
         v=forward["speed_mps"]
         if not 10<=v<=100:
             return failure("SPEED_DOMAIN")
@@ -55,7 +60,7 @@ def step(state,command,steer_target,substeps=20):
         fyf,fyr=stiffness_factor*CF*af,stiffness_factor*CR*ar
         mass=vehicle.DRY_MASS_KG+forward["fuel_kg"]
         ay=max(-30,min(30,(fyf+fyr)/mass))
-        f=vehicle.step(forward,dict(command,ay_mps2=ay),DT,(fyf,fyr))
+        f=vehicle.step(forward,dict(substep_command(command,index),ay_mps2=ay),DT,(fyf,fyr))
         front,rear=f["front_lateral_n"],f["rear_lateral_n"]
         moment=FRONT_M*front-REAR_M*rear
         rd=moment/INERTIA
@@ -74,7 +79,7 @@ def step(state,command,steer_target,substeps=20):
             return failure("POSITION_DOMAIN")
         trace.append(dict(front_n=front,rear_n=rear,yaw_moment_nm=moment,
                           yaw_accel_rad_s2=rd,body_ay_mps2=wd,steer_rad=steer,
-                          grip=f["max_grip_utilization"],work_error=f["relative_work_error"]))
+                          grip=f["max_grip_utilization"],work_error=f["relative_work_error"],drive_work_j=f["drive_work_j"]))
         r,w,forward=nr,nw,f["state"]
     nxt=dict(x_m=x,y_m=y,heading_rad=h,yaw_rad_s=r,body_vy_mps=w,
              steer_rad=steer,vehicle=forward)

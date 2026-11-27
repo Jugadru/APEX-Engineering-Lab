@@ -1,0 +1,1623 @@
+{
+  "schema": 1,
+  "source_runs": {
+    "core": 46066072166,
+    "hyper": 46067041123
+  },
+  "source_shas": {
+    "core": "2171247db6824331b714dc2588cda15b4b60a496",
+    "hyper": "4e4e75f96f94ce4487e7a3c37862aabcbba649ef",
+    "hyper_probe": "317b1b58e83c1a7ab8f300b06fa12e2363112a2b"
+  },
+  "scope": "Shared external initial scenario and empty external commands; no internal state or model parity. Hyper native grid unchanged; fixture normalization only.",
+  "core": {
+    "engine": "Core2",
+    "rows": [
+      {
+        "commands": [],
+        "elapsed_cpu_usec": 437805,
+        "elapsed_sim_ms": 20000,
+        "final": [
+          {
+            "id": 0,
+            "progress_units": 215525
+          },
+          {
+            "id": 1,
+            "progress_units": 202337
+          },
+          {
+            "id": 2,
+            "progress_units": 210899
+          },
+          {
+            "id": 3,
+            "progress_units": 219376
+          },
+          {
+            "id": 4,
+            "progress_units": 205821
+          },
+          {
+            "id": 5,
+            "progress_units": 181642
+          },
+          {
+            "id": 6,
+            "progress_units": 198481
+          },
+          {
+            "id": 7,
+            "progress_units": 184936
+          },
+          {
+            "id": 8,
+            "progress_units": 193524
+          },
+          {
+            "id": 9,
+            "progress_units": 188954
+          },
+          {
+            "id": 10,
+            "progress_units": 176896
+          },
+          {
+            "id": 11,
+            "progress_units": 171997
+          },
+          {
+            "id": 12,
+            "progress_units": 160258
+          },
+          {
+            "id": 13,
+            "progress_units": 164497
+          },
+          {
+            "id": 14,
+            "progress_units": 167647
+          },
+          {
+            "id": 15,
+            "progress_units": 148363
+          },
+          {
+            "id": 16,
+            "progress_units": 155229
+          },
+          {
+            "id": 17,
+            "progress_units": 151332
+          },
+          {
+            "id": 18,
+            "progress_units": 138667
+          },
+          {
+            "id": 19,
+            "progress_units": 131460
+          },
+          {
+            "id": 20,
+            "progress_units": 140103
+          },
+          {
+            "id": 21,
+            "progress_units": 131679
+          },
+          {
+            "id": 22,
+            "progress_units": 123710
+          },
+          {
+            "id": 23,
+            "progress_units": 118793
+          }
+        ],
+        "hash": "35ec88b2387c117e9ba3150c2026b88440223268b3169c45092489d40b5cd668",
+        "initial": [
+          {
+            "grid": 2,
+            "id": 0,
+            "name": "Sebastian Vettel",
+            "progress_units": -3621,
+            "team": "Red Bull Racing Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 5,
+            "id": 1,
+            "name": "Mark Webber",
+            "progress_units": -15895,
+            "team": "Red Bull Racing Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 3,
+            "id": 2,
+            "name": "Lewis Hamilton",
+            "progress_units": -7948,
+            "team": "McLaren Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 1,
+            "id": 3,
+            "name": "Jenson Button",
+            "progress_units": 0,
+            "team": "McLaren Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 4,
+            "id": 4,
+            "name": "Fernando Alonso",
+            "progress_units": -11568,
+            "team": "Ferrari",
+            "tire": "Duro"
+          },
+          {
+            "grid": 10,
+            "id": 5,
+            "name": "Felipe Massa",
+            "progress_units": -35411,
+            "team": "Ferrari",
+            "tire": "Médio"
+          },
+          {
+            "grid": 6,
+            "id": 6,
+            "name": "Kimi Räikkönen",
+            "progress_units": -19516,
+            "team": "Lotus Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 9,
+            "id": 7,
+            "name": "Romain Grosjean",
+            "progress_units": -31790,
+            "team": "Lotus Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 7,
+            "id": 8,
+            "name": "Nico Rosberg",
+            "progress_units": -23843,
+            "team": "Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 8,
+            "id": 9,
+            "name": "Michael Schumacher",
+            "progress_units": -27463,
+            "team": "Mercedes",
+            "tire": "Duro"
+          },
+          {
+            "grid": 11,
+            "id": 10,
+            "name": "Sergio Perez",
+            "progress_units": -39738,
+            "team": "Sauber Ferrari",
+            "tire": "Médio"
+          },
+          {
+            "grid": 12,
+            "id": 11,
+            "name": "Kamui Kobayashi",
+            "progress_units": -43359,
+            "team": "Sauber Ferrari",
+            "tire": "Duro"
+          },
+          {
+            "grid": 15,
+            "id": 12,
+            "name": "Paul di Resta",
+            "progress_units": -55633,
+            "team": "Force India Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 14,
+            "id": 13,
+            "name": "Nico Hulkenberg",
+            "progress_units": -51306,
+            "team": "Force India Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 13,
+            "id": 14,
+            "name": "Pastor Maldonado",
+            "progress_units": -47686,
+            "team": "Williams Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 18,
+            "id": 15,
+            "name": "Bruno Senna",
+            "progress_units": -67201,
+            "team": "Williams Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 16,
+            "id": 16,
+            "name": "Daniel Ricciardo",
+            "progress_units": -59254,
+            "team": "Toro Rosso Ferrari",
+            "tire": "Duro"
+          },
+          {
+            "grid": 17,
+            "id": 17,
+            "name": "Jean-Eric Vergne",
+            "progress_units": -63581,
+            "team": "Toro Rosso Ferrari",
+            "tire": "Médio"
+          },
+          {
+            "grid": 20,
+            "id": 18,
+            "name": "Heikki Kovalainen",
+            "progress_units": -75149,
+            "team": "Caterham Renault",
+            "tire": "Duro"
+          },
+          {
+            "grid": 22,
+            "id": 19,
+            "name": "Vitaly Petrov",
+            "progress_units": -83097,
+            "team": "Caterham Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 19,
+            "id": 20,
+            "name": "Timo Glock",
+            "progress_units": -71529,
+            "team": "Marussia Cosworth",
+            "tire": "Médio"
+          },
+          {
+            "grid": 21,
+            "id": 21,
+            "name": "Charles Pic",
+            "progress_units": -79476,
+            "team": "Marussia Cosworth",
+            "tire": "Médio"
+          },
+          {
+            "grid": 23,
+            "id": 22,
+            "name": "Pedro de la Rosa",
+            "progress_units": -87424,
+            "team": "HRT Cosworth",
+            "tire": "Médio"
+          },
+          {
+            "grid": 24,
+            "id": 23,
+            "name": "Narain Karthikeyan",
+            "progress_units": -91044,
+            "team": "HRT Cosworth",
+            "tire": "Duro"
+          }
+        ],
+        "length_mm": 5793000,
+        "seed": 2026,
+        "ticks": 100,
+        "track": "ITA",
+        "weather": "Seco"
+      },
+      {
+        "commands": [],
+        "elapsed_cpu_usec": 432696,
+        "elapsed_sim_ms": 20000,
+        "final": [
+          {
+            "id": 0,
+            "progress_units": 182600
+          },
+          {
+            "id": 1,
+            "progress_units": 172741
+          },
+          {
+            "id": 2,
+            "progress_units": 179009
+          },
+          {
+            "id": 3,
+            "progress_units": 185555
+          },
+          {
+            "id": 4,
+            "progress_units": 175901
+          },
+          {
+            "id": 5,
+            "progress_units": 156830
+          },
+          {
+            "id": 6,
+            "progress_units": 169454
+          },
+          {
+            "id": 7,
+            "progress_units": 159501
+          },
+          {
+            "id": 8,
+            "progress_units": 165647
+          },
+          {
+            "id": 9,
+            "progress_units": 162950
+          },
+          {
+            "id": 10,
+            "progress_units": 152841
+          },
+          {
+            "id": 11,
+            "progress_units": 149878
+          },
+          {
+            "id": 12,
+            "progress_units": 140237
+          },
+          {
+            "id": 13,
+            "progress_units": 143556
+          },
+          {
+            "id": 14,
+            "progress_units": 146048
+          },
+          {
+            "id": 15,
+            "progress_units": 130854
+          },
+          {
+            "id": 16,
+            "progress_units": 136839
+          },
+          {
+            "id": 17,
+            "progress_units": 133396
+          },
+          {
+            "id": 18,
+            "progress_units": 123553
+          },
+          {
+            "id": 19,
+            "progress_units": 117419
+          },
+          {
+            "id": 20,
+            "progress_units": 124587
+          },
+          {
+            "id": 21,
+            "progress_units": 118165
+          },
+          {
+            "id": 22,
+            "progress_units": 111997
+          },
+          {
+            "id": 23,
+            "progress_units": 108899
+          }
+        ],
+        "hash": "8810f0af96de924807ea7aad087de2627539137991bc30fda7404b8ecc71a698",
+        "initial": [
+          {
+            "grid": 2,
+            "id": 0,
+            "name": "Sebastian Vettel",
+            "progress_units": -2793,
+            "team": "Red Bull Racing Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 5,
+            "id": 1,
+            "name": "Mark Webber",
+            "progress_units": -12264,
+            "team": "Red Bull Racing Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 3,
+            "id": 2,
+            "name": "Lewis Hamilton",
+            "progress_units": -6132,
+            "team": "McLaren Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 1,
+            "id": 3,
+            "name": "Jenson Button",
+            "progress_units": 0,
+            "team": "McLaren Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 4,
+            "id": 4,
+            "name": "Fernando Alonso",
+            "progress_units": -8925,
+            "team": "Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 10,
+            "id": 5,
+            "name": "Felipe Massa",
+            "progress_units": -27321,
+            "team": "Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 6,
+            "id": 6,
+            "name": "Kimi Räikkönen",
+            "progress_units": -15057,
+            "team": "Lotus Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 9,
+            "id": 7,
+            "name": "Romain Grosjean",
+            "progress_units": -24528,
+            "team": "Lotus Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 7,
+            "id": 8,
+            "name": "Nico Rosberg",
+            "progress_units": -18396,
+            "team": "Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 8,
+            "id": 9,
+            "name": "Michael Schumacher",
+            "progress_units": -21189,
+            "team": "Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 11,
+            "id": 10,
+            "name": "Sergio Perez",
+            "progress_units": -30660,
+            "team": "Sauber Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 12,
+            "id": 11,
+            "name": "Kamui Kobayashi",
+            "progress_units": -33453,
+            "team": "Sauber Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 15,
+            "id": 12,
+            "name": "Paul di Resta",
+            "progress_units": -42924,
+            "team": "Force India Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 14,
+            "id": 13,
+            "name": "Nico Hulkenberg",
+            "progress_units": -39585,
+            "team": "Force India Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 13,
+            "id": 14,
+            "name": "Pastor Maldonado",
+            "progress_units": -36792,
+            "team": "Williams Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 18,
+            "id": 15,
+            "name": "Bruno Senna",
+            "progress_units": -51849,
+            "team": "Williams Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 16,
+            "id": 16,
+            "name": "Daniel Ricciardo",
+            "progress_units": -45717,
+            "team": "Toro Rosso Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 17,
+            "id": 17,
+            "name": "Jean-Eric Vergne",
+            "progress_units": -49056,
+            "team": "Toro Rosso Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 20,
+            "id": 18,
+            "name": "Heikki Kovalainen",
+            "progress_units": -57981,
+            "team": "Caterham Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 22,
+            "id": 19,
+            "name": "Vitaly Petrov",
+            "progress_units": -64113,
+            "team": "Caterham Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 19,
+            "id": 20,
+            "name": "Timo Glock",
+            "progress_units": -55188,
+            "team": "Marussia Cosworth",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 21,
+            "id": 21,
+            "name": "Charles Pic",
+            "progress_units": -61320,
+            "team": "Marussia Cosworth",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 23,
+            "id": 22,
+            "name": "Pedro de la Rosa",
+            "progress_units": -67452,
+            "team": "HRT Cosworth",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 24,
+            "id": 23,
+            "name": "Narain Karthikeyan",
+            "progress_units": -70245,
+            "team": "HRT Cosworth",
+            "tire": "Intermediário"
+          }
+        ],
+        "length_mm": 5891000,
+        "seed": 2026,
+        "ticks": 100,
+        "track": "GBR",
+        "weather": "Chuva intensa"
+      }
+    ]
+  },
+  "hyper": {
+    "engine": "Hyper301",
+    "rows": [
+      {
+        "commands": [],
+        "elapsed_cpu_usec": 343678,
+        "elapsed_sim_ms": 20000,
+        "final": [
+          {
+            "id": 0,
+            "progress_units": 142047
+          },
+          {
+            "id": 1,
+            "progress_units": 133661
+          },
+          {
+            "id": 2,
+            "progress_units": 139495
+          },
+          {
+            "id": 3,
+            "progress_units": 145220
+          },
+          {
+            "id": 4,
+            "progress_units": 136136
+          },
+          {
+            "id": 5,
+            "progress_units": 126603
+          },
+          {
+            "id": 6,
+            "progress_units": 133342
+          },
+          {
+            "id": 7,
+            "progress_units": 126016
+          },
+          {
+            "id": 8,
+            "progress_units": 129197
+          },
+          {
+            "id": 9,
+            "progress_units": 127766
+          },
+          {
+            "id": 10,
+            "progress_units": 124031
+          },
+          {
+            "id": 11,
+            "progress_units": 122339
+          },
+          {
+            "id": 12,
+            "progress_units": 120244
+          },
+          {
+            "id": 13,
+            "progress_units": 120549
+          },
+          {
+            "id": 14,
+            "progress_units": 121824
+          },
+          {
+            "id": 15,
+            "progress_units": 116154
+          },
+          {
+            "id": 16,
+            "progress_units": 118674
+          },
+          {
+            "id": 17,
+            "progress_units": 118776
+          },
+          {
+            "id": 18,
+            "progress_units": 112984
+          },
+          {
+            "id": 19,
+            "progress_units": 110661
+          },
+          {
+            "id": 20,
+            "progress_units": 114189
+          },
+          {
+            "id": 21,
+            "progress_units": 111587
+          },
+          {
+            "id": 22,
+            "progress_units": 109209
+          },
+          {
+            "id": 23,
+            "progress_units": 107421
+          }
+        ],
+        "hash": "43edf7f07ab50ab18e0da6486e7ac11b331129cc90bc7c6405ed584892f2d724",
+        "initial": [
+          {
+            "grid": 2,
+            "id": 0,
+            "name": "Sebastian Vettel",
+            "progress_units": -3621,
+            "team": "Red Bull Racing Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 5,
+            "id": 1,
+            "name": "Mark Webber",
+            "progress_units": -15895,
+            "team": "Red Bull Racing Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 3,
+            "id": 2,
+            "name": "Lewis Hamilton",
+            "progress_units": -7948,
+            "team": "McLaren Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 1,
+            "id": 3,
+            "name": "Jenson Button",
+            "progress_units": 0,
+            "team": "McLaren Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 4,
+            "id": 4,
+            "name": "Fernando Alonso",
+            "progress_units": -11568,
+            "team": "Ferrari",
+            "tire": "Duro"
+          },
+          {
+            "grid": 10,
+            "id": 5,
+            "name": "Felipe Massa",
+            "progress_units": -35411,
+            "team": "Ferrari",
+            "tire": "Médio"
+          },
+          {
+            "grid": 6,
+            "id": 6,
+            "name": "Kimi Räikkönen",
+            "progress_units": -19516,
+            "team": "Lotus Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 9,
+            "id": 7,
+            "name": "Romain Grosjean",
+            "progress_units": -31790,
+            "team": "Lotus Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 7,
+            "id": 8,
+            "name": "Nico Rosberg",
+            "progress_units": -23843,
+            "team": "Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 8,
+            "id": 9,
+            "name": "Michael Schumacher",
+            "progress_units": -27463,
+            "team": "Mercedes",
+            "tire": "Duro"
+          },
+          {
+            "grid": 11,
+            "id": 10,
+            "name": "Sergio Perez",
+            "progress_units": -39738,
+            "team": "Sauber Ferrari",
+            "tire": "Médio"
+          },
+          {
+            "grid": 12,
+            "id": 11,
+            "name": "Kamui Kobayashi",
+            "progress_units": -43359,
+            "team": "Sauber Ferrari",
+            "tire": "Duro"
+          },
+          {
+            "grid": 15,
+            "id": 12,
+            "name": "Paul di Resta",
+            "progress_units": -55633,
+            "team": "Force India Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 14,
+            "id": 13,
+            "name": "Nico Hulkenberg",
+            "progress_units": -51306,
+            "team": "Force India Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 13,
+            "id": 14,
+            "name": "Pastor Maldonado",
+            "progress_units": -47686,
+            "team": "Williams Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 18,
+            "id": 15,
+            "name": "Bruno Senna",
+            "progress_units": -67201,
+            "team": "Williams Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 16,
+            "id": 16,
+            "name": "Daniel Ricciardo",
+            "progress_units": -59254,
+            "team": "Toro Rosso Ferrari",
+            "tire": "Duro"
+          },
+          {
+            "grid": 17,
+            "id": 17,
+            "name": "Jean-Eric Vergne",
+            "progress_units": -63581,
+            "team": "Toro Rosso Ferrari",
+            "tire": "Médio"
+          },
+          {
+            "grid": 20,
+            "id": 18,
+            "name": "Heikki Kovalainen",
+            "progress_units": -75149,
+            "team": "Caterham Renault",
+            "tire": "Duro"
+          },
+          {
+            "grid": 22,
+            "id": 19,
+            "name": "Vitaly Petrov",
+            "progress_units": -83097,
+            "team": "Caterham Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 19,
+            "id": 20,
+            "name": "Timo Glock",
+            "progress_units": -71529,
+            "team": "Marussia Cosworth",
+            "tire": "Médio"
+          },
+          {
+            "grid": 21,
+            "id": 21,
+            "name": "Charles Pic",
+            "progress_units": -79476,
+            "team": "Marussia Cosworth",
+            "tire": "Médio"
+          },
+          {
+            "grid": 23,
+            "id": 22,
+            "name": "Pedro de la Rosa",
+            "progress_units": -87424,
+            "team": "HRT Cosworth",
+            "tire": "Médio"
+          },
+          {
+            "grid": 24,
+            "id": 23,
+            "name": "Narain Karthikeyan",
+            "progress_units": -91044,
+            "team": "HRT Cosworth",
+            "tire": "Duro"
+          }
+        ],
+        "length_mm": 5793000,
+        "native_initial": [
+          {
+            "grid": 2,
+            "id": 0,
+            "name": "Sebastian Vettel",
+            "progress_units": -5828,
+            "team": "Red Bull Racing Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 5,
+            "id": 1,
+            "name": "Mark Webber",
+            "progress_units": -23313,
+            "team": "Red Bull Racing Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 3,
+            "id": 2,
+            "name": "Lewis Hamilton",
+            "progress_units": -11657,
+            "team": "McLaren Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 1,
+            "id": 3,
+            "name": "Jenson Button",
+            "progress_units": 0,
+            "team": "McLaren Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 4,
+            "id": 4,
+            "name": "Fernando Alonso",
+            "progress_units": -17485,
+            "team": "Ferrari",
+            "tire": "Duro"
+          },
+          {
+            "grid": 10,
+            "id": 5,
+            "name": "Felipe Massa",
+            "progress_units": -52454,
+            "team": "Ferrari",
+            "tire": "Médio"
+          },
+          {
+            "grid": 6,
+            "id": 6,
+            "name": "Kimi Räikkönen",
+            "progress_units": -29141,
+            "team": "Lotus Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 9,
+            "id": 7,
+            "name": "Romain Grosjean",
+            "progress_units": -46626,
+            "team": "Lotus Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 7,
+            "id": 8,
+            "name": "Nico Rosberg",
+            "progress_units": -34970,
+            "team": "Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 8,
+            "id": 9,
+            "name": "Michael Schumacher",
+            "progress_units": -40798,
+            "team": "Mercedes",
+            "tire": "Duro"
+          },
+          {
+            "grid": 11,
+            "id": 10,
+            "name": "Sergio Perez",
+            "progress_units": -58283,
+            "team": "Sauber Ferrari",
+            "tire": "Médio"
+          },
+          {
+            "grid": 12,
+            "id": 11,
+            "name": "Kamui Kobayashi",
+            "progress_units": -64111,
+            "team": "Sauber Ferrari",
+            "tire": "Duro"
+          },
+          {
+            "grid": 15,
+            "id": 12,
+            "name": "Paul di Resta",
+            "progress_units": -81596,
+            "team": "Force India Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 14,
+            "id": 13,
+            "name": "Nico Hulkenberg",
+            "progress_units": -75767,
+            "team": "Force India Mercedes",
+            "tire": "Médio"
+          },
+          {
+            "grid": 13,
+            "id": 14,
+            "name": "Pastor Maldonado",
+            "progress_units": -69939,
+            "team": "Williams Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 18,
+            "id": 15,
+            "name": "Bruno Senna",
+            "progress_units": -99080,
+            "team": "Williams Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 16,
+            "id": 16,
+            "name": "Daniel Ricciardo",
+            "progress_units": -87424,
+            "team": "Toro Rosso Ferrari",
+            "tire": "Duro"
+          },
+          {
+            "grid": 17,
+            "id": 17,
+            "name": "Jean-Eric Vergne",
+            "progress_units": -93252,
+            "team": "Toro Rosso Ferrari",
+            "tire": "Médio"
+          },
+          {
+            "grid": 20,
+            "id": 18,
+            "name": "Heikki Kovalainen",
+            "progress_units": -110737,
+            "team": "Caterham Renault",
+            "tire": "Duro"
+          },
+          {
+            "grid": 22,
+            "id": 19,
+            "name": "Vitaly Petrov",
+            "progress_units": -122393,
+            "team": "Caterham Renault",
+            "tire": "Médio"
+          },
+          {
+            "grid": 19,
+            "id": 20,
+            "name": "Timo Glock",
+            "progress_units": -104909,
+            "team": "Marussia Cosworth",
+            "tire": "Médio"
+          },
+          {
+            "grid": 21,
+            "id": 21,
+            "name": "Charles Pic",
+            "progress_units": -116565,
+            "team": "Marussia Cosworth",
+            "tire": "Médio"
+          },
+          {
+            "grid": 23,
+            "id": 22,
+            "name": "Pedro de la Rosa",
+            "progress_units": -128222,
+            "team": "HRT Cosworth",
+            "tire": "Médio"
+          },
+          {
+            "grid": 24,
+            "id": 23,
+            "name": "Narain Karthikeyan",
+            "progress_units": -134050,
+            "team": "HRT Cosworth",
+            "tire": "Duro"
+          }
+        ],
+        "seed": 2026,
+        "ticks": 100,
+        "track": "ITA",
+        "weather": "Seco"
+      },
+      {
+        "commands": [],
+        "elapsed_cpu_usec": 300500,
+        "elapsed_sim_ms": 20000,
+        "final": [
+          {
+            "id": 0,
+            "progress_units": 156405
+          },
+          {
+            "id": 1,
+            "progress_units": 147565
+          },
+          {
+            "id": 2,
+            "progress_units": 154364
+          },
+          {
+            "id": 3,
+            "progress_units": 160109
+          },
+          {
+            "id": 4,
+            "progress_units": 150196
+          },
+          {
+            "id": 5,
+            "progress_units": 133341
+          },
+          {
+            "id": 6,
+            "progress_units": 144779
+          },
+          {
+            "id": 7,
+            "progress_units": 135666
+          },
+          {
+            "id": 8,
+            "progress_units": 141384
+          },
+          {
+            "id": 9,
+            "progress_units": 139906
+          },
+          {
+            "id": 10,
+            "progress_units": 129826
+          },
+          {
+            "id": 11,
+            "progress_units": 125735
+          },
+          {
+            "id": 12,
+            "progress_units": 115677
+          },
+          {
+            "id": 13,
+            "progress_units": 118265
+          },
+          {
+            "id": 14,
+            "progress_units": 121821
+          },
+          {
+            "id": 15,
+            "progress_units": 105798
+          },
+          {
+            "id": 16,
+            "progress_units": 111782
+          },
+          {
+            "id": 17,
+            "progress_units": 108525
+          },
+          {
+            "id": 18,
+            "progress_units": 98567
+          },
+          {
+            "id": 19,
+            "progress_units": 93530
+          },
+          {
+            "id": 20,
+            "progress_units": 101259
+          },
+          {
+            "id": 21,
+            "progress_units": 94423
+          },
+          {
+            "id": 22,
+            "progress_units": 91345
+          },
+          {
+            "id": 23,
+            "progress_units": 87663
+          }
+        ],
+        "hash": "68a02c3dd5f859c3547b0d489c9ad33d71eb200b6e3834e73e5da294003d2d72",
+        "initial": [
+          {
+            "grid": 2,
+            "id": 0,
+            "name": "Sebastian Vettel",
+            "progress_units": -2793,
+            "team": "Red Bull Racing Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 5,
+            "id": 1,
+            "name": "Mark Webber",
+            "progress_units": -12264,
+            "team": "Red Bull Racing Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 3,
+            "id": 2,
+            "name": "Lewis Hamilton",
+            "progress_units": -6132,
+            "team": "McLaren Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 1,
+            "id": 3,
+            "name": "Jenson Button",
+            "progress_units": 0,
+            "team": "McLaren Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 4,
+            "id": 4,
+            "name": "Fernando Alonso",
+            "progress_units": -8925,
+            "team": "Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 10,
+            "id": 5,
+            "name": "Felipe Massa",
+            "progress_units": -27321,
+            "team": "Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 6,
+            "id": 6,
+            "name": "Kimi Räikkönen",
+            "progress_units": -15057,
+            "team": "Lotus Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 9,
+            "id": 7,
+            "name": "Romain Grosjean",
+            "progress_units": -24528,
+            "team": "Lotus Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 7,
+            "id": 8,
+            "name": "Nico Rosberg",
+            "progress_units": -18396,
+            "team": "Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 8,
+            "id": 9,
+            "name": "Michael Schumacher",
+            "progress_units": -21189,
+            "team": "Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 11,
+            "id": 10,
+            "name": "Sergio Perez",
+            "progress_units": -30660,
+            "team": "Sauber Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 12,
+            "id": 11,
+            "name": "Kamui Kobayashi",
+            "progress_units": -33453,
+            "team": "Sauber Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 15,
+            "id": 12,
+            "name": "Paul di Resta",
+            "progress_units": -42924,
+            "team": "Force India Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 14,
+            "id": 13,
+            "name": "Nico Hulkenberg",
+            "progress_units": -39585,
+            "team": "Force India Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 13,
+            "id": 14,
+            "name": "Pastor Maldonado",
+            "progress_units": -36792,
+            "team": "Williams Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 18,
+            "id": 15,
+            "name": "Bruno Senna",
+            "progress_units": -51849,
+            "team": "Williams Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 16,
+            "id": 16,
+            "name": "Daniel Ricciardo",
+            "progress_units": -45717,
+            "team": "Toro Rosso Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 17,
+            "id": 17,
+            "name": "Jean-Eric Vergne",
+            "progress_units": -49056,
+            "team": "Toro Rosso Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 20,
+            "id": 18,
+            "name": "Heikki Kovalainen",
+            "progress_units": -57981,
+            "team": "Caterham Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 22,
+            "id": 19,
+            "name": "Vitaly Petrov",
+            "progress_units": -64113,
+            "team": "Caterham Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 19,
+            "id": 20,
+            "name": "Timo Glock",
+            "progress_units": -55188,
+            "team": "Marussia Cosworth",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 21,
+            "id": 21,
+            "name": "Charles Pic",
+            "progress_units": -61320,
+            "team": "Marussia Cosworth",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 23,
+            "id": 22,
+            "name": "Pedro de la Rosa",
+            "progress_units": -67452,
+            "team": "HRT Cosworth",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 24,
+            "id": 23,
+            "name": "Narain Karthikeyan",
+            "progress_units": -70245,
+            "team": "HRT Cosworth",
+            "tire": "Intermediário"
+          }
+        ],
+        "length_mm": 5891000,
+        "native_initial": [
+          {
+            "grid": 2,
+            "id": 0,
+            "name": "Sebastian Vettel",
+            "progress_units": -4497,
+            "team": "Red Bull Racing Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 5,
+            "id": 1,
+            "name": "Mark Webber",
+            "progress_units": -17987,
+            "team": "Red Bull Racing Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 3,
+            "id": 2,
+            "name": "Lewis Hamilton",
+            "progress_units": -8994,
+            "team": "McLaren Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 1,
+            "id": 3,
+            "name": "Jenson Button",
+            "progress_units": 0,
+            "team": "McLaren Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 4,
+            "id": 4,
+            "name": "Fernando Alonso",
+            "progress_units": -13490,
+            "team": "Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 10,
+            "id": 5,
+            "name": "Felipe Massa",
+            "progress_units": -40471,
+            "team": "Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 6,
+            "id": 6,
+            "name": "Kimi Räikkönen",
+            "progress_units": -22484,
+            "team": "Lotus Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 9,
+            "id": 7,
+            "name": "Romain Grosjean",
+            "progress_units": -35974,
+            "team": "Lotus Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 7,
+            "id": 8,
+            "name": "Nico Rosberg",
+            "progress_units": -26981,
+            "team": "Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 8,
+            "id": 9,
+            "name": "Michael Schumacher",
+            "progress_units": -31477,
+            "team": "Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 11,
+            "id": 10,
+            "name": "Sergio Perez",
+            "progress_units": -44968,
+            "team": "Sauber Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 12,
+            "id": 11,
+            "name": "Kamui Kobayashi",
+            "progress_units": -49465,
+            "team": "Sauber Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 15,
+            "id": 12,
+            "name": "Paul di Resta",
+            "progress_units": -62955,
+            "team": "Force India Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 14,
+            "id": 13,
+            "name": "Nico Hulkenberg",
+            "progress_units": -58458,
+            "team": "Force India Mercedes",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 13,
+            "id": 14,
+            "name": "Pastor Maldonado",
+            "progress_units": -53961,
+            "team": "Williams Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 18,
+            "id": 15,
+            "name": "Bruno Senna",
+            "progress_units": -76445,
+            "team": "Williams Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 16,
+            "id": 16,
+            "name": "Daniel Ricciardo",
+            "progress_units": -67452,
+            "team": "Toro Rosso Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 17,
+            "id": 17,
+            "name": "Jean-Eric Vergne",
+            "progress_units": -71949,
+            "team": "Toro Rosso Ferrari",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 20,
+            "id": 18,
+            "name": "Heikki Kovalainen",
+            "progress_units": -85439,
+            "team": "Caterham Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 22,
+            "id": 19,
+            "name": "Vitaly Petrov",
+            "progress_units": -94432,
+            "team": "Caterham Renault",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 19,
+            "id": 20,
+            "name": "Timo Glock",
+            "progress_units": -80942,
+            "team": "Marussia Cosworth",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 21,
+            "id": 21,
+            "name": "Charles Pic",
+            "progress_units": -89936,
+            "team": "Marussia Cosworth",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 23,
+            "id": 22,
+            "name": "Pedro de la Rosa",
+            "progress_units": -98929,
+            "team": "HRT Cosworth",
+            "tire": "Intermediário"
+          },
+          {
+            "grid": 24,
+            "id": 23,
+            "name": "Narain Karthikeyan",
+            "progress_units": -103426,
+            "team": "HRT Cosworth",
+            "tire": "Intermediário"
+          }
+        ],
+        "seed": 2026,
+        "ticks": 100,
+        "track": "GBR",
+        "weather": "Chuva intensa"
+      }
+    ]
+  }
+}

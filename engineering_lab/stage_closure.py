@@ -8,6 +8,17 @@ REPO="Jugadru/APEX-Engineering-Lab"
 # Cumulative light regression floor. Add department-specific workflows in reviewed
 # changes before closing a stage; extra declared checks are also mandatory.
 REQUIRED={".github/workflows/qa.yml",".github/workflows/physics.yml",".github/workflows/experiments.yml"}
+# Historical manifests remain readable. A new closure of a reopened 0.8
+# revision must cover the modern regression workflows at that exact tree.
+REOPENED_REQUIRED=REQUIRED | {
+    ".github/workflows/racecraft.yml",
+    ".github/workflows/racecraft-platform.yml",
+    ".github/workflows/racecraft-track-evidence.yml",
+    ".github/workflows/racecraft-outline-evidence.yml",
+    ".github/workflows/stage-closure.yml"}
+REOPENED_ADDITIONAL={
+    ".github/workflows/racecraft-historical-pace.yml",
+    ".github/workflows/native-engine-comparison.yml"}
 REVIEW={"scope","boundary_cases","regression","evidence","documentation","rollback"}
 ORDER=[f"0.{i}" for i in range(7,13)]+["1.0"]
 
@@ -101,6 +112,14 @@ def version_at(root,sha):
     reg.require(len(hits)==1,"version declaration")
     return hits[0]
 
+def reopened_coverage(m,tree_paths):
+    if m["series"]!="0.8" or "audit/REOPEN_0.8.md" not in tree_paths:
+        return
+    reg.require(REOPENED_REQUIRED<=tree_paths,"reopened stage missing required workflow files")
+    required=REOPENED_REQUIRED | (REOPENED_ADDITIONAL & tree_paths)
+    for key in ("candidate_runs","main_runs"):
+        reg.require(required<={r["path"] for r in m[key]},"reopened stage missing workflow evidence")
+
 def coverage(root,m,base):
     # A closure record may be committed after the reviewed main. Only its own
     # manifest may differ; any code, tests, workflows or other docs invalidate it.
@@ -109,6 +128,9 @@ def coverage(root,m,base):
     delta=set(git(root,"diff","--name-only","-z",reviewed,base).split("\0"))-{""}
     reg.require(delta<={"audit/closures/"+m["series"]+".json"},"base changed beyond closure manifest; refresh audit")
     reg.require(series(version_at(root,reviewed))==m["series"],"reviewed revision is wrong series")
+    if m["series"]=="0.8":
+        paths=set(git(root,"ls-tree","-r","--name-only","-z",reviewed).split("\0"))-{""}
+        reopened_coverage(m,paths)
 
 def transition(root,base,fetch=metadata.managed_get):
     reg.require(reg.sha40(base),"base SHA")
