@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.3 — Overtaking Intelligence
+
+- Frozen observed attack opportunity, classified-rival check, lateral clearance and destination closing veto, no future intent. Observed classified crossing on consecutive samples with separation and bounded progress; no sporting award. 48 decision and four crossing cases, eight tests.
+
+
 ## 0.8.2 — Trajectory Optimization
 
 - Bounded offline discrete path DP with preference, first/second difference costs and stable lexicographic ties; exhaustive comparison across 29 scenarios. Seven tests. Explicit infeasibility, no continuous path or lap-time claim.

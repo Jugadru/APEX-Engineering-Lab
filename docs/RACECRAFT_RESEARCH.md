@@ -11,3 +11,7 @@ Run from clean checkout: python -m engineering_lab experiment-racecraft-suite --
 ## 0.8.2
 
 `racecraft_trajectory`: original finite station DP (2–7 stations, up to four candidate offsets each). Artificial cost in mm²: offset preference plus squared first difference plus twice squared second difference; hard bound on offset change per station. Exact exhaustive oracle, lexicographic ties, explicit infeasible outcome, 29 fixtures. Station candidates already represent admissible sampled offsets; no between-station collision/curvature validation, real road surface or minimum-lap-time claim. REF-109/IDEA-021/023/024/034 concept only, no copied source.
+
+## 0.8.3
+
+`racecraft_overtaking`: observe front same-corridor car, require unwrapped classified gap equal to physical gap, >5300 mm, closing >=2000 mm/s and estimated draw-clear <=6000 ms. Try fixed offsets ±3000 mm, static sweep and constant-speed destination traffic veto. Candidate is not a command or safety guarantee. Separate observed_crossing on 2–32 consecutive snapshots, active pair, same geometry, monotonic bounded progress, lateral separation at sampled sign crossing and clear final classified lead. No actual sporting award or continuous collision claim; synthetic max 100000 mm per tick is only a jump guard. 48 decisions + four crossing cases. REF-105/IDEA-024/025/026/033/040 concept only.
