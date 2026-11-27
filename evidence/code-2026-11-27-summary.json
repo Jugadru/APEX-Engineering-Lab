@@ -1,0 +1,21 @@
+{
+  "analyzer_blob": "29a9c39e061b89f9e15126b265d880a40f3155a9",
+  "certainty": {
+    "confirmed": 260,
+    "heuristic": 221
+  },
+  "error_count": 0,
+  "expected_scripts": 168,
+  "game_sha": "50e0b475399b0e94a8229996df2ee8043d89f9b6",
+  "rules": {
+    "APX001": 6,
+    "APX002": 64,
+    "APX003": 146,
+    "APX004": 14,
+    "APX005": 30,
+    "APX101": 155,
+    "APX103": 66
+  },
+  "scripts": 168,
+  "status": "PASS"
+}

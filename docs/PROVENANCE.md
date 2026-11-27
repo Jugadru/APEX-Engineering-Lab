@@ -32,3 +32,7 @@ github-receipt salva um snapshot exclusivo e não assinado da consulta; receipt 
 CI usa fixtures sintéticas para o adapter, sem rede, e mantém os testes v1. Verificação ao vivo é opt-in. Adapters específicos de Foundation, Asset Factory, Hyper e Lab Hub continuam pendentes: o adapter GitHub é compartilhado, não duplica profilers. Evidências privadas não são publicadas; o repositório foi tornado privado pelo responsável. Nenhum runner pessoal, FULL ou mudança no jogo. Limite local de 1 MiB mantido. Revisão de assinatura/proveniência criptográfica, autorização e ciência continua futura.
 
 **v0.3:** Engineering Lab e Hyper privados. Adapter sem autenticação fica BLOCKED em revisões privadas. Usar conector autorizado para revisão manual; sem tokens novos.
+
+## v0.4.1 managed access
+
+Explicit `metadata-check --repository OWNER/REPO --sha SHA --run ID` (run optional) and `github-check --managed` / `github-receipt --managed` use only an already managed read credential in environment APEX_GITHUB_READ_TOKEN. No auto token discovery, no token creation or logs, no redirects, fixed allowlist of repository/commit/run/artifact endpoints. Use least privilege, short-lived GitHub App read token; do not paste in chat or commit. Standard Actions token validates its own private repository only; cross-repo access needs a separately configured authorized app installation. Missing permission returns BLOCKED. Local receipts remain unauthenticated. Live smoke for same-repo metadata does not authenticate science or cross-repo artifact bytes.

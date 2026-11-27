@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.1 — Evidence Integration
+
+- Durable actual static/analyzer aggregate evidence at exact game SHA; imports existing analyzer summary, headless profile and correlation outputs with explicit limitations.
+- Opt-in authenticated read-only metadata with existing managed credential, fixed repo/endpoint allowlist; no new token or cross-repo access provisioned.
+- Hosted same-repo metadata smoke and public discovery attempt, 12 new tests. No runtime claim.
+
+
 ## 0.4.0 — Code Intelligence
 
 - Reuse existing pinned game graph producer; supplemental lexical duplicate-body and single-mention candidates.
