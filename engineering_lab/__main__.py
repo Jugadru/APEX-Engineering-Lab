@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 from . import registry as reg
 from . import provenance as prov
+from . import research_cli
 
 def demo(root):
     root.mkdir(mode=0o700)
@@ -35,9 +36,12 @@ def main():
             p.add_argument("input", type=Path)
         if command in ("verify", "provenance", "github-check", "github-receipt", "receipt"):
             p.add_argument("--id", required=True)
+    research_cli.add_commands(sub)
     args = parser.parse_args()
     try:
-        if args.action == "demo":
+        if args.action.startswith("research-"):
+            result = research_cli.run(args)
+        elif args.action == "demo":
             result = demo(args.registry)
         elif args.action == "verify":
             result = reg.verify(args.registry, args.id)

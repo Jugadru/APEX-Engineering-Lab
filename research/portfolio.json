@@ -1,0 +1,265 @@
+{
+  "schema": 1,
+  "foundation_commit": "c999d8f4062d2df07f1deae55a2252f6262596bf",
+  "game_commit": "9dfc18de49083260b1a9524513b415e1551fdabf",
+  "sources": [
+    {
+      "id": "REF-105",
+      "repo": "MoYuSOwO/stintegy-evo",
+      "sha": "395ed23e8b2e9df762b24d17834eee3bcc0c2503",
+      "license": "AGPL-3.0",
+      "license_blob": "0ad25db4bd1d86c452db3f9602ccdbe172438f52",
+      "license_url": "https://github.com/MoYuSOwO/stintegy-evo/blob/395ed23e8b2e9df762b24d17834eee3bcc0c2503/LICENSE",
+      "checked_on": "2026-11-26",
+      "method": "Frozen snapshot, collect commands, advance tick; separated controller and simulation authority.",
+      "limits": "AGPL and asset terms require review; no source copied or executed.",
+      "papers": [],
+      "reuse": "CONCEPT_ONLY"
+    },
+    {
+      "id": "REF-106",
+      "repo": "TUMFTM/race-simulation",
+      "sha": "96ef2c2021982217be008fe458df47c1a72da071",
+      "license": "LGPL-3.0",
+      "license_blob": "0a041280bd00a9d068f503b8ee7ce35214bd24a1",
+      "license_url": "https://github.com/TUMFTM/race-simulation/blob/96ef2c2021982217be008fe458df47c1a72da071/LICENSE",
+      "checked_on": "2026-11-26",
+      "method": "Lap-discrete pit strategy, Monte Carlo, heuristic and neural VSE.",
+      "limits": "2014–2019 data; dry compound restrictions for VSE; no trained weights or 2012 calibration.",
+      "papers": [
+        "https://doi.org/10.3390/app10217805",
+        "https://doi.org/10.3390/app10124229"
+      ],
+      "reuse": "CONCEPT_ONLY"
+    },
+    {
+      "id": "REF-107",
+      "repo": "TUMFTM/laptime-simulation",
+      "sha": "afa0aa710adb9fdd23fa3d6fbdd6a13664253616",
+      "license": "LGPL-3.0",
+      "license_blob": "0a041280bd00a9d068f503b8ee7ce35214bd24a1",
+      "license_url": "https://github.com/TUMFTM/laptime-simulation/blob/afa0aa710adb9fdd23fa3d6fbdd6a13664253616/LICENSE",
+      "checked_on": "2026-11-26",
+      "method": "Quasi-steady-state sensitivity to mass and vehicle parameters.",
+      "limits": "Electrified-car paper; no 2012 calibration or transient dynamics proof.",
+      "papers": [
+        "https://doi.org/10.1109/ever.2019.8813646"
+      ],
+      "reuse": "CONCEPT_ONLY"
+    },
+    {
+      "id": "REF-109",
+      "repo": "TUMFTM/global_racetrajectory_optimization",
+      "sha": "a9995e2f5407f22eb7fb9dceac2b71a35276bb41",
+      "license": "LGPL-3.0",
+      "license_blob": "0a041280bd00a9d068f503b8ee7ce35214bd24a1",
+      "license_url": "https://github.com/TUMFTM/global_racetrajectory_optimization/blob/a9995e2f5407f22eb7fb9dceac2b71a35276bb41/LICENSE",
+      "checked_on": "2026-11-26",
+      "method": "Minimum curvature vs minimum time; spline geometry and speed profiles.",
+      "limits": "Offline global line is not live racecraft; traffic and track bounds need validation.",
+      "papers": [
+        "https://doi.org/10.1080/00423114.2019.1631455",
+        "https://doi.org/10.1080/00423114.2019.1704804"
+      ],
+      "reuse": "CONCEPT_ONLY"
+    }
+  ],
+  "cards": [
+    {
+      "id": "RES-001",
+      "title": "Comandos congelados e ordem estável",
+      "refs": [
+        "REF-105"
+      ],
+      "ideas": [
+        "IDEA-033",
+        "IDEA-034"
+      ],
+      "domain": "racecraft",
+      "method": "snapshot + collect + stable order",
+      "complexity": "O(N log N) sorting estimate",
+      "benefit": 5,
+      "cost": 2,
+      "risk": 2,
+      "coverage": "PARTIAL",
+      "existing": "scripts/core/race_independent_racecraft_091710.gd; scripts/core/race_space_0655.gd; roadmap RNG 0.6.8",
+      "gap": "Audit same-tick observation and command order; no absence claim.",
+      "hypothesis": "Permuting input order preserves final synthetic state with stable tie-breaks.",
+      "scenario": "24 synthetic agents, fixed seed and permutations; compare stable-order baseline and candidate.",
+      "criteria": {
+        "state_mismatches": {
+          "op": "eq",
+          "threshold": 0,
+          "unit": "count"
+        },
+        "invalid_commands": {
+          "op": "eq",
+          "threshold": 0,
+          "unit": "count"
+        }
+      },
+      "reuse": "CONCEPT_ONLY"
+    },
+    {
+      "id": "RES-002",
+      "title": "Sensibilidade de massa e aderência",
+      "refs": [
+        "REF-107"
+      ],
+      "ideas": [
+        "IDEA-005",
+        "IDEA-015"
+      ],
+      "domain": "physics",
+      "method": "quasi-steady-state speed envelope",
+      "complexity": "O(N) per pass; excludes convergence",
+      "benefit": 5,
+      "cost": 2,
+      "risk": 2,
+      "coverage": "PARTIAL",
+      "existing": "scripts/core/race_fuel_mass_0701.gd; scripts/core/race_tyre_grip_071.gd; roadmap 0.7.2",
+      "gap": "Audit monotonic response, limits and discretization before replacing anything.",
+      "hypothesis": "At fixed traction force on a flat synthetic sector greater mass reduces acceleration.",
+      "scenario": "Fixed SI forces and mass; analytical a=F/m versus numerical candidate; no telemetry.",
+      "criteria": {
+        "monotonic_violations": {
+          "op": "eq",
+          "threshold": 0,
+          "unit": "count"
+        },
+        "invalid_values": {
+          "op": "eq",
+          "threshold": 0,
+          "unit": "count"
+        },
+        "relative_error": {
+          "op": "le",
+          "threshold": 0.01,
+          "unit": "ratio"
+        }
+      },
+      "reuse": "CONCEPT_ONLY"
+    },
+    {
+      "id": "RES-003",
+      "title": "Trajetória de referência offline",
+      "refs": [
+        "REF-109"
+      ],
+      "ideas": [
+        "IDEA-021",
+        "IDEA-033"
+      ],
+      "domain": "racecraft",
+      "method": "bounded curvature optimization",
+      "complexity": "solver-dependent; medium/high estimated cost",
+      "benefit": 4,
+      "cost": 3,
+      "risk": 3,
+      "coverage": "PARTIAL",
+      "existing": "scripts/core/race_independent_racecraft_091710.gd; scripts/apex_racecraft_0654.gd",
+      "gap": "Audit curvature, bounds, collision separation and anti-zigzag before comparing lines.",
+      "hypothesis": "Candidate lowers curvature proxy without violating width bounds.",
+      "scenario": "Fixed synthetic closed centerline and widths; baseline centerline; no live driver control.",
+      "criteria": {
+        "boundary_violations": {
+          "op": "eq",
+          "threshold": 0,
+          "unit": "count"
+        },
+        "closure_error_m": {
+          "op": "le",
+          "threshold": 0.01,
+          "unit": "m"
+        },
+        "curvature_ratio": {
+          "op": "le",
+          "threshold": 1,
+          "unit": "ratio"
+        }
+      },
+      "reuse": "CONCEPT_ONLY"
+    },
+    {
+      "id": "RES-004",
+      "title": "Pit window probabilística",
+      "refs": [
+        "REF-106"
+      ],
+      "ideas": [
+        "IDEA-041",
+        "IDEA-045",
+        "IDEA-048"
+      ],
+      "domain": "strategy",
+      "method": "heuristic vs bounded Monte Carlo",
+      "complexity": "O(S*H*A), scenarios x laps x actions estimate",
+      "benefit": 5,
+      "cost": 3,
+      "risk": 3,
+      "coverage": "PARTIAL",
+      "existing": "scripts/core/race_strategy_simulator_06499.gd; scripts/core/race_pitwall_prediction_06696.gd; scripts/core/race_wet_strategy_intelligence_06698.gd",
+      "gap": "Audit existing strategy simulation; preserve manual mode and no future leakage.",
+      "hypothesis": "Bounded sampling reduces mean regret against a hindsight oracle without future information.",
+      "scenario": "Synthetic 2012-like dry stints; paired seeds; 32 samples; baseline heuristic or isolated proxy.",
+      "criteria": {
+        "future_leaks": {
+          "op": "eq",
+          "threshold": 0,
+          "unit": "count"
+        },
+        "invalid_actions": {
+          "op": "eq",
+          "threshold": 0,
+          "unit": "count"
+        },
+        "regret_delta_s": {
+          "op": "le",
+          "threshold": 0,
+          "unit": "s"
+        }
+      },
+      "reuse": "CONCEPT_ONLY"
+    },
+    {
+      "id": "RES-005",
+      "title": "VSE explicável sem rede neural inicial",
+      "refs": [
+        "REF-106"
+      ],
+      "ideas": [
+        "IDEA-049",
+        "IDEA-054"
+      ],
+      "domain": "strategy",
+      "method": "explicit state + heuristic decision trace",
+      "complexity": "O(A*H) estimate; no training",
+      "benefit": 4,
+      "cost": 2,
+      "risk": 3,
+      "coverage": "PARTIAL",
+      "existing": "scripts/core/race_pitwall_strategy_0649.gd; scripts/core/race_pitwall_intelligence_0640.gd",
+      "gap": "Audit double stack and explanation trace; no trained 2014–2019 model import.",
+      "hypothesis": "Explicit decisions preserve constraints and explain pit action.",
+      "scenario": "Synthetic two-car team, deterministic pit availability and manual commands.",
+      "criteria": {
+        "constraint_violations": {
+          "op": "eq",
+          "threshold": 0,
+          "unit": "count"
+        },
+        "unexplained_actions": {
+          "op": "eq",
+          "threshold": 0,
+          "unit": "count"
+        },
+        "manual_override_violations": {
+          "op": "eq",
+          "threshold": 0,
+          "unit": "count"
+        }
+      },
+      "reuse": "CONCEPT_ONLY"
+    }
+  ]
+}
