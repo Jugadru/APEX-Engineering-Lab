@@ -87,6 +87,23 @@ def alternatives(s, command, brake_first):
             unique.append(c)
     return unique
 
+def refined_alternatives(s, command):
+    """Bounded deterministic second tier, not a continuous optimality proof."""
+    v=s["lateral_speed_mps"]
+    clamp=lambda a:max(-30,min(30,a))
+    # Brake lateral velocity before reaching the edge, including commands
+    # stronger than the one-tick zero-velocity target.
+    lateral=list(dict.fromkeys([clamp(-2*v/DT),clamp(-3*v/DT),
+                 clamp(-4*v/DT),0.5*command["ay_mps2"],
+                 -4.0,4.0,-12.0,12.0,-30.0,30.0]))
+    # Interleave lateral and longitudinal adjustments at multiple levels.
+    for ay in lateral:
+        for brake in (0,0.25,0.5,0.75,1):
+            yield dict(command,throttle=0,brake=brake,kers_w=0,ay_mps2=ay)
+    for scale in (0.25,0.5,0.75):
+        yield dict(command,throttle=command["throttle"]*scale,
+                   brake=command["brake"]*scale,kers_w=command["kers_w"]*scale)
+
 def resolve(states, commands, length_m=5000, half_width_m=5, node_limit=MAX_NODES):
     length = scalar(length_m,100,20000,"track length")
     width = scalar(half_width_m,coupled.MARGIN_M,15,"half width")
@@ -107,10 +124,12 @@ def resolve(states, commands, length_m=5000, half_width_m=5, node_limit=MAX_NODE
             return failed("INITIAL_STATE_INVALID")
     order = sorted(ids,key=lambda i:(-states[i]["progress_m"],i))
     choices={}
+    attempted={}
     for i in order:
         s=states[i]
         choices[i]=[]
-        for cmd in alternatives(s,commands[i],preventive(states,i,length,commands[i])):
+        attempted[i]=alternatives(s,commands[i],preventive(states,i,length,commands[i]))
+        for cmd in attempted[i]:
             result=coupled.step(s,cmd,DT,width)
             if result["state"] is not None:
                 choices[i].append(dict(command=cmd,result=result))
@@ -135,10 +154,23 @@ def resolve(states, commands, length_m=5000, half_width_m=5, node_limit=MAX_NODE
             if exhausted:
                 return False
         return False
+    stage="PRIMARY"
     if not search(0):
-        return failed("SEARCH_BUDGET" if exhausted else "NO_FEASIBLE_DISCRETE_OPTION",nodes)
+        if exhausted:
+            return failed("SEARCH_BUDGET",nodes)
+        stage="REFINED"
+        for i in order:
+            for cmd in refined_alternatives(states[i],commands[i]):
+                if cmd in attempted[i]:
+                    continue
+                attempted[i].append(cmd)
+                result=coupled.step(states[i],cmd,DT,width)
+                if result["state"] is not None:
+                    choices[i].append(dict(command=cmd,result=result))
+        if not search(0):
+            return failed("SEARCH_BUDGET" if exhausted else "NO_FEASIBLE_DISCRETE_OPTION",nodes)
     return dict(status="FEASIBLE_COUPLED_STEP",states={i:selected[i]["result"]["state"] for i in ids},
-                selected={i:selected[i] for i in ids},nodes=nodes)
+                selected={i:selected[i] for i in ids},nodes=nodes,search_stage=stage)
 
 def episode(states,ticks,grip=1,lateral=False):
     history=[]; max_nodes=0; invalid=0
