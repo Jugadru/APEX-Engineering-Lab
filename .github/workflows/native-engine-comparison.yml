@@ -41,6 +41,20 @@ jobs:
           timeout 180s godot --headless --path core-source --rendering-method gl_compatibility --script res://tests/lab_bridge_probe.gd 2>&1 | tee "$RUNNER_TEMP/core.log"
           if grep -E 'SCRIPT ERROR:|Parse Error:|^ERROR:' "$RUNNER_TEMP/core.log"; then exit 1; fi
           test "$(grep -c '^APEX_BRIDGE_RESULT ' "$RUNNER_TEMP/core.log")" = 1
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          from engineering_lab.native_bridge_evidence import load, compare
+          data=json.loads(Path("audit/native_bridge_matched_grid_2012.json").read_text(encoding="utf-8"))
+          live=load(Path(os.environ["RUNNER_TEMP"])/"core.log")
+          for a,b in zip(live["rows"],data["core"]["rows"]):
+              assert {k:v for k,v in a.items() if k!="elapsed_cpu_usec"}=={k:v for k,v in b.items() if k!="elapsed_cpu_usec"}, "pinned Core2 result changed"
+          report=compare(live,data["hyper"])
+          report["hyper_evidence"]="PINNED_PREVIOUS_NATIVE_RUN"
+          report["source_runs"]=data["source_runs"]
+          Path(os.environ["RUNNER_TEMP"],"comparison.json").write_text(json.dumps(report,sort_keys=True,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(report,sort_keys=True))
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -48,4 +62,5 @@ jobs:
           path: |
             ${{ runner.temp }}/core.log
             ${{ runner.temp }}/import.log
+            ${{ runner.temp }}/comparison.json
           retention-days: 14
