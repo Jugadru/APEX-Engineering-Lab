@@ -2,7 +2,7 @@
 
 ## 0.8.18 — Adaptive Control Refinement
 
-- Refine a feasible oriented trajectory towards the requested continuous steering/throttle/brake/KERS controls, with bounded deterministic line search and joint swept revalidation. Never worsen the declared command deviation objective or commit infeasible state. Five tests and six proposed wet/dry edge scenarios. No global optimum, real-track or game promotion claim.
+- Refine a feasible oriented trajectory towards the requested continuous steering/throttle/brake/KERS controls, with bounded deterministic line search and joint swept revalidation. Never worsen the declared command deviation objective or commit infeasible state. Five tests and six wet/dry edge scenarios. Audit revision: fix repeated shift cut over 10 ms substeps (four regressions); extend platform evidence to oriented/refined trajectories with explicit numerical tolerances, preserving exact legacy comparison (two tests); strengthen reopened stage workflow coverage (three tests). Include separately developed historical pace holdout and pinned native scenario evidence (PRs 56 and 53), verified together against current base to avoid stale-branch CI. Native replay uses a previous pinned Hyper record and a fresh Core 2 run. No global optimum, real-track or game promotion claim.
 
 ## 0.8.17 — Oriented Motion Solver
 
