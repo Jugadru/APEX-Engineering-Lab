@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.2 — Aerodynamic Research
+
+- SI still-air drag/downforce, independent prescribed losses, drag power, 48 cases and six new tests. No CFD or aerodynamic calibration.
+
+
 ## 0.7.1 — Tyre Physics Laboratory
 
 - Combined friction ellipse with zero-axis handling, exact lumped thermal step (Kelvin), bounded energy-proxy wear and thermal/wear grip modifier. 45 force, 18 heat and 9 wear cases; ten new tests. Not calibrated tyres.
