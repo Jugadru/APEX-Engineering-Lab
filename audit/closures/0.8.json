@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "series": "0.8",
+  "next_series": "0.9",
+  "candidate_sha": "17158754213a93a9e5e9f85ed26b10f10bd0d649",
+  "reviewed_main_sha": "d19ffc38d7f02df3dbb48f71f07eb70dda136c11",
+  "candidate_runs": [
+    {
+      "id": 46051966938,
+      "attempt": 1,
+      "path": ".github/workflows/stage-closure.yml"
+    },
+    {
+      "id": 46051966927,
+      "attempt": 1,
+      "path": ".github/workflows/qa.yml"
+    },
+    {
+      "id": 46051966908,
+      "attempt": 1,
+      "path": ".github/workflows/experiments.yml"
+    },
+    {
+      "id": 46051966895,
+      "attempt": 1,
+      "path": ".github/workflows/physics.yml"
+    },
+    {
+      "id": 46051966884,
+      "attempt": 1,
+      "path": ".github/workflows/racecraft.yml"
+    }
+  ],
+  "main_runs": [
+    {
+      "id": 46052055534,
+      "attempt": 1,
+      "path": ".github/workflows/experiments.yml"
+    },
+    {
+      "id": 46052055477,
+      "attempt": 1,
+      "path": ".github/workflows/racecraft.yml"
+    },
+    {
+      "id": 46052055466,
+      "attempt": 1,
+      "path": ".github/workflows/stage-closure.yml"
+    },
+    {
+      "id": 46052055450,
+      "attempt": 1,
+      "path": ".github/workflows/physics.yml"
+    },
+    {
+      "id": 46052055395,
+      "attempt": 1,
+      "path": ".github/workflows/qa.yml"
+    }
+  ],
+  "adverse_runs": [
+    {
+      "id": 46051214139,
+      "attempt": 1,
+      "path": ".github/workflows/qa.yml",
+      "sha": "acf3df054491aecc5a61fef7f92a9621030d1d38"
+    },
+    {
+      "id": 46051839453,
+      "attempt": 1,
+      "path": ".github/workflows/qa.yml",
+      "sha": "f9d37536e729eb68810f97f1b0616d6f390aceb9"
+    }
+  ],
+  "review": {
+    "scope": "Ten independent original synthetic Racecraft experiments; audited Core 2 and Hyper separate authority. No sporting state, actual car motion or game changes.",
+    "boundary_cases": "PR 36 chain diagnostic failure corrected without changing tests. PR 39 test-first audit reproduced four boundary failures in both Python environments: two horizon cases, invalid direct Car and duplicate snapshot. Correct all-active periodic ETA interval and canonical constructor validation, retain original tests, add exact horizon contact and immutable roster checks.",
+    "regression": "355 tests per Python 3.10/3.13 on exact candidate and merged main; 10 Racecraft, 9 Physics, 5 prior experimental fixtures passed. 4320 scripted decisions including repeated streams and diagnostic checkpoint; no new contacts or lock switches in those fixtures.",
+    "evidence": "Verified all five candidate and five main workflow results, identical candidate/main tree and exact QA logs; retained two negative run IDs and respective SHAs. No artifact ZIP bytes reinspection.",
+    "documentation": "AGENTS, roadmap, RACECRAFT_RESEARCH, stage gate, and changelog distinguish schematic Core 2 units, synthetic integer mm and Hyper; no automatic promotion. Fixed-lane constant-speed prediction and geometry-only veto limits documented.",
+    "rollback": "Revert affected isolated PRs 30–39 after review; refresh closure after non-manifest changes. No automated gameplay promotion."
+  },
+  "findings": [
+    {
+      "id": "AUD-CHAIN-DIAGNOSTIC",
+      "severity": "MEDIUM",
+      "status": "RESOLVED",
+      "summary": "Stationary conflict participant omitted from veto diagnostics",
+      "evidence": "PR 36, negative QA 46051214139; revised QA 46051318611 and final 46052055395."
+    },
+    {
+      "id": "AUD-FAR-REAR",
+      "severity": "HIGH",
+      "status": "RESOLVED",
+      "summary": "Immediate radius omitted approaching traffic within attack ETA",
+      "evidence": "PR 39, negative QA 46051839453; revised exact QA 46051966927."
+    },
+    {
+      "id": "AUD-PERIODIC-HORIZON",
+      "severity": "HIGH",
+      "status": "RESOLVED",
+      "summary": "Periodic far approaching traffic missed by short scan",
+      "evidence": "PR 39, negative QA 46051839453; revised exact QA 46051966927."
+    },
+    {
+      "id": "AUD-CAR-CONSTRUCTOR",
+      "severity": "MEDIUM",
+      "status": "RESOLVED",
+      "summary": "Direct Car construction accepted negative progress",
+      "evidence": "PR 39, negative QA 46051839453; revised exact QA 46051966927."
+    },
+    {
+      "id": "AUD-SNAPSHOT-CONSTRUCTOR",
+      "severity": "MEDIUM",
+      "status": "RESOLVED",
+      "summary": "Direct Snapshot construction accepted duplicate IDs",
+      "evidence": "PR 39, negative QA 46051839453; revised exact QA 46051966927."
+    },
+    {
+      "id": "AUD-GEOMETRY-SCOPE",
+      "severity": "MEDIUM",
+      "status": "LIMITATION",
+      "summary": "Conservative geometric veto may deadlock; fixed speed/lateral ETA and static latch checks not physical braking or future behavior guarantees",
+      "evidence": "docs/RACECRAFT_RESEARCH.md; deliberately diagnostic only."
+    },
+    {
+      "id": "AUD-PERSONALITY-SCOPE",
+      "severity": "LOW",
+      "status": "LIMITATION",
+      "summary": "Illustrative profiles not calibrated actual drivers or FIA rule decisions",
+      "evidence": "docs/RACECRAFT_RESEARCH.md; no production candidate."
+    }
+  ],
+  "limitations": [
+    "Scripted external observations, no closed-loop race, full lateral/longitudinal vehicle dynamics, actual track geometry, collision response or sporting pass adjudication.",
+    "No real 2012 calibration, actual driver psychology, live performance benchmark, cross-platform bitwise proof or game save/replay.",
+    "Conservative stationary fallback can deadlock and is not an acceleration-limited motion controller. Attack latch checks frozen current space and per-tick swept geometry, not full future prediction.",
+    "No independent scientific review, artifact ZIP reinspection, branch protection change, FULL or game approval."
+  ],
+  "rollback": "Revert affected isolated PR after review, preserve adverse runs and invalidate closure if any non-manifest code/test/doc change. No automatic game integration."
+}
