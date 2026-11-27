@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.1 — Spatial Awareness
+
+- Reuse periodic Ring index with frozen active cars; signed front/rear/coincident observations, constant-speed TTC estimate and static lateral sweep/edge clearance. Five layouts, 456 queries, 570 clearance checks, nine new tests. No moving collision solver or production equivalence.
+
+
 ## 0.8.0 — Racecraft Foundation
 
 - Original immutable active-car observations in integer SI subunits; classified progress separate from circular physical gap, stable tie order, no future intent. Four 24-car layouts and 128 permutations. Ten foundation tests plus two closure tests. Dedicated exact-SHA hosted racecraft suite required from 0.8 closure onward; prior physics closure preserved. No game or Hyper edits.
