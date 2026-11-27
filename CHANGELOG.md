@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.7 — Driver Personality
+
+- Bounded artificial patient/balanced/assertive traits and wet/wear/pressure preference budget, hard feasibility never overridden. 162 decisions, six tests. No real driver psychology or calibration.
+
+
 ## 0.8.6 — Multi-Agent Racing
 
 - Complete frozen proposal batch, symmetric bounded veto and iterative chain recheck, retain initial invalid geometry without teleport. 21 scenarios including 16 seeded 24-car rosters, seven tests. Stationary fallback is geometric reference, not physically executable braking.
