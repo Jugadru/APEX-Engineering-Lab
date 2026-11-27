@@ -12,3 +12,7 @@ Roadmap: 0.7.1 tyre, 0.7.2 aero, 0.7.3 powertrain, 0.7.4 braking, 0.7.5 load tra
 ## 0.7.1
 
 `physics_tyre`: independent radial projection into friction ellipse (zero-load/zero-axis safe), exact one-node thermal equation C*dT/dt=Q-h(T-Ta) in kelvin, irreversible saturating energy-proxy wear and artificial temperature/wear grip modifier. 45 grip, 18 partition and 9 wear cases. No pressure, slip curve, two-node temperature, measured Pirelli bands, graining/blistering or runtime ledger replacement; Core 2 already owns those effects. No compound calibration. REF-107/IDEA-015/016/017 concept only.
+
+## 0.7.2
+
+`physics_aero`: q=rho*v²/2, drag=q*CdA*(1-loss), positive downforce=q*ClA*(1-loss), power=drag*v. 48 cases, zero air density/speed, independent modifiers, quadratic forces and cubic power verified. Loss fractions are prescribed synthetic inputs, not computed slipstream, DRS permission or dirty-air geometry. Core 2 retains single wake source and aerodynamic authority. No CFD, ride-height model or measured 2012 coefficients. REF-107/IDEA-010/011 concept only.

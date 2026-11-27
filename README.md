@@ -2,7 +2,7 @@
 
 Autonomous scientific research, experimental engineering, algorithm development and computational intelligence infrastructure for the APEX Motorsport ecosystem.
 
-**v0.7.1 — Tyre Physics Laboratory**
+**v0.7.2 — Aerodynamic Research Laboratory**
 
 Laboratório de P&D independente do motor oficial e do Development Lab. Pesquisa científica, modelos isolados, comparação de algoritmos e evidência reproduzível. Não é outro motor nem outro sistema de homologação.
 
