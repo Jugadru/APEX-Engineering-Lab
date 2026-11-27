@@ -19,7 +19,15 @@ Não altera Core 2, Hyper, Foundation ou Development Lab. Uma capacidade princip
 | 0.6.3 | Sensitivity | bounded parameter grid |
 | 0.6.4 | Experimental Optimization | paired strategy cost algorithms |
 | 0.6.5 | Scientific Reports | checked evidence summaries |
-| 0.7.0 | Physics Research Lab | modelos SI, validação de limites e sensibilidade |
+| 0.7.0 | Vehicle Physics Foundation | SI and work-energy |
+| 0.7.1 | Tyre Physics | combined grip, thermal and wear reference |
+| 0.7.2 | Aerodynamics | drag/downforce/wake bounds |
+| 0.7.3 | Powertrain | torque, RPM and power |
+| 0.7.4 | Braking | stopping and heat ledger |
+| 0.7.5 | Load Transfer | quasi-static corner loads |
+| 0.7.6 | Fuel & Energy | bounded energy and mass ledger |
+| 0.7.7 | Integrated Dynamics | force and work balance |
+| 0.7.8 | Numerical Stability | convergence and invariants |
 | 0.8.0 | Racecraft Research Lab | cenários espaciais e agentes reproduzíveis |
 | 0.9.0 | Strategy Research Lab | heurística versus Monte Carlo/VSE |
 | 0.10.0 | Simulation Laboratory | cenário parametrizado e comparação determinística |
