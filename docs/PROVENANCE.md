@@ -29,4 +29,6 @@ github-receipt salva um snapshot exclusivo e não assinado da consulta; receipt 
 
 ## Escopo
 
-CI usa fixtures sintéticas para o adapter, sem rede, e mantém os testes v1. Verificação ao vivo é opt-in. Adapters específicos de Foundation, Asset Factory, Hyper e Lab Hub continuam pendentes: o adapter GitHub é compartilhado, não duplica profilers. Evidências privadas não são publicadas; o repositório público é decisão do responsável. Nenhum runner pessoal, FULL ou mudança no jogo. Limite local de 1 MiB mantido. Revisão de assinatura/proveniência criptográfica, autorização e ciência continua futura.
+CI usa fixtures sintéticas para o adapter, sem rede, e mantém os testes v1. Verificação ao vivo é opt-in. Adapters específicos de Foundation, Asset Factory, Hyper e Lab Hub continuam pendentes: o adapter GitHub é compartilhado, não duplica profilers. Evidências privadas não são publicadas; o repositório foi tornado privado pelo responsável. Nenhum runner pessoal, FULL ou mudança no jogo. Limite local de 1 MiB mantido. Revisão de assinatura/proveniência criptográfica, autorização e ciência continua futura.
+
+**v0.3:** Engineering Lab e Hyper privados. Adapter sem autenticação fica BLOCKED em revisões privadas. Usar conector autorizado para revisão manual; sem tokens novos.

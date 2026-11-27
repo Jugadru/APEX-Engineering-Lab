@@ -2,7 +2,7 @@
 
 Autonomous scientific research, experimental engineering, algorithm development and computational intelligence infrastructure for the APEX Motorsport ecosystem.
 
-**v0.2.0 — Scientific Evidence Registry**
+**v0.3.0 — Research Intelligence**
 
 Laboratório de P&D independente do motor oficial e do Development Lab. Pesquisa científica, modelos isolados, comparação de algoritmos e evidência reproduzível. Não é outro motor nem outro sistema de homologação.
 
@@ -23,6 +23,7 @@ O demo executa uma hipótese aritmética sintética, não uma corrida. Cria plan
 - [AGENTS.md](AGENTS.md): autoridade e regras permanentes.
 - [Roadmap](ROADMAP.md): sequência de capacidades, sem substituir os roadmaps Core 2/Hyper.
 - [Departamentos](departments/README.md): 12 áreas e critérios.
+- [Research Intelligence](docs/RESEARCH_INTELLIGENCE.md): carteira, licenças, Foundation pin e propostas.
 - [Procedência científica](docs/PROVENANCE.md): declarações, metadados GitHub, digests e maturidade conservadora.
 - [Contratos](contracts/README.md): Foundation, Asset Factory, Lab Hub, Hyper Engine.
 - [Protocolo científico](docs/RESEARCH_PROTOCOL.md) e [Operação](docs/OPERATIONS.md).
@@ -35,4 +36,4 @@ O demo executa uma hipótese aritmética sintética, não uma corrida. Cria plan
 - Development Lab: diagnóstico e benchmarks existentes, acesso conforme autorização.
 - Foundation: catálogo de referência de propriedade do ecossistema; não duplicado aqui.
 
-Este repositório é público na criação. Não armazenar logs privados, dados pessoais, credenciais, arquivos de terceiros sem licença ou assets de produção. Nenhum runner pessoal ou serviço permanente é instalado. Sem licença de distribuição escolhida: não presumir permissão de reutilização externa.
+Repositório privado por decisão do responsável (26/11/2026). Não armazenar logs privados, dados pessoais, credenciais, arquivos de terceiros sem licença ou assets de produção. Nenhum runner pessoal ou serviço permanente é instalado. Sem licença de distribuição escolhida: não presumir permissão de reutilização externa.

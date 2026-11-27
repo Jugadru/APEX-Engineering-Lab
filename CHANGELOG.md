@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 — Research Intelligence
+
+- Pin da Foundation separada, 198 REF e 120 IDEA sem duplicar catálogo.
+- Quatro fontes com commits e LICENSE revisados, cinco propostas e critérios prévios.
+- CLI pesquisa catálogo, descoberta GitHub/Crossref opt-in, ranking ordinal e plano v1.
+- 20 testes novos offline; sem execução externa, autorização de cópia ou mudança no jogo.
+
+
 ## 0.2.0 — Scientific Evidence Registry
 
 - Registro lateral de origem vinculado ao resultado, preservando formato v1.
