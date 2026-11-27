@@ -2,60 +2,110 @@
   "schema": 1,
   "series": "0.8",
   "next_series": "0.9",
-  "candidate_sha": "17158754213a93a9e5e9f85ed26b10f10bd0d649",
-  "reviewed_main_sha": "d19ffc38d7f02df3dbb48f71f07eb70dda136c11",
+  "candidate_sha": "1f2ae9abce2d78ccb245fa5de9904623cd355243",
+  "reviewed_main_sha": "9493bda74580159925f1f57d8c5ba16a0cbd6783",
   "candidate_runs": [
     {
-      "id": 46051966938,
-      "attempt": 1,
-      "path": ".github/workflows/stage-closure.yml"
-    },
-    {
-      "id": 46051966927,
-      "attempt": 1,
-      "path": ".github/workflows/qa.yml"
-    },
-    {
-      "id": 46051966908,
+      "id": 46069190357,
       "attempt": 1,
       "path": ".github/workflows/experiments.yml"
     },
     {
-      "id": 46051966895,
+      "id": 46069190295,
+      "attempt": 2,
+      "path": ".github/workflows/native-engine-comparison.yml"
+    },
+    {
+      "id": 46069190361,
       "attempt": 1,
       "path": ".github/workflows/physics.yml"
     },
     {
-      "id": 46051966884,
+      "id": 46069190422,
+      "attempt": 1,
+      "path": ".github/workflows/qa.yml"
+    },
+    {
+      "id": 46069189965,
+      "attempt": 1,
+      "path": ".github/workflows/racecraft-historical-pace.yml"
+    },
+    {
+      "id": 46069189989,
+      "attempt": 1,
+      "path": ".github/workflows/racecraft-outline-evidence.yml"
+    },
+    {
+      "id": 46069189948,
+      "attempt": 1,
+      "path": ".github/workflows/racecraft-platform.yml"
+    },
+    {
+      "id": 46069189933,
+      "attempt": 1,
+      "path": ".github/workflows/racecraft-track-evidence.yml"
+    },
+    {
+      "id": 46069190265,
       "attempt": 1,
       "path": ".github/workflows/racecraft.yml"
+    },
+    {
+      "id": 46069190202,
+      "attempt": 1,
+      "path": ".github/workflows/stage-closure.yml"
     }
   ],
   "main_runs": [
     {
-      "id": 46052055534,
+      "id": 46070060908,
       "attempt": 1,
       "path": ".github/workflows/experiments.yml"
     },
     {
-      "id": 46052055477,
+      "id": 46070060958,
       "attempt": 1,
-      "path": ".github/workflows/racecraft.yml"
+      "path": ".github/workflows/native-engine-comparison.yml"
     },
     {
-      "id": 46052055466,
-      "attempt": 1,
-      "path": ".github/workflows/stage-closure.yml"
-    },
-    {
-      "id": 46052055450,
+      "id": 46070060841,
       "attempt": 1,
       "path": ".github/workflows/physics.yml"
     },
     {
-      "id": 46052055395,
+      "id": 46070060878,
       "attempt": 1,
       "path": ".github/workflows/qa.yml"
+    },
+    {
+      "id": 46070060883,
+      "attempt": 1,
+      "path": ".github/workflows/racecraft-historical-pace.yml"
+    },
+    {
+      "id": 46070060917,
+      "attempt": 1,
+      "path": ".github/workflows/racecraft-outline-evidence.yml"
+    },
+    {
+      "id": 46070060800,
+      "attempt": 1,
+      "path": ".github/workflows/racecraft-platform.yml"
+    },
+    {
+      "id": 46070060947,
+      "attempt": 1,
+      "path": ".github/workflows/racecraft-track-evidence.yml"
+    },
+    {
+      "id": 46070060886,
+      "attempt": 1,
+      "path": ".github/workflows/racecraft.yml"
+    },
+    {
+      "id": 46070060934,
+      "attempt": 1,
+      "path": ".github/workflows/stage-closure.yml"
     }
   ],
   "adverse_runs": [
@@ -70,15 +120,27 @@
       "attempt": 1,
       "path": ".github/workflows/qa.yml",
       "sha": "f9d37536e729eb68810f97f1b0616d6f390aceb9"
+    },
+    {
+      "id": 46053808404,
+      "attempt": 1,
+      "path": ".github/workflows/racecraft.yml",
+      "sha": "8a1003569035b8bbed8c56881701e00d250627e8"
+    },
+    {
+      "id": 46067289211,
+      "attempt": 1,
+      "path": ".github/workflows/racecraft-outline-evidence.yml",
+      "sha": "c581a45ff39df2ce6dec8cee8567fdeeda663ecc"
     }
   ],
   "review": {
-    "scope": "Ten independent original synthetic Racecraft experiments; audited Core 2 and Hyper separate authority. No sporting state, actual car motion or game changes.",
-    "boundary_cases": "PR 36 chain diagnostic failure corrected without changing tests. PR 39 test-first audit reproduced four boundary failures in both Python environments: two horizon cases, invalid direct Car and duplicate snapshot. Correct all-active periodic ETA interval and canonical constructor validation, retain original tests, add exact horizon contact and immutable roster checks.",
-    "regression": "355 tests per Python 3.10/3.13 on exact candidate and merged main; 10 Racecraft, 9 Physics, 5 prior experimental fixtures passed. 4320 scripted decisions including repeated streams and diagnostic checkpoint; no new contacts or lock switches in those fixtures.",
-    "evidence": "Verified all five candidate and five main workflow results, identical candidate/main tree and exact QA logs; retained two negative run IDs and respective SHAs. No artifact ZIP bytes reinspection.",
-    "documentation": "AGENTS, roadmap, RACECRAFT_RESEARCH, stage gate, and changelog distinguish schematic Core 2 units, synthetic integer mm and Hyper; no automatic promotion. Fixed-lane constant-speed prediction and geometry-only veto limits documented.",
-    "rollback": "Revert affected isolated PRs 30–39 after review; refresh closure after non-manifest changes. No automated gameplay promotion."
+    "scope": "Owner explicitly authorized opening v0.9 after prior explanation that scientific limitations remain separate research fronts (conversation, 2026-11-27: 'SInal verde para a versão v0.9'). Close only the bounded engineering-reference scope of series 0.8; no independent scientific validation, historical fidelity certification, game promotion or runtime authorization.",
+    "boundary_cases": "Previous 0.8.9 boundary findings preserved in historical manifest; later bounded motion, yaw, oriented interpolation and finite refinement, with regression for fractional/partial/full shift cuts and path equivalence. Atomic failures and finite budgets remain explicit; no full recovery guarantee.",
+    "regression": "PR 57 exact candidate and identical merged main: 454 tests per Python 3.10 and 3.13, ten workflows each. Exact legacy replay and declared numeric steering comparisons across hosted Linux, macOS and Windows. No full gameplay race certification.",
+    "evidence": "Verified exact commits/tree and 20 completed workflows. Native candidate run 46069190295 attempt 1 failed at external Git download (TLS/EOF), attempt 2 passed on same SHA; schema records latest attempt and retains original failed attempt via this note. Historical outline stale-branch failure 46067289211 fixed by consolidation. Pinned Hyper evidence not a live current Hyper rerun. No artifact ZIP byte authentication.",
+    "documentation": "Original 0.8.9 closure preserved byte-for-byte in git history at 9493bda74580159925f1f57d8c5ba16a0cbd6783/audit/closures/0.8.json (blob 00fa953a52c80f807803cce38748c09f7e43311e). REOPEN_0.8.md retained as pre-authorization audit; scope disposition in this manifest. Reopened workflow coverage retained. Technical review by implementer, not independent.",
+    "rollback": "Revert series opening PR if necessary; preserve the prior manifest and exact test history. Renew closure before any new transition from modified 0.8 baseline; no change to game or Hyper."
   },
   "findings": [
     {
@@ -129,13 +191,63 @@
       "status": "LIMITATION",
       "summary": "Illustrative profiles not calibrated actual drivers or FIA rule decisions",
       "evidence": "docs/RACECRAFT_RESEARCH.md; no production candidate."
+    },
+    {
+      "id": "AUD-SHIFT-CUT",
+      "severity": "HIGH",
+      "status": "RESOLVED",
+      "summary": "Shift cut restarted in each 10 ms yaw substep",
+      "evidence": "PR 57 regression tests and exact QA 46069190422 / 46070060878."
+    },
+    {
+      "id": "AUD-STEERING-REPLAY",
+      "severity": "HIGH",
+      "status": "RESOLVED",
+      "summary": "Portable replay omitted oriented/refined steering paths",
+      "evidence": "PR 57 expanded replay; 46069189948 / 46070060800, numeric tolerance 1e-9 absolute and 1e-12 relative; legacy exact."
+    },
+    {
+      "id": "AUD-WORKFLOW-COVERAGE",
+      "severity": "HIGH",
+      "status": "RESOLVED",
+      "summary": "Reopened closure gate omitted newer required workflow evidence",
+      "evidence": "PR 57 reopened tree coverage tests, gate 46069190202 / 46070060934."
+    },
+    {
+      "id": "AUD-STALE-BRANCH",
+      "severity": "MEDIUM",
+      "status": "RESOLVED",
+      "summary": "Native evidence branch missed historical outline module",
+      "evidence": "Failed 46067289211; PR 57 consolidated exact evidence branches, outline passes 46069189989 / 46070060917."
+    },
+    {
+      "id": "AUD-PHYSICAL-SCOPE-018",
+      "severity": "HIGH",
+      "status": "LIMITATION",
+      "summary": "Full planar energy/thermal, curved metric tracks, low speed launch, impact and all-case recovery not established",
+      "evidence": "Owner-approved bounded engineering scope; separate research work remains open, not a claim of repair or physics validation."
+    },
+    {
+      "id": "AUD-HISTORICAL-SCOPE-018",
+      "severity": "HIGH",
+      "status": "LIMITATION",
+      "summary": "Metric surveys, measured telemetry, causal driver traits and complete sporting adjudication not established",
+      "evidence": "Historical outline and pace workflows passed for documentary proxies only. Owner-approved separate scientific research scope."
+    },
+    {
+      "id": "AUD-NATIVE-SCOPE-018",
+      "severity": "HIGH",
+      "status": "LIMITATION",
+      "summary": "Native model equivalence, comparable hardware performance and independent scientific review not established",
+      "evidence": "Pinned native cases show different results despite matched public grid; no release or game authorization. Owner-approved separate research scope."
     }
   ],
   "limitations": [
-    "Scripted external observations, no closed-loop race, full lateral/longitudinal vehicle dynamics, actual track geometry, collision response or sporting pass adjudication.",
-    "No real 2012 calibration, actual driver psychology, live performance benchmark, cross-platform bitwise proof or game save/replay.",
-    "Conservative stationary fallback can deadlock and is not an acceleration-limited motion controller. Attack latch checks frozen current space and per-tick swept geometry, not full future prediction.",
-    "No independent scientific review, artifact ZIP reinspection, branch protection change, FULL or game approval."
+    "Owner authorization is scope decision, not independent review or scientific validation.",
+    "Bounded synthetic motion references only; full planar/thermal dynamics, launch, impact, curved metric geometry and all-case feasible recovery remain separate research work.",
+    "Historical drawings and fastest-lap proxy do not establish metric surveys, measured vehicle coefficients, causal driver traits or complete sporting rules.",
+    "Native comparison uses pinned historical revisions, matched external roster and empty external command stream; no internal/model parity, current-engine equivalence or fair hardware performance claim.",
+    "No full race, FULL, gameplay integration, independent scientific review or automatic promotion."
   ],
-  "rollback": "Revert affected isolated PR after review, preserve adverse runs and invalidate closure if any non-manifest code/test/doc change. No automatic game integration."
+  "rollback": "Revert opening PR after review; use immutable historical manifests from git history and refresh exact candidate/main closure on any changed 0.8 base. Never promote game automatically."
 }

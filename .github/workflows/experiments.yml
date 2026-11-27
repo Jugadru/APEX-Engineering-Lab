@@ -33,6 +33,10 @@ jobs:
         run: python3 -m engineering_lab experiment-run pit_cost_comparison --id EXP-PIT-001 --registry "$RUNNER_TEMP/pit"
       - name: Verify pit bytes
         run: python3 -m engineering_lab verify --id EXP-PIT-001 --registry "$RUNNER_TEMP/pit"
+      - name: Causal weather strategy comparison
+        run: python3 -m engineering_lab experiment-run strategy_weather_decision --id EXP-STRATEGY-001 --registry "$RUNNER_TEMP/strategy"
+      - name: Verify strategy bytes
+        run: python3 -m engineering_lab verify --id EXP-STRATEGY-001 --registry "$RUNNER_TEMP/strategy"
       - name: Verify bytes
         run: python3 -m engineering_lab verify --id EXP-ORDER-001 --registry "$RUNNER_TEMP/ordered"
       - name: Scientific report
@@ -43,6 +47,7 @@ jobs:
             --entry "$RUNNER_TEMP/math" EXP-MATH-001 \
             --entry "$RUNNER_TEMP/sensitivity" EXP-SENS-001 \
             --entry "$RUNNER_TEMP/pit" EXP-PIT-001 \
+            --entry "$RUNNER_TEMP/strategy" EXP-STRATEGY-001 \
             --output "$RUNNER_TEMP/scientific-report.json" \
             --markdown "$RUNNER_TEMP/scientific-report.md"
       - uses: actions/upload-artifact@v4
@@ -55,6 +60,7 @@ jobs:
             ${{ runner.temp }}/math/
             ${{ runner.temp }}/sensitivity/
             ${{ runner.temp }}/pit/
+            ${{ runner.temp }}/strategy/
             ${{ runner.temp }}/scientific-report.json
             ${{ runner.temp }}/scientific-report.md
           retention-days: 7

@@ -45,7 +45,11 @@ Não altera Core 2, Hyper, Foundation ou Development Lab. Uma capacidade princip
 | 0.8.12 | Historical Rule Evidence | selected 2012 driving clauses, unknown evidence explicit |
 | 0.8.13 | Historical Reference Crosscheck | all 20 reference lap times and lengths; documented missing outline sources |
 | 0.8.14 | Coupled Local Motion | stateful local lateral reference using existing saturated forces |
-| 0.9.0 | Strategy Research Lab | heurística versus Monte Carlo/VSE |
+| 0.8.15 | Unified Motion | bounded joint motion, swept checks and replay revisions |
+| 0.8.16 | Steering and Yaw | synthetic axle-coupled reference |
+| 0.8.17 | Oriented Motion | conservative oriented body envelope |
+| 0.8.18 | Adaptive Control Refinement & Audit | exact 454-test baseline, ten candidate/main workflows |
+| 0.9.0 | Strategy Research Lab | bounded causal heuristic versus Monte Carlo under synthetic weather; VSE later |
 | 0.10.0 | Simulation Laboratory | cenário parametrizado e comparação determinística |
 | 0.11.0 | Performance Intelligence | benchmarks equivalentes e evidência para native core |
 | 0.12.0 | Quality & Regression Intelligence | invariantes e diferenças legitimadas |
