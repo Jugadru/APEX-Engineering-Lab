@@ -1,4 +1,6 @@
 import unittest
+import json
+from pathlib import Path
 from copy import deepcopy
 from engineering_lab import native_bridge_evidence as n
 
@@ -30,4 +32,17 @@ class BridgeTests(unittest.TestCase):
         a,b=record("Core2"),record("Hyper301")
         b["rows"][0]["commands"]=["pace"]
         with self.assertRaises(ValueError): n.compare(a,b)
+    def test_preserved_real_native_records(self):
+        data=json.loads((Path(__file__).resolve().parents[1]/"audit/native_bridge_matched_grid_2012.json").read_text(encoding="utf-8"))
+        r=n.verify_archive(data,data["core"])
+        self.assertEqual(r["hyper_evidence"],"PINNED_PREVIOUS_NATIVE_RUN")
+        self.assertEqual([x["max_abs_progress_delta_units"] for x in r["rows"]],[74156,26195])
+        self.assertEqual(r["model_equivalence"],"NOT_ESTABLISHED")
+        altered=deepcopy(data["core"])
+        altered["rows"][0]["hash"]="f"*64
+        with self.assertRaises(ValueError): n.verify_archive(data,altered)
+        altered=deepcopy(data)
+        altered["source_runs"]["hyper"]+=1
+        with self.assertRaises(ValueError): n.verify_archive(altered,data["core"])
+
 if __name__=="__main__": unittest.main()
