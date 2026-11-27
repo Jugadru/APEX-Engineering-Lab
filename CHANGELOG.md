@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.1 — Tyre Physics Laboratory
+
+- Combined friction ellipse with zero-axis handling, exact lumped thermal step (Kelvin), bounded energy-proxy wear and thermal/wear grip modifier. 45 force, 18 heat and 9 wear cases; ten new tests. Not calibrated tyres.
+
+
 ## 0.7.0 — Vehicle Physics Foundation
 
 - Bounded SI constant-force step, exact stop, work-energy residual and 54 combinations; seven tests. Same-SHA physics suite, environment metadata, original models only.

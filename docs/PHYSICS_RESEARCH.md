@@ -8,3 +8,7 @@ Run from clean Git checkout: `python -m engineering_lab experiment-physics-suite
 Constant net force, exact step until stop, no reverse motion; work-energy equality using factored difference of squares, nonnegative displacement, dt zero, acceleration and braking. 54 fixed combinations, relative residual <=1e-10; input finite bounded SI domain, no hidden clamp of invalid input. No integration into Core 2 or Hyper.
 
 Roadmap: 0.7.1 tyre, 0.7.2 aero, 0.7.3 powertrain, 0.7.4 braking, 0.7.5 load transfer, 0.7.6 fuel/energy, 0.7.7 integration, 0.7.8 numerical validation. Each a separate candidate and criterion.
+
+## 0.7.1
+
+`physics_tyre`: independent radial projection into friction ellipse (zero-load/zero-axis safe), exact one-node thermal equation C*dT/dt=Q-h(T-Ta) in kelvin, irreversible saturating energy-proxy wear and artificial temperature/wear grip modifier. 45 grip, 18 partition and 9 wear cases. No pressure, slip curve, two-node temperature, measured Pirelli bands, graining/blistering or runtime ledger replacement; Core 2 already owns those effects. No compound calibration. REF-107/IDEA-015/016/017 concept only.
