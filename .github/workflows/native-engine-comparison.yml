@@ -44,14 +44,10 @@ jobs:
           python3 - <<'PY'
           import json, os
           from pathlib import Path
-          from engineering_lab.native_bridge_evidence import load, compare
+          from engineering_lab.native_bridge_evidence import load, verify_archive
           data=json.loads(Path("audit/native_bridge_matched_grid_2012.json").read_text(encoding="utf-8"))
           live=load(Path(os.environ["RUNNER_TEMP"])/"core.log")
-          for a,b in zip(live["rows"],data["core"]["rows"]):
-              assert {k:v for k,v in a.items() if k!="elapsed_cpu_usec"}=={k:v for k,v in b.items() if k!="elapsed_cpu_usec"}, "pinned Core2 result changed"
-          report=compare(live,data["hyper"])
-          report["hyper_evidence"]="PINNED_PREVIOUS_NATIVE_RUN"
-          report["source_runs"]=data["source_runs"]
+          report=verify_archive(data,live)
           Path(os.environ["RUNNER_TEMP"],"comparison.json").write_text(json.dumps(report,sort_keys=True,indent=2)+"\n",encoding="utf-8")
           print(json.dumps(report,sort_keys=True))
           PY
