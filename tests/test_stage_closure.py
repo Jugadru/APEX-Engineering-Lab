@@ -86,4 +86,23 @@ class ClosureTests(unittest.TestCase):
     @patch("engineering_lab.stage_closure.git",side_effect=[C,"README.md\0"])
     def test_transition_skip(self,git,version):
         with self.assertRaises(ValueError): s.transition(Path("."),M)
+    def test_reopened_coverage_missing_modern_workflows(self):
+        m=fixture();m.update(series="0.8",next_series="0.9")
+        tree=s.REOPENED_REQUIRED|{"audit/REOPEN_0.8.md"}
+        with self.assertRaises(ValueError):s.reopened_coverage(m,tree)
+    def test_reopened_coverage_requires_present_optional_workflows(self):
+        m=fixture();m.update(series="0.8",next_series="0.9")
+        tree=s.REOPENED_REQUIRED|s.REOPENED_ADDITIONAL|{"audit/REOPEN_0.8.md"}
+        for key,start in (("candidate_runs",1),("main_runs",31)):
+            m[key]=[dict(id=start+i,attempt=1,path=p) for i,p in enumerate(sorted(s.REOPENED_REQUIRED))]
+        with self.assertRaises(ValueError):s.reopened_coverage(m,tree)
+        for key,start in (("candidate_runs",100),("main_runs",200)):
+            m[key]+=[dict(id=start+i,attempt=1,path=p) for i,p in enumerate(sorted(s.REOPENED_ADDITIONAL))]
+        s.reopened_coverage(m,tree)
+        with self.assertRaises(ValueError):
+            s.reopened_coverage(m,tree-{".github/workflows/racecraft-platform.yml"})
+    def test_historical_closure_coverage_unchanged(self):
+        m=fixture();m.update(series="0.8",next_series="0.9")
+        s.reopened_coverage(m,set(s.REQUIRED))
+
 if __name__=="__main__": unittest.main()
