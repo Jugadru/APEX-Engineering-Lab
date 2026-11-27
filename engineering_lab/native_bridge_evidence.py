@@ -7,6 +7,7 @@ import re
 CORE_SHA="2171247db6824331b714dc2588cda15b4b60a496"
 HYPER_SHA="4e4e75f96f94ce4487e7a3c37862aabcbba649ef"
 CASES=[("ITA","Seco"),("GBR","Chuva intensa")]
+HYPER_PROBE_SHA="317b1b58e83c1a7ab8f300b06fa12e2363112a2b"
 
 def load(path):
     lines=Path(path).read_text(encoding="utf-8").splitlines()
@@ -29,9 +30,9 @@ def compare(core,hyper):
             if (x["seed"],x["ticks"],x["elapsed_sim_ms"],x["commands"])!=(2026,100,20000,[]):
                 raise ValueError("scenario contract")
             ids=[c["id"] for c in x["initial"]]
-            if len(ids)!=24 or ids!=sorted(set(ids)) or ids!=[c["id"] for c in x["final"]]:
+            if len(ids)!=24 or any(type(i) is not int for i in ids) or ids!=sorted(set(ids)) or ids!=[c["id"] for c in x["final"]]:
                 raise ValueError("car identities")
-            if not re.fullmatch("[0-9a-f]{64}",x["hash"]) or x["elapsed_cpu_usec"]<=0:
+            if not re.fullmatch("[0-9a-f]{64}",x["hash"]) or type(x["elapsed_cpu_usec"]) is not int or x["elapsed_cpu_usec"]<=0:
                 raise ValueError("invalid native evidence")
             if any(type(c["progress_units"]) is not int for c in x["final"]):
                 raise ValueError("progress must be integer")
@@ -47,6 +48,24 @@ def compare(core,hyper):
     return dict(status="PASS",kind="NATIVE_INPUT_AND_DIFFERENCE_AUDIT",core_sha=CORE_SHA,
                 hyper_sha=HYPER_SHA,rows=out,model_equivalence="NOT_ESTABLISHED",promotion="NOT_AUTHORIZED",
                 limitations="Shared public scenario and initial roster only; internal physics, autonomous commands, clocks beyond sample and results are not equivalent. CPU times are descriptive, not a speed ranking.")
+
+def verify_archive(data,live):
+    """Compare a new Core run against preserved, pinned historical native records.
+    The private Hyper run is not rerun here; metadata is a provenance reference,
+    not a cryptographic attestation of remote artifacts.
+    """
+    if data.get("schema")!=1 or data.get("source_shas")!={"core":CORE_SHA,"hyper":HYPER_SHA,"hyper_probe":HYPER_PROBE_SHA}:
+        raise ValueError("archive source revision mismatch")
+    if data.get("source_runs")!={"core":46066072166,"hyper":46067041123}:
+        raise ValueError("archive source run mismatch")
+    compare(data["core"],data["hyper"])
+    report=compare(live,data["hyper"])
+    for a,b in zip(live["rows"],data["core"]["rows"]):
+        if {k:v for k,v in a.items() if k!="elapsed_cpu_usec"}!={k:v for k,v in b.items() if k!="elapsed_cpu_usec"}:
+            raise ValueError("pinned Core2 result changed")
+    report["hyper_evidence"]="PINNED_PREVIOUS_NATIVE_RUN"
+    report["source_runs"]=data["source_runs"]
+    return report
 
 def main():
     p=argparse.ArgumentParser()
