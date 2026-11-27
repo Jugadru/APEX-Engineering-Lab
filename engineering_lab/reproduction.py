@@ -3,11 +3,12 @@ from . import registry as reg, debugging as dbg
 
 def validate(root,ident,link):
     c=dbg.load_case(root,ident)
-    reg.exact(link,"schema id case_sha256 experiment failure_metric failure_value fixture budget_minutes")
+    reg.exact(link,"schema id case_sha256 experiment plan_sha256 failure_metric failure_value fixture budget_minutes")
     reg.require(link["schema"]==1 and link["id"]==ident and link["case_sha256"]==reg.digest(c),"case binding")
     reg.require(c["kind"] in {"observed_failure","synthetic","user_report"},"static signal is not a reproduced failure")
     exp=reg.experiment_id(link["experiment"])
     p=reg.read_json(root/(exp+".plan.json")); reg.validate_plan(p)
+    reg.require(link["plan_sha256"]==reg.digest(p),"frozen plan hash mismatch")
     reg.require(p["id"]==exp and p["repository"]==c["repository"] and p["candidate_sha"]==c["sha"] and p["baseline_sha"]==c["sha"],"baseline revision")
     reg.require(p["kind"] in {"unit","fixture"} and p["workload"]["authorization"] in {"offline_only","hosted_reviewed"},"bounded reproduction only")
     reg.require(type(link["budget_minutes"]) is int and 1<=link["budget_minutes"]<=15 and reg.nonempty(link["fixture"]),"fixture budget")
@@ -50,7 +51,7 @@ def demo(root):
            workload=dict(environment="Python standard library",scenario="sum 1..10, fixed arithmetic fixture",seed=0,ticks=None,
                          command_hash=reg.checksum(b"sum-fixture-v1"),authorization="offline_only"),criteria={"sum":dict(op="eq",threshold=55,unit="count")})
     reg.register_plan(root,p)
-    link=dict(schema=1,id=c["id"],case_sha256=reg.digest(c),experiment=p["id"],failure_metric="sum",failure_value=54,fixture="synthetic sum",budget_minutes=1)
+    link=dict(schema=1,id=c["id"],case_sha256=reg.digest(c),experiment=p["id"],plan_sha256=reg.digest(p),failure_metric="sum",failure_value=54,fixture="synthetic sum",budget_minutes=1)
     bind(root,c["id"],link)
     measured=sum(range(1,11))-1
     data=reg.canonical({"observed":measured,"origin":"synthetic"})

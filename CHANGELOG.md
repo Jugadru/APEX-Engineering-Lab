@@ -2,7 +2,7 @@
 
 ## 0.5.2 — Automatic Reproduction
 
-- Bind predeclared reproduction criteria to existing registry plan/results, fixed SHA, seed, command digest and <=15 minute budget; distinguish matching failure, different failure, not reproduced and unrun. Actual bounded synthetic demo; eight new tests. No arbitrary executor.
+- Bind predeclared reproduction criteria to existing registry plan/results, fixed SHA, seed, command digest and <=15 minute budget; distinguish matching failure, different failure, not reproduced and unrun. Actual bounded synthetic demo; nine new tests. No arbitrary executor.
 
 
 ## 0.5.1 — Bug Intelligence

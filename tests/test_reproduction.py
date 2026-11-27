@@ -36,6 +36,11 @@ class ReproTests(unittest.TestCase):
     def test_tamper(self):
         rp.demo(self.root); (self.root/"artifacts/baseline.json").write_text("changed")
         with self.assertRaises(ValueError): rp.check(self.root,"BUG-REPRO-DEMO")
+    def test_changed_criteria(self):
+        rp.demo(self.root); p=reg.read_json(self.root/"EXP-REPRO-DEMO.plan.json")
+        p["criteria"]["sum"]["threshold"]=56
+        (self.root/"EXP-REPRO-DEMO.plan.json").write_bytes(reg.canonical(p))
+        with self.assertRaises(ValueError): rp.check(self.root,"BUG-REPRO-DEMO")
     def test_wrong_baseline(self):
         link=self.setup_plan(); p=reg.read_json(self.root/"EXP-REPRO-DEMO.plan.json"); p["baseline_sha"]="c"*40
         (self.root/"EXP-REPRO-DEMO.plan.json").write_bytes(reg.canonical(p))
