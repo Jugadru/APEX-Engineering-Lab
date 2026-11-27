@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.5 — Scientific Experiment Reports
+
+- Verified individual and same-revision suite reports with frozen config and observation binding, explicit incomplete/fail states, JSON and Markdown output. Ten tests, complete five-experiment hosted suite. No runtime/game claims.
+
+
 ## 0.6.4 — Experimental Optimization
 
 - Exact integer-millisecond direct versus prefix pit cost comparison; 32 training and 64 independent heldout scenarios plus nominal case, six possible entries. Explore regret of nominal versus sampled policy, no improvement assumed. Eight new tests; no runtime timing or game change.
