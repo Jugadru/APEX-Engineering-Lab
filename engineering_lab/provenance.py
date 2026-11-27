@@ -77,7 +77,8 @@ def inspect(root, ident):
             "maturity": "PROPOSTO" if r["status"] == "NOT_RUN" else "EXPERIMENTAL",
             "scientific_review": "NOT_PERFORMED", "promotion": "NOT_AUTHORIZED"}
 
-def github_check(root, ident, fetch=public_get):
+def github_check(root, ident, fetch=public_get, metadata_access="public"):
+    reg.require(metadata_access in {"public","managed"},"metadata access mode")
     """Read public metadata via HTTPS. Dependency injection is for offline tests only."""
     p, r, s = load_records(root, ident)
     d = reg.read_json(root / (ident + ".provenance.json"))
@@ -112,7 +113,7 @@ def github_check(root, ident, fetch=public_get):
     # Artifacts API does not independently identify the run attempt; avoid claiming that.
     coverage = bool(evidence) and len(matched) == len(evidence)
     result = inspect(root, ident)
-    result.update({"provenance": "PUBLIC_GITHUB_METADATA_MATCH", "workflow_id": run["id"],
+    result.update({"provenance": "MANAGED_GITHUB_METADATA_MATCH" if metadata_access=="managed" else "PUBLIC_GITHUB_METADATA_MATCH", "workflow_id": run["id"],
                    "workflow_attempt": run["attempt"], "workflow_conclusion": live["conclusion"],
                    "archive_digest_coverage": "ALL" if coverage else ("PARTIAL" if matched else "NONE"),
                    "matched_archives": matched, "checked_at_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -121,8 +122,8 @@ def github_check(root, ident, fetch=public_get):
                    "limitations": "HTTPS metadata at check time; no signature, trusted timestamp, artifact attempt attribution, metric authenticity, or scientific validation."})
     return result
 
-def save_receipt(root, ident):
-    report = github_check(root, ident)
+def save_receipt(root, ident, fetch=None, metadata_access="public"):
+    report = github_check(root, ident) if fetch is None else github_check(root, ident, fetch=fetch, metadata_access=metadata_access)
     reg.publish_once(root / (ident + ".github-receipt.json"), report)
     return report
 

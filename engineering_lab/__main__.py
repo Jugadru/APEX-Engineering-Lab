@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 from . import registry as reg
 from . import provenance as prov
-from . import research_cli, code_cli
+from . import research_cli, code_cli, private_metadata
 
 def demo(root):
     root.mkdir(mode=0o700)
@@ -34,13 +34,21 @@ def main():
         p.add_argument("--registry", required=True, type=Path)
         if command in ("plan", "record", "declare"):
             p.add_argument("input", type=Path)
+        if command in ("github-check","github-receipt"):
+            p.add_argument("--managed",action="store_true")
         if command in ("verify", "provenance", "github-check", "github-receipt", "receipt"):
             p.add_argument("--id", required=True)
+    meta=sub.add_parser("metadata-check")
+    meta.add_argument("--repository",required=True)
+    meta.add_argument("--sha",required=True)
+    meta.add_argument("--run",type=int)
     research_cli.add_commands(sub)
     code_cli.add_commands(sub)
     args = parser.parse_args()
     try:
-        if args.action.startswith("code-"):
+        if args.action=="metadata-check":
+            result=private_metadata.check(args.repository,args.sha,args.run)
+        elif args.action.startswith("code-"):
             result = code_cli.run(args)
         elif args.action.startswith("research-"):
             result = research_cli.run(args)
@@ -53,7 +61,10 @@ def main():
         elif args.action in ("provenance", "github-check", "github-receipt", "receipt"):
             action = {"provenance": prov.inspect, "github-check": prov.github_check,
                       "github-receipt": prov.save_receipt, "receipt": prov.read_receipt}[args.action]
-            result = action(args.registry, args.id)
+            if getattr(args,"managed",False):
+                result = action(args.registry,args.id,fetch=private_metadata.managed_get,metadata_access="managed")
+            else:
+                result = action(args.registry, args.id)
         else:
             action = reg.register_plan if args.action == "plan" else reg.register_result
             result = action(args.registry, reg.read_json(args.input))

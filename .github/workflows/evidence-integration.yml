@@ -1,0 +1,25 @@
+name: Evidence integration smoke
+on:
+  pull_request:
+    branches: [main]
+    paths: ['engineering_lab/private_metadata.py','engineering_lab/code_evidence.py','engineering_lab/provenance.py','.github/workflows/evidence-integration.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  managed-metadata:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Read previous exact private main and QA run
+        env:
+          APEX_GITHUB_READ_TOKEN: ${{ github.token }}
+        run: python3 -m engineering_lab metadata-check --repository Jugadru/APEX-Engineering-Lab --sha 66998a752939718b69ef3efa9c0b837b9e326f1a --run 46017456614
+      - name: Public discovery smoke (no credentials; no code execution)
+        run: |
+          python3 -m engineering_lab research-discover github "motorsport lap time simulation" || echo "PUBLIC_GITHUB_DISCOVERY_BLOCKED"
+          python3 -m engineering_lab research-discover crossref "motorsport pit strategy" || echo "PUBLIC_CROSSREF_DISCOVERY_BLOCKED"
