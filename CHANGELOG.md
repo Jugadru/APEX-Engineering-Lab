@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.5 — Suspension & Weight Transfer
+
+- Quasi-static four-corner load redistribution with explicit saturation, independent analytical underdamped spring reference. 36 load and 12 spring cases, eight tests; no calibrated suspension.
+
+
 ## 0.7.4 — Braking Dynamics
 
 - Constant friction-limited braking, analytical stop distance, front/rear heat allocation and adiabatic heat rise reference. 54 cases, seven tests; no wheel-lock or brake cooling calibration.

@@ -24,3 +24,7 @@ Roadmap: 0.7.1 tyre, 0.7.2 aero, 0.7.3 powertrain, 0.7.4 braking, 0.7.5 load tra
 ## 0.7.4
 
 `physics_brakes`: cap request by normal load times friction, exact forward step, stopping distance m*v²/(2F) (None if moving without braking), heat equals negative brake work, prescribed front/rear split, adiabatic temperature rise Q/C. 54 cases. Demand above grip is a saturation indicator, not actual wheel locking. No ABS, disc cooling, per-wheel slip or calibrated heat capacity. REF-107/IDEA-013/014/015 conceptual.
+
+## 0.7.5
+
+`physics_load`: longitudinal transfer m*ax*h/wheelbase, lateral m*ay*h/track, separate static and aero front fractions, positive ay transfers right. Clip infeasible axle/side load redistribution explicitly and report requested/realized values; proportionally distribute lateral transfer by axle load. 36 load cases. Separate unforced linear sprung-mass perturbation about static equilibrium, exact underdamped solution and energy/partition checks (12 cases). Not a dynamic four-wheel suspension, roll stiffness, unsprung mass, real track surface, or wheel-lift solver. REF-107/IDEA-006–009 concept only.
