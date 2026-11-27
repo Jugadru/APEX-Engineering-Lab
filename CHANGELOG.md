@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.15 — Unified Motion Solver (candidate)
+
+- Joint bounded search over existing coupled vehicle steps with persistent SI lateral velocity, shared grip and energy limits, conservative swept periodic envelopes, deterministic ordering and atomic infeasible/budget outcomes. Three proposed 100-tick synthetic episodes and ten targeted tests; no physical calibration, full race or runtime promotion. Validation status must be read from exact-head CI.
+
 ## 0.8.14 — Coupled Local Motion
 
 - Reuse existing 0.7 vehicle force/energy and saturated combined-grip result for stateful local lateral kinematics; check interior path extrema, reject invalid edge/low-speed/domain continuation. 24 force cases, two eight-tick sequences, two edge cases, eight tests. Separate lateral work identity, not full 2D energy, yaw/steering or sporting integration.
