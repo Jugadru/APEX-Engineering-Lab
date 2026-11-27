@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.3 — Multi-Stint Strategy Intelligence
+
+- Extend posterior-aware Bellman decisions to one through three stops, with explicit stop budget and deterministic tie-breaking favoring no stop. Verify one-stop value against v0.9.2, exhaustive weighted 256-path replay and independent complete-plan hindsight cost, plus 72 held-out scenarios including out-of-prior regime. Eight frozen zero-violation criteria and nine tests. Preserve existing synthetic tyre costs and earlier experiments; no inventory, sporting compound rules, traffic, or game promotion.
+
 ## 0.9.2 — Weather Prediction Intelligence
 
 - Original exact Bayesian posterior and adaptive Bellman decisions over two unknown fixed synthetic flip rates with equal prior probability. Compare fixed mean forecast, heuristic and regime-known lower bound. Frozen eight-lap 256-path mixture evaluation, Brier score and 96 independent sampled cases across two in-prior regimes and one out-of-prior regime. Nine zero-violation criteria and eight tests. No real weather calibration or game promotion. Preserve previous experiments unchanged.
