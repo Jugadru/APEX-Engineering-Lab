@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.15 REV3 — Platform replay evidence (candidate)
+
+- Portable exact replay CLI and hosted Linux/Windows/macOS comparison on Python 3.13, with explicit failure on mismatches. Compare episode digests and refined edge recovery; retain raw artifacts. This does not certify all motor behavior, local native performance, or independent review.
+
 ## 0.8.15 REV2 — Control search refinement
 
 - Retain the primary search and add a deterministic second tier of bounded intermediate braking and lateral-control requests only when the primary options are exhausted. Share the same search node budget; preserve environmental inputs and atomic rejection. Five tests include an edge recovery not available in the original control set. Finite search, not continuous feasibility or optimality.
