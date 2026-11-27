@@ -8,6 +8,7 @@ from itertools import combinations
 from . import registry as reg, racecraft_core as core, racecraft_collision as col
 from . import racecraft_coupled as coupled, physics_vehicle as vehicle
 from .physics_core import scalar
+from . import racecraft_swept as swept
 
 DT = 0.2
 MAX_NODES = 4096
@@ -23,7 +24,7 @@ def initial(progress, speed=40, lateral=0, lateral_speed=0, fuel=5):
 def q(value):
     return Q(value)
 
-def conflict(a, b, ea, eb, length):
+def broad_conflict(a, b, ea, eb, length):
     """Conservative chord envelope for continuous frozen-force trajectories.
 
     Both velocity components are monotone within a tick (forward velocity
@@ -48,6 +49,13 @@ def conflict(a, b, ea, eb, length):
         if lx is not None and max(lx[0],ly[0]) <= min(lx[1],ly[1]):
             return True
     return False
+
+def conflict(a, b, ea, eb, length):
+    # The inexpensive original envelope rejects distant pairs. Refine only
+    # potential conflicts and retain the original veto on unsupported input.
+    if not broad_conflict(a,b,ea,eb,length):
+        return False
+    return swept.refine(a,b,ea,eb,length,DT,LONG,LAT) is not False
 
 def preventive(states, ident, length, command):
     # Ranking heuristic only; does not guarantee a future feasible trajectory.
