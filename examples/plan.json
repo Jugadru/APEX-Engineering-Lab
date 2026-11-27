@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "id": "EXP-EXAMPLE-001",
+  "peer": "hyper_engine",
+  "hypothesis": "Illustrative comparison only",
+  "scope": "Fictitious revisions; replace all inputs before running",
+  "sources": [
+    "IDEA-001"
+  ],
+  "repository": "example/synthetic",
+  "candidate_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "lab_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "baseline_sha": "cccccccccccccccccccccccccccccccccccccccc",
+  "kind": "simulation",
+  "workload": {
+    "environment": "example",
+    "scenario": "example only",
+    "seed": 42,
+    "ticks": 90,
+    "command_hash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "authorization": "offline_only"
+  },
+  "criteria": {
+    "mismatches": {
+      "op": "eq",
+      "threshold": 0,
+      "unit": "count"
+    }
+  }
+}
