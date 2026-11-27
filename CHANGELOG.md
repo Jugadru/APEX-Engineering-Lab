@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.4 — Braking Dynamics
+
+- Constant friction-limited braking, analytical stop distance, front/rear heat allocation and adiabatic heat rise reference. 54 cases, seven tests; no wheel-lock or brake cooling calibration.
+
+
 ## 0.7.3 — Engine & Powertrain
 
 - Artificial V8-shaped torque curve, rigid seven-ratio gearing, RPM, crank/wheel power and prescribed shift cut. 210 cases, eight new tests, no launch controller or calibrated engine.
