@@ -1,0 +1,57 @@
+name: One-time Hub research engineering verification (do not merge)
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  consumer:
+    if: github.head_ref == 'verify/hub-1-6-research' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      PROVIDER_SHA: a006f4f75701a82ac7f2325fb293f04ab1c42b06
+      HUB_SHA: f12dd55b1e6556b37cb22894e4203bf0529fa248
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: harness
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: a006f4f75701a82ac7f2325fb293f04ab1c42b06
+          path: provider
+          persist-credentials: false
+      - name: Verify exact Hub blobs and real provider
+        working-directory: harness/qa/hub-research-smoke
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess
+          src=json.loads(pathlib.Path("source.json").read_text())
+          assert src["hub"]==os.environ["HUB_SHA"] and src["provider"]==os.environ["PROVIDER_SHA"]
+          for path,sha in src["files"].items():
+              assert subprocess.check_output(["git","hash-object","--",path],text=True).strip()==sha
+          print("HUB_RESEARCH_EXACT_SNAPSHOT_PASS",src["hub"],len(src["files"]))
+          root=pathlib.Path(os.environ["RUNNER_TEMP"])/"research-evidence"
+          root.mkdir()
+          provider=pathlib.Path(os.environ["GITHUB_WORKSPACE"])/"provider"
+          from hub.research import engineering_catalog,execute_fixture,comparison,check_spec
+          specs,ranking=engineering_catalog(provider,root/"catalog")
+          reports=[]
+          for i,n in enumerate(["ordered_commands","spatial_neighbors","physics_aero","pit_cost_comparison"]):
+              reports.append(execute_fixture(provider,root/("case-"+n),n,check_spec(specs[n]),"EXP-HUB-QA-"+str(i+1)))
+          result=comparison(reports)
+          assert result["status"]=="PASS" and len(result["experiments"])==4
+          print("REAL_ENGINEERING_RESEARCH_PASS",len(specs),len(reports))
+          (root/"summary.json").write_text(json.dumps(result,indent=2))
+          PY
+      - name: Retain private evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: hub-research-engineering-evidence
+          path: ${{ runner.temp }}/research-evidence/
+          retention-days: 7
+          if-no-files-found: warn
