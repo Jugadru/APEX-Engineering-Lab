@@ -33,3 +33,7 @@ Audit note: original candidate acf3df054491aecc5a61fef7f92a9621030d1d38 QA run 4
 ## 0.8.7
 
 `racecraft_personality`: artificial patient/balanced/assertive profiles (0–100 aggression, confidence, patience, composure), context 0–1000 permille wet/wear/pressure. Deterministic 500–6000 ms preference budget; may decline an existing attack candidate but never create one or override hard feasibility, never changes selected target/offset on acceptance. Context is behavioral only, not a grip/thermal model. 162 decisions, diversity and monotonic wet tests. No real driver psychology, probabilities, identity traits, or calibration. REF-105/IDEA-025/035/040 concept only.
+
+## 0.8.8
+
+`racecraft_integration`: independent per-agent frozen decisions, defense precedence, six-tick attack latch and five-tick cooldown; safety veto holds current line and never changes locked side. Artificial 500 mm lateral step and constant observed-speed advance at 0.2 s only to exercise batch geometry; endpoints and memory are diagnostic, never applied to sporting state. 12 scripted ticks, 288 decisions, reversal of input order and no memory mutation; not a real race, controller, physical braking or fully integrated dynamics. REF-105/IDEA-024/029/030/033/035 concept only.
