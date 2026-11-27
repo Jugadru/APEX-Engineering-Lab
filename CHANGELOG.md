@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.8 — Racecraft Integration
+
+- Compose frozen observation, behavioral acceptance, defensive precedence, fixed attack latch/cooldown and batch geometry feasibility. 12 scripted ticks, 288 decisions, seven tests. Diagnostic proposals only; never apply stationary fallback or constant-speed endpoints to game state.
+
+
 ## 0.8.7 — Driver Personality
 
 - Bounded artificial patient/balanced/assertive traits and wet/wear/pressure preference budget, hard feasibility never overridden. 162 decisions, six tests. No real driver psychology or calibration.
