@@ -35,4 +35,6 @@ class LoadTests(unittest.TestCase):
         self.assertEqual(r["observations"]["spring_cases"],12)
         self.assertEqual(r["metrics"]["negative_loads"],0)
         self.assertEqual(r["metrics"]["missing_saturation_cases"],0)
+        self.assertLessEqual(r["metrics"]["partition_position_error_m"],1e-10)
+        self.assertLessEqual(r["metrics"]["partition_speed_error_mps"],1e-10)
 if __name__=="__main__": unittest.main()

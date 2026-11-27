@@ -41,7 +41,7 @@ def spring_step(mass_kg,k_n_per_m,c_ns_per_m,x_m,v_mps,dt_s):
             "energy_j":0.5*(k*end_x*end_x+m*end_v*end_v)}
 
 def evaluate(config):
-    rows=[]; bad=0; balance=energy_excess=partition=0.0; saturated=0
+    rows=[]; bad=0; balance=energy_excess=partition_x=partition_v=0.0; saturated=0
     for m in config["masses"]:
         for ax in config["accel"]:
             for ay in config["accel"]:
@@ -59,9 +59,10 @@ def evaluate(config):
             half=spring_step(150,30000,damping,0.02,0.1,dt/2)
             end=spring_step(150,30000,damping,half["x_m"],half["v_mps"],dt/2)
             energy_excess=max(energy_excess,max(0.0,r["energy_j"]-r["initial_energy_j"]))
-            partition=max(partition,abs(r["x_m"]-end["x_m"]),abs(r["v_mps"]-end["v_mps"]))
+            partition_x=max(partition_x,abs(r["x_m"]-end["x_m"]))
+            partition_v=max(partition_v,abs(r["v_mps"]-end["v_mps"]))
             springs+=1
-    return {"metrics":{"negative_loads":bad,"load_residual_n":balance,"energy_excess_j":energy_excess,"partition_error":partition,"missing_saturation_cases":int(saturated==0)},
+    return {"metrics":{"negative_loads":bad,"load_residual_n":balance,"energy_excess_j":energy_excess,"partition_position_error_m":partition_x,"partition_speed_error_mps":partition_v,"missing_saturation_cases":int(saturated==0)},
             "observations":{"load_cases":len(rows),"spring_cases":springs,"saturated_cases":saturated,"rows":rows,
               "limitations":"Quasi-static proportional lateral split with explicit saturation; separate linear underdamped sprung-mass perturbation. No roll stiffness, unsprung mass, track input, bump stops or real suspension calibration."}}
 
@@ -69,4 +70,4 @@ def spec(c):
     return dict(hypothesis="Corner loads conserve total and remain nonnegative; saturation is explicit; unforced damped spring cannot gain energy.",
                 sources=["REF-107","IDEA-006","IDEA-007","IDEA-008","IDEA-009"],
                 config={"seed":42,"masses":[600,800],"accel":[-40,0,40],"aero":[0,3000],"damping":[0,1000,3000],"steps":[0,0.02,0.2,1]},
-                criteria={"negative_loads":c("eq",0),"load_residual_n":c("le",1e-8,"N"),"energy_excess_j":c("le",1e-10,"J"),"partition_error":c("le",1e-10,"SI_component_max"),"missing_saturation_cases":c("eq",0)},evaluate=evaluate)
+                criteria={"negative_loads":c("eq",0),"load_residual_n":c("le",1e-8,"N"),"energy_excess_j":c("le",1e-10,"J"),"partition_position_error_m":c("le",1e-10,"m"),"partition_speed_error_mps":c("le",1e-10,"m/s"),"missing_saturation_cases":c("eq",0)},evaluate=evaluate)
