@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.0 — Experimental Engineering Core
+
+- Fixed bounded built-in experiment execution with actual checkout SHA, frozen registry plan/config, immutable evidence, exact-candidate CI. 24-agent stable-order synthetic fixture, seven new tests. No game changes.
+
+
 ## 0.5.4 — Engineering Memory
 
 - Immutable snapshots of investigation stages, search by tags and normalized text, preserve adverse/unrun results, detect newer evidence without erasing history. Documentary example of actual Development Lab failure and correction. Ten new tests and end-to-end synthetic memory smoke.

@@ -13,7 +13,12 @@ Não altera Core 2, Hyper, Foundation ou Development Lab. Uma capacidade princip
 | 0.5.2 | Automatic Reproduction | bounded controlled reproduction |
 | 0.5.3 | Solution Intelligence | hypotheses and reviewable proposals |
 | 0.5.4 | Engineering Memory | searchable prior investigations |
-| 0.6.0 | Experimental Engineering | protocolo executável de protótipos e comparação |
+| 0.6.0 | Experimental Engineering Core | frozen executable protocol |
+| 0.6.1 | Algorithm Comparison | circular spatial queries |
+| 0.6.2 | Mathematical Models | SI analytic references |
+| 0.6.3 | Sensitivity | bounded parameter grid |
+| 0.6.4 | Experimental Optimization | paired strategy cost algorithms |
+| 0.6.5 | Scientific Reports | checked evidence summaries |
 | 0.7.0 | Physics Research Lab | modelos SI, validação de limites e sensibilidade |
 | 0.8.0 | Racecraft Research Lab | cenários espaciais e agentes reproduzíveis |
 | 0.9.0 | Strategy Research Lab | heurística versus Monte Carlo/VSE |
