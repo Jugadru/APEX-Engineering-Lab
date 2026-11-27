@@ -1,0 +1,34 @@
+name: Racecraft Track Evidence
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  pinned-game-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Verify exact Lab checkout
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Jugadru/APEX-Simulation
+          ref: 2171247db6824331b714dc2588cda15b4b60a496
+          path: game-source
+          persist-credentials: false
+      - name: Audit existing game data without running game
+        run: python3 -m engineering_lab.racecraft_track_evidence --game game-source --output "$RUNNER_TEMP/track-evidence.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: racecraft-track-evidence
+          path: ${{ runner.temp }}/track-evidence.json
+          retention-days: 7

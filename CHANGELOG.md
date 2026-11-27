@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.11 — Track Evidence
+
+- Read-only audit of pinned actual Core 2 season/track physics/tyre data and geometry license notice, exact blob checks, 20 normalized centerline records; distinguish licensed reference from schematic placeholders and historical calibration blocked. Five new tests and exact-head hosted source audit. No geometry copied or sporting changes.
+
+
 ## 0.8.10 — Bounded Motion Research
 
 - Reopen Racecraft for closed-loop constant-acceleration reference, bounded discrete alternatives with exact conservative chord envelope, explicit infeasible/budget states rather than teleport or instant stop. Three 16-tick episodes, independent SI reference and sampled quadratic trajectory, seven tests. No real calibration or runtime promotion.
