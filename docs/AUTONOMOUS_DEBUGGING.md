@@ -10,3 +10,7 @@ Limits: two materialized hypotheses, one targeted attempt per candidate, 15 min 
 ## 0.5.1
 
 Register original correlation.json as case evidence, then `debug-classify --registry PATH --id BUG-ID --source correlation.json --case fixture.gd`. The existing game producer supplies classification, not this tool. `debug-history --registry PATH --fingerprint HASH` searches up to 1000 records and revalidates their evidence. Same fingerprint across commits is a recurrence lead, not the same root cause. Static signals and unverified user reports cannot be classified as observed CI failures. No raw log parser duplicated.
+
+## 0.5.2
+
+First register an existing v1 unit/fixture plan (candidate and baseline equal case SHA; explicit seed and command hash). Before recording any result, bind a JSON `{schema:1,id,case_sha256,experiment,failure_metric,failure_value,fixture,budget_minutes}` with `debug-repro-bind INPUT --id BUG-ID --registry PATH`. Failure value must violate frozen criterion. Execute reviewed fixture via existing Hub/FAST or authorized offline test, register evidence via record, then `debug-repro-check`. Matching metric is an observation, not proof of same cause. Budget is declared, no external execution enforced here. `debug-repro-demo --registry NEW_PATH` actually runs a tiny deliberately defective arithmetic fixture; baseline FAIL is expected and recorded, CLI succeeds because workflow worked. No real game reproduction or arbitrary shell execution. Local file ledger is not authenticated or transactional across records.

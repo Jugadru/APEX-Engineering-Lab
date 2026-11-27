@@ -23,3 +23,5 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - run: python -m engineering_lab demo --registry "$RUNNER_TEMP/apex-demo"
       - run: python -m engineering_lab verify --registry "$RUNNER_TEMP/apex-demo" --id EXP-DEMO-001
+      - run: python -m engineering_lab debug-repro-demo --registry "$RUNNER_TEMP/apex-repro-demo"
+      - run: python -m engineering_lab debug-repro-check --id BUG-REPRO-DEMO --registry "$RUNNER_TEMP/apex-repro-demo"
