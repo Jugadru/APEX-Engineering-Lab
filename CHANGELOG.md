@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.16 — Steering and Yaw Dynamics
+
+- Add small-angle dynamic bicycle reference with bounded steering rate, body lateral velocity, axle yaw moment and world heading/position. Reuse the existing combined tyre force/energy path via optional axle demands; legacy commands unchanged. Eight proposed mirrored wet/dry/braking episodes (ten outer ticks each, twenty substeps per tick), seven tests. Synthetic constants; not full planar energy, historical calibration, rotated multi-car collision or runtime integration. Model reference: https://optimal-control-ad-personal-repos-bb7de67c51e7f51ec3bda98b62f32.pages.gitlab.lrz.de/explanations/vehicle_dynamics/db/ .
+
 ## 0.8.15 REV3 — Platform replay evidence (candidate)
 
 - Portable exact replay CLI and hosted Linux/Windows/macOS comparison on Python 3.13, with explicit failure on mismatches. Compare episode digests and refined edge recovery; retain raw artifacts. This does not certify all motor behavior, local native performance, or independent review.
