@@ -2,7 +2,7 @@
 
 Autonomous scientific research, experimental engineering, algorithm development and computational intelligence infrastructure for the APEX Motorsport ecosystem.
 
-**v0.1.0 — Engineering Lab Foundation (candidate)**
+**v0.2.0 — Scientific Evidence Registry**
 
 Laboratório de P&D independente do motor oficial e do Development Lab. Pesquisa científica, modelos isolados, comparação de algoritmos e evidência reproduzível. Não é outro motor nem outro sistema de homologação.
 
@@ -23,6 +23,7 @@ O demo executa uma hipótese aritmética sintética, não uma corrida. Cria plan
 - [AGENTS.md](AGENTS.md): autoridade e regras permanentes.
 - [Roadmap](ROADMAP.md): sequência de capacidades, sem substituir os roadmaps Core 2/Hyper.
 - [Departamentos](departments/README.md): 12 áreas e critérios.
+- [Procedência científica](docs/PROVENANCE.md): declarações, metadados GitHub, digests e maturidade conservadora.
 - [Contratos](contracts/README.md): Foundation, Asset Factory, Lab Hub, Hyper Engine.
 - [Protocolo científico](docs/RESEARCH_PROTOCOL.md) e [Operação](docs/OPERATIONS.md).
 - [Auditoria e origem](docs/BASELINE.md), [Changelog](CHANGELOG.md).

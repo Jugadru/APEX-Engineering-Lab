@@ -6,3 +6,7 @@ Envelope comum implementado em engineering_lab/registry.py: plano com ID, peer, 
 - [Foundation](foundation.md)
 - [Lab Hub](lab_hub.md)
 - [Hyper Engine](hyper_engine.md)
+
+## v0.2.0
+
+O adapter comum GitHub verifica metadados públicos de revisões, execução e ZIPs registrados. É opt-in e não faz dispatch. Os contratos individuais continuam documentais; ver [proveniência](../docs/PROVENANCE.md).

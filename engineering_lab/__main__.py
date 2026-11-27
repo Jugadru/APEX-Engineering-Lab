@@ -3,6 +3,7 @@ import json
 import sys
 from pathlib import Path
 from . import registry as reg
+from . import provenance as prov
 
 def demo(root):
     root.mkdir(mode=0o700)
@@ -27,12 +28,12 @@ def demo(root):
 def main():
     parser = argparse.ArgumentParser(description="Offline APEX Engineering Lab")
     sub = parser.add_subparsers(dest="action", required=True)
-    for command in ("plan", "record", "verify", "demo"):
+    for command in ("plan", "record", "verify", "demo", "declare", "provenance", "github-check", "github-receipt", "receipt"):
         p = sub.add_parser(command)
         p.add_argument("--registry", required=True, type=Path)
-        if command in ("plan", "record"):
+        if command in ("plan", "record", "declare"):
             p.add_argument("input", type=Path)
-        if command == "verify":
+        if command in ("verify", "provenance", "github-check", "github-receipt", "receipt"):
             p.add_argument("--id", required=True)
     args = parser.parse_args()
     try:
@@ -40,6 +41,12 @@ def main():
             result = demo(args.registry)
         elif args.action == "verify":
             result = reg.verify(args.registry, args.id)
+        elif args.action == "declare":
+            result = prov.declare(args.registry, reg.read_json(args.input))
+        elif args.action in ("provenance", "github-check", "github-receipt", "receipt"):
+            action = {"provenance": prov.inspect, "github-check": prov.github_check,
+                      "github-receipt": prov.save_receipt, "receipt": prov.read_receipt}[args.action]
+            result = action(args.registry, args.id)
         else:
             action = reg.register_plan if args.action == "plan" else reg.register_result
             result = action(args.registry, reg.read_json(args.input))

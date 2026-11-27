@@ -14,3 +14,7 @@ python3 -m engineering_lab verify --registry /tmp/apex-research --id EXP-EXAMPLE
 O exemplo de plano contém SHAs fictícios e não prova execução. O demo cria seus próprios resultados sintéticos. CI hospedada com token contents:read, sem runner pessoal e sem checkout de repositórios privados. Workflow dispara em PR/push main; timeout de 5 min. Não há credenciais novas nem agente residente. O registro não executa experimentos arbitrários.
 
 Para ferramentas externas: GitHub com leitura/escrita conforme repo; Godot 4.7.2 para regressões do jogo; Blender para Asset Factory; GPU nativa e runner pessoal somente após consentimento e ociosidade. Não solicitar tokens. Limites de depuração em AGENTS são política, não scheduler. Backup local e revisão de licença obrigatórios. Rollback da fundação via revert do commit/PR, sem apagar evidências.
+
+## v0.2.0
+
+A CLI continua offline por padrão. Os comandos explícitos github-check e github-receipt fazem somente consultas públicas HTTPS delimitadas; veja [PROVENANCE.md](PROVENANCE.md). Não são usados pela CI. A origem declarada, o digest do arquivo e o mérito científico são distintos.
