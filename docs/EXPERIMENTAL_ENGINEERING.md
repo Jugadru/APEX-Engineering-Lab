@@ -17,3 +17,7 @@ Original isolated Python standard-library prototypes, no external source copied,
 ## 0.6.3
 
 `experiment-run mass_grip_sensitivity`: a=min(F/m,mu*g) in SI, 4 masses × 5 coefficients × 2 forces. All 40 cases checked for limits and monotonicity, both regimes must occur. Report endpoint effects at fixed other factors and regime counts; no causal/statistical inference about F1. No combined longitudinal/lateral grip, aero, thermal, weight transfer or 2012 calibration. REF-107/IDEA-005/015 concept only.
+
+## 0.6.4
+
+`experiment-run pit_cost_comparison`: synthetic 8-lap horizon, single mandatory stop after lap 1..6. Cost = sum old tyre laps + sum fresh tyre laps + pit penalty (integer milliseconds internally, seconds reported). Direct sums vs prefix sums must be exactly equal for all 97 cases; count model-level additions including prefix construction, not CPU time. One nominal policy and one policy selected from 32 sampled scenarios; freeze both choices before generating 64 heldout scenarios from independent seed. Hindsight oracle only evaluates regret; retain positive or negative regret delta without using it as a gate. No real 2012 calibration, dynamic safety-car, weather, pit occupancy, double stack or race logic. REF-106/IDEA-041/045/048 conceptual link; no copied code. Current Core 2 strategy simulator remains authoritative.

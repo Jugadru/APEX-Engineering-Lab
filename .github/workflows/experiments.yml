@@ -28,6 +28,10 @@ jobs:
         run: python3 -m engineering_lab experiment-run mass_grip_sensitivity --id EXP-SENS-001 --registry "$RUNNER_TEMP/sensitivity"
       - name: Verify sensitivity bytes
         run: python3 -m engineering_lab verify --id EXP-SENS-001 --registry "$RUNNER_TEMP/sensitivity"
+      - name: Pit cost comparison
+        run: python3 -m engineering_lab experiment-run pit_cost_comparison --id EXP-PIT-001 --registry "$RUNNER_TEMP/pit"
+      - name: Verify pit bytes
+        run: python3 -m engineering_lab verify --id EXP-PIT-001 --registry "$RUNNER_TEMP/pit"
       - name: Verify bytes
         run: python3 -m engineering_lab verify --id EXP-ORDER-001 --registry "$RUNNER_TEMP/ordered"
       - uses: actions/upload-artifact@v4
@@ -39,4 +43,5 @@ jobs:
             ${{ runner.temp }}/spatial/
             ${{ runner.temp }}/math/
             ${{ runner.temp }}/sensitivity/
+            ${{ runner.temp }}/pit/
           retention-days: 7
