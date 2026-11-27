@@ -2,7 +2,7 @@
 
 Autonomous scientific research, experimental engineering, algorithm development and computational intelligence infrastructure for the APEX Motorsport ecosystem.
 
-**v0.7.7 — Integrated Vehicle Dynamics**
+**v0.7.8 — Physics Research Lab / Numerical Validation**
 
 Laboratório de P&D independente do motor oficial e do Development Lab. Pesquisa científica, modelos isolados, comparação de algoritmos e evidência reproduzível. Não é outro motor nem outro sistema de homologação.
 

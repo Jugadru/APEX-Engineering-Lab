@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.8 — Numerical Stability & Validation
+
+- Analytical nonlinear coast oracle, four timestep resolutions, 12 coast comparisons and three fixed 120-tick sequences repeated. Cumulative work, kinetic energy carried by consumed fuel, mass/store/lap balance and deterministic repeat checks. Ten new tests; preserve original experiment regression on physics changes. No actual sporting or calibration claim.
+
+
 ## 0.7.7 — Integrated Vehicle Dynamics
 
 - Compose independent aero, powertrain, load, tyre and energy references into a bounded forward step, brake precedence and feasible energy work limit. 180 cases, twelve tests including low-speed regularization and tiny-dt rejection. No sporting integration or dynamic steering.

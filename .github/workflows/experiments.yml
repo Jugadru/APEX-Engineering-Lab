@@ -2,7 +2,7 @@ name: Experimental Engineering
 on:
   pull_request:
     branches: [main]
-    paths: ['engineering_lab/experimental*.py','engineering_lab/exp_*.py','engineering_lab/__main__.py','.github/workflows/experiments.yml']
+    paths: ['engineering_lab/experimental*.py','engineering_lab/exp_*.py','engineering_lab/physics*.py','engineering_lab/__main__.py','.github/workflows/experiments.yml']
 permissions:
   contents: read
 jobs:
