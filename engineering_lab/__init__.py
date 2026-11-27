@@ -1,2 +1,2 @@
 """APEX Engineering Lab — experimental research and evidence."""
-__version__ = "0.8.17"
+__version__ = "0.8.18"
