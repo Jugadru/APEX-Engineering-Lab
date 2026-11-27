@@ -33,4 +33,37 @@ class StrategyResearchTests(unittest.TestCase):
         self.assertEqual(r["observations"]["cases"],32)
         self.assertEqual(r,spec["evaluate"](spec["config"]))
 
+    def test_plan_rejects_fractional_boolean_and_outside_stop(self):
+        for stop in (.5,True,False,-1,2,"0"):
+            with self.subTest(stop=stop):
+                with self.assertRaises(ValueError):
+                    s.cost_plan((False,False),"dry",4,stop,"dry")
+    def test_plan_rejects_invalid_initial_state_even_if_stop_immediate(self):
+        for tyre,age in (("invalid",4),("dry",-1),("dry",True),("dry",33)):
+            with self.assertRaises(ValueError):
+                s.cost_plan((False,False),tyre,age,0,"wet")
+    def test_plan_rejects_invalid_weather_or_unrepresentable_stint(self):
+        for weather in ((),(False,1),[False]*21):
+            with self.assertRaises(ValueError):
+                s.cost_plan(weather,"dry",4,0,"dry")
+        with self.assertRaises(ValueError):
+            s.cost_plan((False,False,False),"dry",32,2,"dry")
+    def test_exhaustive_short_episode_accounting_and_prefix_causality(self):
+        from itertools import product
+        for policy in s.POLICIES:
+            for flip in (0,250,1000):
+                prefixes={}
+                for weather in product((False,True),repeat=4):
+                    r=s.episode(policy,weather,17,8,flip)
+                    stop=r["stop"]
+                    self.assertIs(type(stop),int)
+                    self.assertEqual(r["total_ms"],s.cost_plan(weather,"dry",4,stop,r["trace"][stop]["action"]))
+                    self.assertEqual(r["total_ms"],s.PIT_MS+sum(x["cost_ms"] for x in r["trace"]))
+                    for i,row in enumerate(r["trace"]):
+                        prefix=weather[:i+1]
+                        self.assertEqual(row,prefixes.setdefault(prefix,row))
+    def test_unrepresentable_decision_stint_is_rejected(self):
+        with self.assertRaises(ValueError):
+            s.choose("monte_carlo",0,20,"dry",32,False,42,8,250)
+
 if __name__=="__main__":unittest.main()

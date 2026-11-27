@@ -17,3 +17,7 @@ Comparação de estratégias com seeds e incerteza. Toda entrega exige hipótese
 ## Primeira capacidade
 
 `strategy_weather_decision`: 32 episódios sintéticos de oito voltas, um pit obrigatório antes de uma volta, dois pneus artificiais, clima binário observado, 32 previsões por decisão. Heurística troca por incompatibilidade ou metade do horizonte; Monte Carlo replaneja com previsão estocástica e informação atual. Os caminhos de previsão são comuns às alternativas e a geração dos episódios de teste usa seed separada. Oráculo retrospectivo somente para avaliação. Critérios pré-declarados: zero ações inválidas, divergências de replay ou regret negativo. Diferença de regret é exploratória, não critério de aprovação. Não é VSE, não simula tráfego, double stack ou pneus reais. Nenhuma integração esportiva autorizada.
+
+## Auditoria da primeira candidata
+
+A avaliação original observou regret médio de 5725 ms para a heurística e 8850 ms para Monte Carlo (32 casos). A política amostrada otimiza um plano fixo e replaneja depois; não é uma solução ótima de controle adaptativo. Não selecionar seeds/limiares depois de observar os casos; preservar esse resultado e desenvolver referência adaptativa causal em experimento posterior. A auditoria corrige entradas fracionárias/booleanas de pit, valida estado inicial antes da troca, verifica custo total contra o plano realmente aplicado e testa todas as 16 sequências binárias de quatro voltas para três regimes e ambas as políticas.

@@ -25,7 +25,10 @@ def weather_path(rng,wet,horizon,flip):
 
 def cost_plan(weather,tyre,age,stop,compound):
     # stop is before the lap at index stop; one mandatory stop.
-    reg.require(0<=stop<len(weather) and compound in TYRES,"stop plan")
+    reg.require(isinstance(weather,(tuple,list)) and 1<=len(weather)<=20 and all(type(w) is bool for w in weather),"plan weather")
+    reg.require(type(stop) is int and 0<=stop<len(weather) and compound in TYRES,"stop plan")
+    lap_cost(tyre,age,weather[0])
+    reg.require(age+stop<=33,"stint age exceeds model domain")
     total=0
     for i,wet in enumerate(weather):
         if i==stop:
@@ -39,6 +42,7 @@ def choose(policy,lap,horizon,tyre,age,wet,seed,samples,flip):
     reg.require(policy in POLICIES and type(lap) is int and type(horizon) is int and 0<=lap<horizon<=20,"decision horizon")
     reg.require(type(seed) is int and 0<=seed<=2**32 and type(samples) is int and 1<=samples<=128,"forecast budget")
     lap_cost(tyre,age,wet)
+    reg.require(age+horizon-lap-2<=32,"decision stint age exceeds model domain")
     reg.require(type(flip) is int and 0<=flip<=1000,"flip probability")
     compound="wet" if wet else "dry"
     if policy=="heuristic":
@@ -53,6 +57,7 @@ def choose(policy,lap,horizon,tyre,age,wet,seed,samples,flip):
 
 def episode(policy,weather,seed,samples,flip):
     reg.require(isinstance(weather,(tuple,list)) and 2<=len(weather)<=20 and all(type(x) is bool for x in weather),"episode weather")
+    reg.require(policy in POLICIES,"policy")
     tyre="dry";age=4;total=0;stop=None;trace=[]
     for lap,wet in enumerate(weather):
         action=None if stop is not None else choose(policy,lap,len(weather),tyre,age,wet,seed,samples,flip)
@@ -67,6 +72,8 @@ def evaluate(config):
     seed=config["seed"];h=config["horizon"];n=config["heldout"];samples=config["samples"];flip=config["flip_per_mille"]
     reg.require(type(seed) is int and 0<=seed<=2**32-1000003 and type(n) is int and 1<=n<=128,"heldout budget")
     reg.require(type(h) is int and 2<=h<=20,"horizon")
+    # Keep the original fixed held-out fixture and forecast seed unchanged.
+    # A separate boundary suite checks accounting and causality without fitting.
     rng=random.Random(seed+1000003)
     rows=[];invalid=repeat=negative=0
     for i in range(n):
@@ -77,7 +84,11 @@ def evaluate(config):
             result=episode(policy,weather,seed,samples,flip)
             repeat+=result!=episode(policy,weather,seed,samples,flip)
             actions=[x["lap"] for x in result["trace"] if x["action"] is not None]
-            invalid+=len(actions)!=1 or actions!=[result["stop"]]
+            valid=len(actions)==1 and actions==[result["stop"]]
+            if valid:
+                selected=result["trace"][result["stop"]]["action"]
+                valid=selected in TYRES and result["total_ms"]==cost_plan(weather,"dry",4,result["stop"],selected)
+            invalid+=not valid
             regret=result["total_ms"]-oracle
             negative+=regret<0
             row[policy]=dict(stop=result["stop"],total_ms=result["total_ms"],regret_ms=regret,
