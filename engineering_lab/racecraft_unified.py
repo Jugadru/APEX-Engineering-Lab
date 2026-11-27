@@ -132,10 +132,10 @@ def resolve(states, commands, length_m=5000, half_width_m=5, node_limit=MAX_NODE
     return dict(status="FEASIBLE_COUPLED_STEP",states={i:selected[i]["result"]["state"] for i in ids},
                 selected={i:selected[i] for i in ids},nodes=nodes)
 
-def episode(states,ticks,grip=1):
+def episode(states,ticks,grip=1,lateral=False):
     history=[]; max_nodes=0; invalid=0
-    for _ in range(ticks):
-        cmds={i:vehicle.control(grip_factor=grip) for i in states}
+    for tick in range(ticks):
+        cmds={i:vehicle.control(grip_factor=grip, ay_mps2=((-1 if i==2 else 1)*(2 if tick<4 else -2 if tick<8 else 0)) if lateral else 0) for i in states}
         r=resolve(states,cmds)
         max_nodes=max(max_nodes,r["nodes"])
         if r["states"] is None:
@@ -155,8 +155,8 @@ def evaluate(config):
       "wet_pack":({i:initial(100+i*30,40,(-1)**i*2.5) for i in range(1,25)},0.4)}
     rows=[]; invalid=mismatch=incomplete=0
     for name,(states,grip) in scenarios.items():
-        a=episode(states,config["ticks"],grip)
-        b=episode(dict(reversed(list(states.items()))),config["ticks"],grip)
+        a=episode(states,config["ticks"],grip,name=="parallel")
+        b=episode(dict(reversed(list(states.items()))),config["ticks"],grip,name=="parallel")
         invalid+=a["invalid"];mismatch+=a!=b;incomplete+=a["status"]!="COMPLETE"
         rows.append(dict(name=name,**a))
     # Infeasible close approach and budget exhaustion must never commit state.
