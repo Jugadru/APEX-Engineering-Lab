@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.2 — Mathematical Models
+
+- Constant-force SI analytical reference versus trapezoid and Euler integration; 27 synthetic cases and six tests. No physical calibration.
+
+
 ## 0.6.1 — Algorithm Comparison
 
 - Periodic sorted spatial index vs exhaustive scan; 24 cars, six layouts, four radii, 576 queries. Count other rows, not elapsed time. Eight new tests.
