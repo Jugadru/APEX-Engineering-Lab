@@ -1,6 +1,6 @@
 # Autonomous Debugging
 
-**Estado:** IMPLEMENTAÇÃO INICIAL 0.5.0; intake de investigação, próximas fases no roadmap.
+**Estado:** IMPLEMENTAÇÃO INICIAL 0.5.0–0.5.4; investigação, classificação, reprodução, comparação de propostas e memória. Execução real de jogo permanece nos laboratórios existentes.
 
 ## Mandato
 
