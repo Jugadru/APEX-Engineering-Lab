@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.18 — Adaptive Control Refinement
+
+- Refine a feasible oriented trajectory towards the requested continuous steering/throttle/brake/KERS controls, with bounded deterministic line search and joint swept revalidation. Never worsen the declared command deviation objective or commit infeasible state. Five tests and six proposed wet/dry edge scenarios. No global optimum, real-track or game promotion claim.
+
 ## 0.8.17 — Oriented Motion Solver
 
 - Compose 10 ms yaw steps, continuous interpolated oriented rectangular envelopes, separating-axis motion bounds, strip containment, lazy bounded multi-car search and atomic failure. Synthetic straight Cartesian strip; not real-world collision response, calibrated geometry, continuous optimality or full sporting integration. Nine tests and two 24-car eight-tick replay episodes.
