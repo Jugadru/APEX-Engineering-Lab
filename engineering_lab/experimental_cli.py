@@ -3,8 +3,9 @@ from . import experimental as exp, exp_reports, registry as reg
 
 def add_commands(sub):
     sub.add_parser("experiment-list")
-    p=sub.add_parser("experiment-physics-suite")
-    p.add_argument("--registry",required=True,type=Path)
+    for name in ("experiment-physics-suite","experiment-racecraft-suite"):
+        p=sub.add_parser(name)
+        p.add_argument("--registry",required=True,type=Path)
     p=sub.add_parser("experiment-report")
     p.add_argument("--registry",required=True,type=Path)
     p.add_argument("--id",required=True)
@@ -18,12 +19,13 @@ def add_commands(sub):
     p.add_argument("--registry",required=True,type=Path)
 
 def run(args):
-    if args.action=="experiment-physics-suite":
+    if args.action in ("experiment-physics-suite","experiment-racecraft-suite"):
+        prefix="physics_" if args.action=="experiment-physics-suite" else "racecraft_"
         sha,checkout=exp.revision()
         reg.require(not args.registry.resolve().is_relative_to(checkout),"registry must be outside checkout")
         args.registry.mkdir(mode=0o700)
         entries=[]
-        for name in sorted(n for n in exp.specs() if n.startswith("physics_")):
+        for name in sorted(n for n in exp.specs() if n.startswith(prefix)):
             ident="EXP-"+name.upper().replace("_","-")
             folder=args.registry/name
             exp.run(folder,name,ident,sha)

@@ -30,7 +30,16 @@ Não altera Core 2, Hyper, Foundation ou Development Lab. Uma capacidade princip
 | 0.7.8 | Numerical Stability | convergence and invariants |
 | 0.7.9 | Physics Boundary Audit | reproduce and correct boundary failures; exact candidate QA |
 | 0.7.10 | Stage Closure Gate | auditoria obrigatória, evidências exatas e transição verificável |
-| 0.8.0 | Racecraft Research Lab | cenários espaciais e agentes reproduzíveis |
+| 0.8.0 | Racecraft Foundation | frozen observations and deterministic order |
+| 0.8.1 | Spatial Awareness | neighbor query and clearance reference |
+| 0.8.2 | Trajectory Optimization | bounded offline candidate paths |
+| 0.8.3 | Overtaking Intelligence | feasibility and confirmed pass |
+| 0.8.4 | Defensive Intelligence | commitment and hysteresis |
+| 0.8.5 | Collision Avoidance | swept occupancy reference |
+| 0.8.6 | Multi-Agent Racing | frozen proposal and resolution |
+| 0.8.7 | Driver Personality | bounded decision traits |
+| 0.8.8 | Racecraft Integration | composed tactical scenarios |
+| 0.8.9 | Racecraft Stability | multi-tick invariants and closure audit |
 | 0.9.0 | Strategy Research Lab | heurística versus Monte Carlo/VSE |
 | 0.10.0 | Simulation Laboratory | cenário parametrizado e comparação determinística |
 | 0.11.0 | Performance Intelligence | benchmarks equivalentes e evidência para native core |
