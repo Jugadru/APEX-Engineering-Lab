@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.17 — Oriented Motion Solver
+
+- Compose 10 ms yaw steps, continuous interpolated oriented rectangular envelopes, separating-axis motion bounds, strip containment, lazy bounded multi-car search and atomic failure. Synthetic straight Cartesian strip; not real-world collision response, calibrated geometry, continuous optimality or full sporting integration. Nine tests and two 24-car eight-tick replay episodes.
+
 ## 0.8.16 — Steering and Yaw Dynamics
 
 - Add small-angle dynamic bicycle reference with bounded steering rate, body lateral velocity, axle yaw moment and world heading/position. Reuse the existing combined tyre force/energy path via optional axle demands; legacy commands unchanged. Eight proposed mirrored wet/dry/braking episodes (ten outer ticks each, twenty substeps per tick), seven tests. Synthetic constants; not full planar energy, historical calibration, rotated multi-car collision or runtime integration. Model reference: https://optimal-control-ad-personal-repos-bb7de67c51e7f51ec3bda98b62f32.pages.gitlab.lrz.de/explanations/vehicle_dynamics/db/ .
