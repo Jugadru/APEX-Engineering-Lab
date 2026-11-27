@@ -6,7 +6,7 @@ Prior 0.8.9 closure remains immutable historical evidence only. Code changes sin
 |---|---|---|
 | Scripted-only observations | Improved | 0.8.10 closed-loop bounded kinematic episodes; no full sporting race. |
 | Instant stationary fallback | Improved | New solver advances only admissible bounded acceleration options; explicit no feasible state; no guarantee of all-case recovery or physical impact response. |
-| Coupled vehicle dynamics | OPEN | Existing 0.7 physics and 0.8.10 longitudinal reference agree for fixed net force. Stateful lateral steering, yaw, thermal and real combined force/geometry coupling not established. |
+| Coupled vehicle dynamics | OPEN | 0.8.14 now reuses saturated combined tyre force and energy ledger for local lateral velocity/displacement and interior edge checks. Stateful steering/yaw, fully coupled energy/thermal and multi-car force resolution on historical geometry remain unestablished. |
 | Metric historical geometry | OPEN | 20 source records, 17 licensed normalized references, 3 schematic records; 3 F1DB outline sources identified. Need historical metric width/elevation/configuration and approved integration. |
 | Historical data reference | Improved | 20 official fastest laps, 20 reviewed lengths and game buffer verified; no real dynamic measurements. |
 | Coefficients and driver traits | OPEN | Need licensed measured 2012 telemetry, event labels, predeclared metrics and independent holdout; no inference of psychology from lap ranks. |

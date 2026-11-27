@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.14 — Coupled Local Motion
+
+- Reuse existing 0.7 vehicle force/energy and saturated combined-grip result for stateful local lateral kinematics; check interior path extrema, reject invalid edge/low-speed/domain continuation. 24 force cases, two eight-tick sequences, two edge cases, eight tests. Separate lateral work identity, not full 2D energy, yaw/steering or sporting integration.
+
+
 ## 0.8.13 — Historical Reference Crosscheck
 
 - Compare all 20 pinned game lap lengths, official 2012 fastest race laps and declared +500 ms game buffers; preserve early Austin discrepancy and later source. Document three missing outline references from pinned F1DB CC-BY-4.0 repository; no SVG copy or measured geometry claim. Five new tests. Historical reference verification is not calibration.
