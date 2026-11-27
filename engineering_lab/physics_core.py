@@ -12,8 +12,16 @@ def step_force(mass_kg,speed_mps,force_n,dt_s):
     force=scalar(force_n,-10000000,10000000,"force_n")
     dt=scalar(dt_s,0,10,"dt_s")
     a=force/m
-    active=min(dt,v/-a) if a<0 else dt
-    end=max(0.0,v+a*active)
+    stop=v/-a if a<0 else None
+    if stop is not None and stop<=dt:
+        active=stop
+        end=0.0  # Exact stop identity; avoid positive rounding residue.
+    elif v==0 and a<=0:
+        active=0.0
+        end=0.0
+    else:
+        active=dt
+        end=max(0.0,v+a*active)
     distance=(v+end)*0.5*active
     work=force*distance
     delta=0.5*m*(end-v)*(end+v)

@@ -37,6 +37,9 @@ def spring_step(mass_kg,k_n_per_m,c_ns_per_m,x_m,v_mps,dt_s):
     decay=math.exp(-alpha*dt); cosine=math.cos(z)
     end_x=decay*(x*cosine+(v+alpha*x)*sinc)
     end_v=decay*(v*cosine-(alpha*v+k/m*x)*sinc)
+    # The analytical result is not valid for continuation outside this toy domain.
+    end_x=scalar(end_x,-2,2,"result spring displacement outside model domain (m)")
+    end_v=scalar(end_v,-100,100,"result spring velocity outside model domain (m/s)")
     return {"x_m":end_x,"v_mps":end_v,"initial_energy_j":0.5*(k*x*x+m*v*v),
             "energy_j":0.5*(k*end_x*end_x+m*end_v*end_v)}
 
