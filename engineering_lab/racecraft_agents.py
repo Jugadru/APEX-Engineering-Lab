@@ -28,8 +28,9 @@ def resolve(snapshot,proposals):
         rounds+=1; new=set()
         for i,j in pairs:
             if (i,j) not in initial_set and collision.contact(snapshot,i,j,accepted[i],accepted[j])["contact"]:
-                new.update(k for k in (i,j) if accepted[k]!=hold[k])
+                new.update((i,j))  # Record both conflict participants, including already stationary cars.
         if not new: break
+        reg.require(any(accepted[i]!=hold[i] for i in new),"unresolved stationary conflict")
         for i in new: accepted[i]=hold[i].copy()
         veto.update(new)
     remaining=[(i,j) for i,j in pairs if (i,j) not in initial_set and collision.contact(snapshot,i,j,accepted[i],accepted[j])["contact"]]
