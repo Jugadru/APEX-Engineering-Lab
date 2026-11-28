@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.7 — Traffic Prediction Intelligence
+
+- Add isolated lap-boundary variable congestion proxy using relative free pace, tyre age/compound, proximity and density; bounded shared loss up to 3000 ms/lap, propagated through the own timing ledger. Compare the original fixed-proxy window policy against variable-proxy planning on the same variable evaluation model, 32-state grid, 32 forecasts and 64 paired cases (seed 20261203), eight zero-violation criteria and eight tests. No spatial passing, aerodynamic clean-air measure, calibrated traffic or sporting integration. Candidate pending CI.
+
 ## 0.9.6 — Pit Window Intelligence
 
 - Four-lap snapshot window with exact Bayesian weather-path weights, four exogenous rival hypotheses, synthetic tyre and pit-exit traffic costs, legal optional no-stop and manual lap locks. Minimize expected gap; report exact discrete eligible laps within 1000 ms of best, per-lap regret and model-conditional near-optimal probability. Compare fixed midpoint policy against window on 96 paired cases (including out-of-prior weather), 32-state grid, seven zero-violation criteria, nine tests. No closed-loop race replay, calibration or sporting integration. Candidate pending CI.

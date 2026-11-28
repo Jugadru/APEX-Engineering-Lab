@@ -2,7 +2,7 @@
 
 Autonomous scientific research, experimental engineering, algorithm development and computational intelligence infrastructure for the APEX Motorsport ecosystem.
 
-**v0.9.6 — Pit Window Intelligence (candidate)**
+**v0.9.7 — Traffic Prediction Intelligence (candidate)**
 
 Laboratório de P&D independente do motor oficial e do Development Lab. Pesquisa científica, modelos isolados, comparação de algoritmos e evidência reproduzível. Não é outro motor nem outro sistema de homologação.
 

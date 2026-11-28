@@ -1,6 +1,6 @@
 # Strategy Research Lab
 
-**Estado:** 0.9.5 homologada (PR #63 e main f74e057: 10/10 cada); 0.9.6 candidata.
+**Estado:** 0.9.6 homologada (PR #64 e main eaa6c10: 10/10 cada); 0.9.7 candidata.
 
 ## Mandato
 
@@ -53,3 +53,7 @@ Carros de fundo distintos podem cruzar no mesmo milissegundo; offsets continuam 
 ## Pit Window Intelligence 0.9.6
 
 Janela de quatro voltas a partir de snapshot observado, 0 ou 1 pit próprio conforme obrigação, quatro compostos sintéticos. Restrições de índice inicial/final e trava manual de volta; a trava não é cancelada por chuva. Posterior de 0.9.2 (taxas 100/600 por mil), oito caminhos futuros × quatro hipóteses rivais de 0.9.5, pesos inteiros exatos. Minimiza gap esperado; primeira/última volta delimitam conjunto discreto de alternativas até 1000 ms do ótimo (não implicam continuidade). Ideal pode ser nenhuma parada; probabilidade de ficar até 1000 ms do melhor plano retrospectivo é condicional ao modelo, não confiança calibrada. Baseline fixa pit no meio da janela, com composto baseado no clima observado. 32 estados × até 17 planos × 32 hipóteses, 96 casos pareados seed 20261202, sete critérios zero e nove testes. Oráculo independente por segmentos; amostra exploratória inclui taxa 900 fora do prior. Recalcular com novo snapshot; não é replay adaptativo integral, não há fila, inventário, reação rival ou integração esportiva.
+
+## Traffic Prediction Intelligence 0.9.7
+
+Extensão isolada da janela 0.9.6. Carros de fundo possuem composto, idade e ritmo exógenos; rival mantém prior 0.9.5. A cada fronteira de volta, carros à frente mais lentos produzem pressão proporcional à vantagem de ritmo e proximidade prevista (janela 2000 ms). Perda compartilhada: maior pressão em ms + 250 ms por carro adicional afetado, limitada à maior vantagem e 3000 ms/volta. Sem soma de perdas individuais; atraso propagado nas próximas voltas, inclusive para planos sem parada. Ar limpo significa ausência de pressão temporal modelada, não medição aerodinâmica. Comparar seleção de 0.9.6 com seleção do novo proxy em mesmo ambiente variável. 32 estados × até 17 planos × 32 hipóteses; 64 casos pareados, seed 20261203, oito critérios zero e oito testes. Referência racional da pressão, contabilidade independente de segmentos limpos e invariância de ordem. Ranking exploratório, sem interação recíproca, posição física, calibração ou promoção esportiva. Código original.
