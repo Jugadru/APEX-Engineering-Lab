@@ -55,7 +55,8 @@ Não altera Core 2, Hyper, Foundation ou Development Lab. Uma capacidade princip
 | 0.9.3 | Multi-Stint Strategy Intelligence | one to three stops, causal planning and independent complete-plan cost oracle |
 | 0.9.4 | Tyre Degradation Intelligence | nonlinear synthetic lap costs and compound selection |
 | 0.9.5 | Undercut & Overcut Intelligence | rival-aware four-lap pit window and traffic proxy |
-| 0.9.6 | Pit Window Intelligence | forecast-weighted legal stop window and optional waiting; candidate |
+| 0.9.6 | Pit Window Intelligence | forecast-weighted legal stop window and optional waiting; homologated |
+| 0.9.7 | Traffic Prediction Intelligence | bounded variable congestion and forecast comparison; candidate |
 | 0.10.0 | Simulation Laboratory | cenário parametrizado e comparação determinística |
 | 0.11.0 | Performance Intelligence | benchmarks equivalentes e evidência para native core |
 | 0.12.0 | Quality & Regression Intelligence | invariantes e diferenças legitimadas |
