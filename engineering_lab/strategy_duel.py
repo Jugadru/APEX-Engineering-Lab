@@ -30,7 +30,7 @@ def validate(s):
     reg.require(all(type(a) is int and 0<=a<=20 for a in (s.own_age,s.rival_age)),"tyre ages")
     reg.require(type(s.traffic_offsets) is tuple and len(s.traffic_offsets)<=4 and
                 all(type(x) is int and 0<=x<=50000 for x in s.traffic_offsets) and
-                tuple(sorted(set(s.traffic_offsets)))==s.traffic_offsets,"traffic offsets")
+                tuple(sorted(s.traffic_offsets))==s.traffic_offsets,"traffic offsets")
 
 def validate_plan(plan):
     reg.require(isinstance(plan,(tuple,list)) and len(plan)==2 and type(plan[0]) is int and
@@ -54,6 +54,8 @@ def timeline(offset,age,plan,pace=0):
 
 def traffic_delay(departure,other_departures):
     # Equal-boundary time proxy: another car crossed just before us.
+    reg.require(type(departure) is int and isinstance(other_departures,(tuple,list)) and
+                all(type(x) is int for x in other_departures),"traffic timing")
     return TRAFFIC_LOSS_MS if any(0<=departure-x<=TRAFFIC_WINDOW_MS for x in other_departures) else 0
 
 def simulate(s,plan,rival):
@@ -75,16 +77,54 @@ def simulate(s,plan,rival):
                 gap_ms=finish-rfinish,finish_rank=1+sum(x<=finish for x in finish_order),
                 ahead=finish<rfinish)
 
+def reference_result(s,plan,rival):
+    """Independent prefix/segment accounting for audit; no timeline or simulate calls."""
+    stop,compound=plan;rstop,pace=rival
+    def crossing(initial,age,k,new,rate,boundary,after_service):
+        old_laps=min(boundary,k)
+        new_laps=max(0,boundary-k)
+        return (initial+sum(tyre.lap_cost("medium",age+i,False) for i in range(old_laps))
+                +sum(tyre.lap_cost(new,i,False) for i in range(new_laps))
+                +boundary*rate+base.PIT_MS*int(boundary>k or (boundary==k and after_service)))
+    own_exit=crossing(s.gap_ms,s.own_age,stop,compound,0,stop,True)
+    rival_exit=crossing(0,s.rival_age,rstop,"soft",pace,stop,True)
+    exit_field=[rival_exit]+[x+90000*stop for x in s.traffic_offsets]
+    traffic=1500 if any(own_exit-2000<=x<=own_exit for x in exit_field) else 0
+    own_finish=crossing(s.gap_ms,s.own_age,stop,compound,0,HORIZON,False)+traffic
+    rival_finish=crossing(0,s.rival_age,rstop,"soft",pace,HORIZON,False)
+    finish_field=[rival_finish]+[x+90000*HORIZON for x in s.traffic_offsets]
+    # Equal timestamps are ranked conservatively after the other cars.
+    exit_rank=sorted(exit_field+[own_exit]).index(own_exit)+exit_field.count(own_exit)+1
+    finish_rank=sorted(finish_field+[own_finish]).index(own_finish)+finish_field.count(own_finish)+1
+    return dict(exit_ms=own_exit,traffic_ms=traffic,own_finish_ms=own_finish,
+                rival_finish_ms=rival_finish,gap_ms=own_finish-rival_finish,
+                exit_rank=exit_rank,finish_rank=finish_rank,ahead=own_finish<rival_finish,
+                tactic=("undercut" if stop<rstop else "overcut" if stop>rstop else "same_lap"))
+
+def reference_score(s,plan):
+    rows=[reference_result(s,plan,rival) for rival in FORECAST]
+    return (sum(x["gap_ms"]>=0 for x in rows),sum(x["gap_ms"] for x in rows),
+            sum(x["own_finish_ms"] for x in rows))
+
+def audit_result(metrics,s,p,rival,x):
+    expected=reference_result(s,p,rival)
+    metrics["accounting_mismatches"]+=int(any(x[k]!=expected[k] for k in
+        ("exit_ms","traffic_ms","own_finish_ms","rival_finish_ms","gap_ms","tactic")))
+    metrics["rank_violations"]+=int(any(x[k]!=expected[k] for k in
+        ("exit_rank","finish_rank","ahead")))
+
 def score(s,plan):
     rows=[simulate(s,plan,rival) for rival in FORECAST]
+    # First objective is non-wins: an exact tie is conservatively not a win.
     return (sum(not x["ahead"] for x in rows),sum(x["gap_ms"] for x in rows),
             sum(x["own_finish_ms"] for x in rows))
 
 def choose(s):
     validate(s)
     # Baseline ignores opponent and traffic; same tyre model and action space.
-    solo=min(PLANS,key=lambda p:(timeline(s.gap_ms,s.own_age,p)[-1]["end_ms"],PLANS.index(p)))
-    ranked=min(PLANS,key=lambda p:(score(s,p),PLANS.index(p)))
+    # min is stable: the first candidate wins an exact tie.
+    solo=min(PLANS,key=lambda p:timeline(s.gap_ms,s.own_age,p)[-1]["end_ms"])
+    ranked=min(PLANS,key=lambda p:score(s,p))
     return dict(solo=solo,duel=ranked)
 
 def evaluate(config):
@@ -96,15 +136,10 @@ def evaluate(config):
                  rank_violations=0,replay_mismatches=0,negative_hindsight_regret=0)
     for s in grid:
         plans=choose(s)
-        metrics["score_violations"]+=int(score(s,plans["duel"])>score(s,plans["solo"]))
+        metrics["score_violations"]+=int(plans["duel"]!=min(PLANS,key=lambda p:reference_score(s,p)))
         for p in PLANS:
             for rival in FORECAST:
-                x=simulate(s,p,rival)
-                direct=s.gap_ms+base.PIT_MS+sum(tyre.lap_cost("medium" if i<p[0] else p[1],
-                      s.own_age+i if i<p[0] else i-p[0],False) for i in range(HORIZON))
-                metrics["accounting_mismatches"]+=int(x["own_finish_ms"]!=direct+x["traffic_ms"])
-                metrics["rank_violations"]+=int(not 1<=x["exit_rank"]<=2+len(s.traffic_offsets) or
-                    not 1<=x["finish_rank"]<=2+len(s.traffic_offsets) or x["ahead"]!=(x["gap_ms"]<0))
+                audit_result(metrics,s,p,rival,simulate(s,p,rival))
     rng=random.Random(seed);rows=[]
     totals={p:dict(wins=0,gap=0,traffic=0,undercut=0,overcut=0,same_lap=0) for p in ("solo","duel")}
     for i in range(n):
@@ -112,13 +147,15 @@ def evaluate(config):
                    tuple(sorted({rng.randrange(18000,33001) for _ in range(2)})))
         plans=choose(s) # frozen before realizing rival
         realized=FORECAST[rng.randrange(len(FORECAST))]
-        oracle=min(simulate(s,p,realized)["gap_ms"] for p in PLANS)
+        oracle=min(reference_result(s,p,realized)["gap_ms"] for p in PLANS)
+        metrics["score_violations"]+=int(plans["duel"]!=min(PLANS,key=lambda p:reference_score(s,p)))
         row=dict(case=i,snapshot=dict(gap_ms=s.gap_ms,own_age=s.own_age,rival_age=s.rival_age,
                                      traffic_offsets=s.traffic_offsets),rival=realized)
         metrics["replay_mismatches"]+=int(plans!=choose(s))
         for policy,plan in plans.items():
             metrics["invalid_actions"]+=int(plan not in PLANS)
             x=simulate(s,plan,realized);metrics["replay_mismatches"]+=int(x!=simulate(s,plan,realized))
+            audit_result(metrics,s,plan,realized,x)
             metrics["negative_hindsight_regret"]+=int(x["gap_ms"]<oracle)
             t=totals[policy];t["wins"]+=int(x["ahead"]);t["gap"]+=x["gap_ms"];t["traffic"]+=x["traffic_ms"];t[x["tactic"]]+=1
             row[policy]=x
