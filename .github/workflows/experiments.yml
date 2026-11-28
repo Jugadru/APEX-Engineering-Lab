@@ -65,6 +65,10 @@ jobs:
         run: python3 -m engineering_lab experiment-run strategy_traffic_prediction --id EXP-TRAFFIC-001 --registry "$RUNNER_TEMP/traffic"
       - name: Verify traffic bytes
         run: python3 -m engineering_lab verify --id EXP-TRAFFIC-001 --registry "$RUNNER_TEMP/traffic"
+      - name: Adaptive rival strategy
+        run: python3 -m engineering_lab experiment-run strategy_adaptive_rival --id EXP-RIVAL-001 --registry "$RUNNER_TEMP/rival"
+      - name: Verify rival bytes
+        run: python3 -m engineering_lab verify --id EXP-RIVAL-001 --registry "$RUNNER_TEMP/rival"
       - name: Verify bytes
         run: python3 -m engineering_lab verify --id EXP-ORDER-001 --registry "$RUNNER_TEMP/ordered"
       - name: Scientific report
@@ -83,6 +87,7 @@ jobs:
             --entry "$RUNNER_TEMP/duel" EXP-DUEL-001 \
             --entry "$RUNNER_TEMP/window" EXP-WINDOW-001 \
             --entry "$RUNNER_TEMP/traffic" EXP-TRAFFIC-001 \
+            --entry "$RUNNER_TEMP/rival" EXP-RIVAL-001 \
             --output "$RUNNER_TEMP/scientific-report.json" \
             --markdown "$RUNNER_TEMP/scientific-report.md"
       - uses: actions/upload-artifact@v4
@@ -103,6 +108,7 @@ jobs:
             ${{ runner.temp }}/duel/
             ${{ runner.temp }}/window/
             ${{ runner.temp }}/traffic/
+            ${{ runner.temp }}/rival/
             ${{ runner.temp }}/scientific-report.json
             ${{ runner.temp }}/scientific-report.md
           retention-days: 7

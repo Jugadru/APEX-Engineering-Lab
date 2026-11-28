@@ -1,6 +1,6 @@
 # Strategy Research Lab
 
-**Estado:** 0.9.6 homologada (PR #64 e main eaa6c10: 10/10 cada); 0.9.7 candidata.
+**Estado:** 0.9.7 homologada (PR #65 e main 0e44ea7: 10/10 cada); 0.9.8 candidata.
 
 ## Mandato
 
@@ -57,3 +57,7 @@ Janela de quatro voltas a partir de snapshot observado, 0 ou 1 pit próprio conf
 ## Traffic Prediction Intelligence 0.9.7
 
 Extensão isolada da janela 0.9.6. Carros de fundo possuem composto, idade e ritmo exógenos; rival mantém prior 0.9.5. A cada fronteira de volta, carros à frente mais lentos produzem pressão proporcional à vantagem de ritmo e proximidade prevista (janela 2000 ms). Perda compartilhada: maior pressão em ms + 250 ms por carro adicional afetado, limitada à maior vantagem e 3000 ms/volta. Sem soma de perdas individuais; atraso propagado nas próximas voltas, inclusive para planos sem parada. Ar limpo significa ausência de pressão temporal modelada, não medição aerodinâmica. Comparar seleção de 0.9.6 com seleção do novo proxy em mesmo ambiente variável. 32 estados × até 17 planos × 32 hipóteses; 64 casos pareados, seed 20261203, oito critérios zero e oito testes. Referência racional da pressão, contabilidade independente de segmentos limpos e invariância de ordem. Ranking exploratório, sem interação recíproca, posição física, calibração ou promoção esportiva. Código original.
+
+## Adaptive Rival Strategy 0.9.8
+
+Duelo de quatro voltas: plano próprio aberto de 0.9.7 e rival com uma parada obrigatória. Decisões congeladas antes de ambos os serviços; parada própria só pode influenciar o rival na volta seguinte. Perfil cover antecipa parada após observar pit próximo (gap pré-serviço até 5000 ms); extend pode adiar a parada nominal uma vez se o adversário ainda não parou e o ritmo relativo permitir (margem 500 ms). Gatilhos prioritários de chuva, desgaste adicional de 4000 ms e prazo final; compostos escolhidos pelo clima atual. Pressão temporal recíproca do par usando 0.9.7, fundo exógeno. Comparar plano anterior com plano que considera respostas, no mesmo ambiente reativo. 32 estados × 16 planos × 64 hipóteses (32 de clima/rival × 2 perfis equiprováveis), 48 casos pareados seed 20261204. Oito critérios congelados e oito testes; verificar decisões de prefixos iguais, contabilidade dos dois carros, ordem manual, ausência de reações repetidas e regret não negativo. Não é jogo simultâneo ótimo, não há resposta adaptativa própria dentro do horizonte, nem calibração, ultrapassagem física ou integração. Ranking amostral exploratório.
