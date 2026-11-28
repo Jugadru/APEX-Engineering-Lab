@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.8 — Adaptive Rival Strategy
+
+- Isolated four-lap causal rival with cover/extend profiles, frozen pre-service observations, weather and wear triggers, at most one deferral and exactly one rival stop. Reciprocal focal-pair temporal pressure, background exogenous. Compare prior open-loop choice and response-aware choice against the same reactive opponent. 32-state grid, 64 weighted forecasts, 48 paired cases seed 20261204, eight zero-violation criteria and eight tests. Check prefix causality across plans/weather, timing, traffic and legality. No calibrated traits, full race replan, physical passes or sporting integration. Candidate pending CI.
+
 ## 0.9.7 — Traffic Prediction Intelligence
 
 - Add isolated lap-boundary variable congestion proxy using relative free pace, tyre age/compound, proximity and density; bounded shared loss up to 3000 ms/lap, propagated through the own timing ledger. Compare the original fixed-proxy window policy against variable-proxy planning on the same variable evaluation model, 32-state grid, 32 forecasts and 64 paired cases (seed 20261203), eight zero-violation criteria and eight tests. No spatial passing, aerodynamic clean-air measure, calibrated traffic or sporting integration. Candidate pending CI.
