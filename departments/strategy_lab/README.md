@@ -1,6 +1,6 @@
 # Strategy Research Lab
 
-**Estado:** 0.9.4 homologada; 0.9.5 duelo estratégico em candidata até aprovação CI.
+**Estado:** 0.9.5 homologada (PR #63 e main f74e057: 10/10 cada); 0.9.6 candidata.
 
 ## Mandato
 
@@ -49,3 +49,7 @@ Janela seca de quatro voltas, um pit antes de uma volta, três slicks artificiai
 ### Auditoria corretiva da candidata
 
 Carros de fundo distintos podem cruzar no mesmo milissegundo; offsets continuam ordenados, mas repetições são permitidas. Empates de chegada são não-vitórias e a ordem estimada é conservadora. O atraso permanece único e limitado. Uma referência independente por somas de segmentos verifica tempos próprio e rival, saída, gap, tráfego, ranks e ótimo de todos os planos no grid original e na amostra. Cinco testes adicionais cobrem empates, entradas inválidas, extremos de domínio e detecção de erros injetados. Seed, amostra, parâmetros e seis limiares congelados permanecem. Sem alegação de calibração ou promoção esportiva.
+
+## Pit Window Intelligence 0.9.6
+
+Janela de quatro voltas a partir de snapshot observado, 0 ou 1 pit próprio conforme obrigação, quatro compostos sintéticos. Restrições de índice inicial/final e trava manual de volta; a trava não é cancelada por chuva. Posterior de 0.9.2 (taxas 100/600 por mil), oito caminhos futuros × quatro hipóteses rivais de 0.9.5, pesos inteiros exatos. Minimiza gap esperado; primeira/última volta delimitam conjunto discreto de alternativas até 1000 ms do ótimo (não implicam continuidade). Ideal pode ser nenhuma parada; probabilidade de ficar até 1000 ms do melhor plano retrospectivo é condicional ao modelo, não confiança calibrada. Baseline fixa pit no meio da janela, com composto baseado no clima observado. 32 estados × até 17 planos × 32 hipóteses, 96 casos pareados seed 20261202, sete critérios zero e nove testes. Oráculo independente por segmentos; amostra exploratória inclui taxa 900 fora do prior. Recalcular com novo snapshot; não é replay adaptativo integral, não há fila, inventário, reação rival ou integração esportiva.

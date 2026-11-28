@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.6 — Pit Window Intelligence
+
+- Four-lap snapshot window with exact Bayesian weather-path weights, four exogenous rival hypotheses, synthetic tyre and pit-exit traffic costs, legal optional no-stop and manual lap locks. Minimize expected gap; report exact discrete eligible laps within 1000 ms of best, per-lap regret and model-conditional near-optimal probability. Compare fixed midpoint policy against window on 96 paired cases (including out-of-prior weather), 32-state grid, seven zero-violation criteria, nine tests. No closed-loop race replay, calibration or sporting integration. Candidate pending CI.
+
 ## 0.9.5 — Undercut & Overcut Intelligence
 
 - Original four-lap dry one-stop duel, same 0.9.4 tyre cost, 12 plans, four equally weighted rival forecasts, exogenous traffic at equal-distance lap boundaries. Select lexicographically by expected loss count then gap and own elapsed time; compare solo minimum elapsed plan. Fixed 24-state grid and 96 sampled scenarios; six frozen zero-violation criteria, eight tests. Return rank is a crossing-order proxy, not physical track position. No reactive rivals, actual traffic/overtaking, or promotion.
