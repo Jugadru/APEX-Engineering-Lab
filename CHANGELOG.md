@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.5 — Undercut & Overcut Intelligence
+
+- Original four-lap dry one-stop duel, same 0.9.4 tyre cost, 12 plans, four equally weighted rival forecasts, exogenous traffic at equal-distance lap boundaries. Select lexicographically by expected loss count then gap and own elapsed time; compare solo minimum elapsed plan. Fixed 24-state grid and 96 sampled scenarios; six frozen zero-violation criteria, eight tests. Return rank is a crossing-order proxy, not physical track position. No reactive rivals, actual traffic/overtaking, or promotion.
+
+- Audit revision: permit distinct background cars with equal crossing timestamps (conservative ties, one bounded delay); reject malformed traffic timing. Independently reconcile both cars, ranks, gaps and all-plan optimum on the original grid and sampled states; add five regression tests including injected accounting errors. Keep seed, fixture, action space, cost parameters and six zero thresholds unchanged. No simulator integration.
+
 ## 0.9.4 — Tyre Degradation Intelligence
 
 - Separate synthetic lap-age cost model with soft/medium/hard/wet profiles and quadratic post-cliff penalty. Original costs and experiments unchanged; not coupled to physics_tyre. Posterior-aware one-to-three-stop reference, 256 weighted eight-lap paths, 72 sampled twelve-lap paths, independent segment-DP hindsight oracle checked against short brute enumeration. Eight frozen zero-violation criteria, nine tests. No historical tyre calibration, thermal integration, inventory or sporting promotion.

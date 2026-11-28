@@ -54,6 +54,7 @@ Não altera Core 2, Hyper, Foundation ou Development Lab. Uma capacidade princip
 | 0.9.2 | Weather Prediction Intelligence | unknown synthetic weather regime, causal Bayesian forecast and decision reference |
 | 0.9.3 | Multi-Stint Strategy Intelligence | one to three stops, causal planning and independent complete-plan cost oracle |
 | 0.9.4 | Tyre Degradation Intelligence | nonlinear synthetic lap costs and compound selection |
+| 0.9.5 | Undercut & Overcut Intelligence | rival-aware four-lap pit window and traffic proxy |
 | 0.10.0 | Simulation Laboratory | cenário parametrizado e comparação determinística |
 | 0.11.0 | Performance Intelligence | benchmarks equivalentes e evidência para native core |
 | 0.12.0 | Quality & Regression Intelligence | invariantes e diferenças legitimadas |

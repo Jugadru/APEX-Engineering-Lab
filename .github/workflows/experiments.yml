@@ -53,6 +53,10 @@ jobs:
         run: python3 -m engineering_lab experiment-run strategy_tyre_degradation --id EXP-TYRE-STRATEGY-001 --registry "$RUNNER_TEMP/tyre-strategy"
       - name: Verify tyre strategy bytes
         run: python3 -m engineering_lab verify --id EXP-TYRE-STRATEGY-001 --registry "$RUNNER_TEMP/tyre-strategy"
+      - name: Strategic duel reference
+        run: python3 -m engineering_lab experiment-run strategy_undercut_overcut --id EXP-DUEL-001 --registry "$RUNNER_TEMP/duel"
+      - name: Verify duel bytes
+        run: python3 -m engineering_lab verify --id EXP-DUEL-001 --registry "$RUNNER_TEMP/duel"
       - name: Verify bytes
         run: python3 -m engineering_lab verify --id EXP-ORDER-001 --registry "$RUNNER_TEMP/ordered"
       - name: Scientific report
@@ -68,6 +72,7 @@ jobs:
             --entry "$RUNNER_TEMP/weather" EXP-WEATHER-001 \
             --entry "$RUNNER_TEMP/stint" EXP-STINT-001 \
             --entry "$RUNNER_TEMP/tyre-strategy" EXP-TYRE-STRATEGY-001 \
+            --entry "$RUNNER_TEMP/duel" EXP-DUEL-001 \
             --output "$RUNNER_TEMP/scientific-report.json" \
             --markdown "$RUNNER_TEMP/scientific-report.md"
       - uses: actions/upload-artifact@v4
@@ -85,6 +90,7 @@ jobs:
             ${{ runner.temp }}/weather/
             ${{ runner.temp }}/stint/
             ${{ runner.temp }}/tyre-strategy/
+            ${{ runner.temp }}/duel/
             ${{ runner.temp }}/scientific-report.json
             ${{ runner.temp }}/scientific-report.md
           retention-days: 7
