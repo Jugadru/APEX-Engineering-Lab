@@ -51,7 +51,10 @@ def forecasts(s):
     return tuple(rows)
 
 def outcome(s,plan,path,rival):
-    reg.require(isinstance(plan,tuple) and plan in plans(s),"legal plan")
+    legal=plans(s)
+    reg.require(type(plan) is tuple and len(plan)==2 and
+                (plan==NONE or (type(plan[0]) is int and isinstance(plan[1],str))) and
+                plan in legal,"legal plan")
     reg.require(type(path) is tuple and len(path)==H and all(type(x) is bool for x in path)
                 and path[0]==s.prefix[-1],"realized weather")
     reg.require(type(rival) is tuple and rival in duel.FORECAST and all(type(x) is int for x in rival),"rival")

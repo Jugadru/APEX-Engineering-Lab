@@ -25,6 +25,11 @@ class WindowTests(unittest.TestCase):
         for bad in (replace(s,manual=0),replace(s,earliest=True),replace(s,latest=4)):
             with self.assertRaises(ValueError):w.plans(bad)
 
+    def test_invalid_action_types(self):
+        s=self.state(required=True)
+        for plan in ((True,"soft"),(1.0,"soft"),(None,None),[1,"soft"]):
+            with self.assertRaises(ValueError):w.outcome(s,plan,(False,)*4,(1,500))
+
     def test_weather_posterior(self):
         calm=self.state(prefix=(False,False,False))
         volatile=self.state(prefix=(False,True,False))
